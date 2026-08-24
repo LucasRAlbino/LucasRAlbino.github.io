@@ -1,0 +1,32 @@
+[
+  {
+    "titulo": "Windows Privilege Escalation — cheat sheet",
+    "resumo": "Enumeration and common privesc vectors on Windows via CMD and PowerShell: services, ACLs, scheduled tasks, DLL hijacking and hash dumping.",
+    "data": "2026-08-22",
+    "url": "writeups/windows-privesc.html",
+    "leitura": "8 min",
+    "tags": [{ "nome": "Windows", "classe": "ad" }, { "nome": "Privilege Escalation", "classe": "red" }]
+  },
+  {
+    "titulo": "Linux Privilege Escalation — cheat sheet",
+    "resumo": "Manual enumeration and exploitation of common Linux vectors: SUID, cron jobs, capabilities, exposed config files and post-exploitation.",
+    "data": "2026-08-21",
+    "url": "writeups/linux-privesc.html",
+    "leitura": "7 min",
+    "tags": [{ "nome": "Linux", "classe": "blue" }, { "nome": "Privilege Escalation", "classe": "red" }]
+  },
+  {
+    "titulo": "AppLocker + Constrained Language Mode bypass",
+    "resumo": "My own research on execution against hosts with AppLocker and PowerShell CLM enabled: bypass surfaces, LOLBins, and what telemetry sees. In writing.",
+    "data": "2026-08-23",
+    "status": "producao",
+    "tags": [{ "nome": "Red Team", "classe": "red" }, { "nome": "Windows", "classe": "ad" }]
+  },
+  {
+    "titulo": "Active Directory: from enumeration to Domain Admin",
+    "resumo": "Full lab AD chain — enumeration, credential attacks, lateral movement and escalation — with the corresponding defensive telemetry. In writing.",
+    "data": "2026-08-23",
+    "status": "producao",
+    "tags": [{ "nome": "Active Directory", "classe": "ad" }, { "nome": "Red Team", "classe": "red" }]
+  }
+]

@@ -625,3 +625,18 @@ body::after {
   .nf-photo { animation: none; }
   body::after { display: none; }
 }
+
+/* ---------- seletor de idioma ---------- */
+.lang-btn {
+  font-family: var(--mono); font-size: .8rem; font-weight: 600;
+  color: var(--txt-dim); text-decoration: none;
+  border: 1px solid var(--line); border-radius: 6px;
+  padding: 5px 10px; margin-left: 10px; white-space: nowrap;
+  transition: color .18s, border-color .18s;
+}
+.lang-btn:hover { color: var(--acc); border-color: var(--acc); text-decoration: none; }
+.lang-btn .on { color: var(--acc); }
+.lang-btn .off { color: var(--txt-faint); }
+@media (max-width: 720px) {
+  .lang-btn { margin-left: auto; }
+}

@@ -120,8 +120,7 @@
       }
     })
     .catch(function (err) {
-      var msg = '<div class="empty">nao foi possivel carregar data/posts.json &mdash; ' +
-                'abra o site pelo servidor local (nao pelo file://).<br>' + String(err) + '</div>';
+      var msg = '<div class="empty">' + T.error + String(err) + '</div>';
       if (listEl) listEl.innerHTML = msg;
       if (latestEl) latestEl.innerHTML = msg;
     });
@@ -132,17 +131,32 @@
       .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   }
 
+  // i18n dos rótulos renderizados pelo JS (idioma vem de <html lang>)
+  var EN = (document.documentElement.lang || 'pt').toLowerCase().slice(0, 2) === 'en';
+  var T = EN ? {
+    months: ['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'],
+    wip: 'in progress', draft: 'draft', soon: '// coming soon',
+    read: 'read write-up &rarr;', all: 'all',
+    empty: 'no write-ups published yet.',
+    error: 'could not load data/posts.json &mdash; open the site through the local server (not file://).<br>'
+  } : {
+    months: ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'],
+    wip: 'em produção', draft: 'rascunho', soon: '// em breve',
+    read: 'ler write-up &rarr;', all: 'todos',
+    empty: 'nenhum write-up publicado ainda.',
+    error: 'nao foi possivel carregar data/posts.json &mdash; abra o site pelo servidor local (nao pelo file://).<br>'
+  };
+
   function fmtDate(iso) {
     if (!iso) return '';
     var p = iso.split('-');
     if (p.length < 3) return iso;
-    var meses = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
-    return p[2] + ' ' + meses[parseInt(p[1], 10) - 1] + ' ' + p[0];
+    return p[2] + ' ' + T.months[parseInt(p[1], 10) - 1] + ' ' + p[0];
   }
 
   function render(container, posts) {
     if (!posts.length) {
-      container.innerHTML = '<div class="empty">nenhum write-up publicado ainda.</div>';
+      container.innerHTML = '<div class="empty">' + T.empty + '</div>';
       return;
     }
     container.innerHTML = posts.map(function (p) {
@@ -151,8 +165,8 @@
       }).join('');
       var wip = p.status === 'producao';
       var selo = wip
-        ? '<span class="chip" style="color:var(--warn);border-color:rgba(240,178,50,.35)">em produção</span>'
-        : (p.rascunho ? '<span class="chip" style="color:var(--warn);border-color:rgba(240,178,50,.35)">rascunho</span>' : '');
+        ? '<span class="chip" style="color:var(--warn);border-color:rgba(240,178,50,.35)">' + T.wip + '</span>'
+        : (p.rascunho ? '<span class="chip" style="color:var(--warn);border-color:rgba(240,178,50,.35)">' + T.draft + '</span>' : '');
       var meta =
         '<div class="post-meta">' +
           '<span>' + esc(fmtDate(p.data)) + '</span>' + tags + selo +
@@ -162,10 +176,10 @@
 
       if (wip) {
         return '<div class="post wip rv in">' + meta + body +
-               '<span class="more" style="color:var(--txt-faint)">// em breve</span></div>';
+               '<span class="more" style="color:var(--txt-faint)">' + T.soon + '</span></div>';
       }
       return '<a class="post rv in" href="' + esc(p.url) + '">' + meta + body +
-             '<span class="more">ler write-up &rarr;</span></a>';
+             '<span class="more">' + T.read + '</span></a>';
     }).join('');
   }
 
@@ -181,7 +195,7 @@
       });
     });
 
-    box.innerHTML = ['<button class="filter on" data-f="*">todos</button>']
+    box.innerHTML = ['<button class="filter on" data-f="*">' + T.all + '</button>']
       .concat(nomes.map(function (n) {
         return '<button class="filter" data-f="' + esc(n) + '">' + esc(n) + '</button>';
       })).join('');

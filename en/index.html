@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>lucas.albino — offensive security // pentest · red team · OT</title>
-<meta name="description" content="Offensive Security: pentest Web/API, Active Directory, Red Team labs e segurança de redes industriais OT/ICS. Write-ups e pesquisa.">
+<meta name="description" content="Offensive security: Web/API pentesting, Active Directory, Red Team labs and industrial network security (OT/ICS). Write-ups and research.">
 <meta name="author" content="Lucas Rodrigues Albino">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="lucas.albino — offensive security">
-<meta property="og:description" content="Pentest Web/API, Active Directory, Red Team e OT/ICS. Write-ups e pesquisa.">
-<meta property="og:locale" content="pt_BR">
+<meta property="og:description" content="Web/API pentesting, Active Directory, Red Team and OT/ICS. Write-ups and research.">
+<meta property="og:locale" content="en_US">
 
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%230a0e13'/><text y='68' x='50' text-anchor='middle' font-size='58' font-family='monospace' fill='%23ff2b3d'>&gt;_</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body id="top">
 <canvas id="matrix" aria-hidden="true"></canvas>
@@ -25,16 +25,16 @@
 <nav class="nav">
   <div class="wrap nav-in">
     <a class="brand" href="index.html"><span class="sig">&gt;_</span> lucas<span class="sig">.</span>albino</a>
-    <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">&#9776;</button>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">&#9776;</button>
     <div class="nav-links">
-      <a href="#sobre">./sobre</a>
+      <a href="#about">./about</a>
       <a href="#stack">./stack</a>
       <a href="#exp">./exp</a>
       <a href="#labs">./labs</a>
       <a href="writeups.html">./writeups</a>
-      <a href="#contato">./contato</a>
+      <a href="#contact">./contact</a>
     </div>
-    <a class="lang-btn" href="en/index.html" hreflang="en" aria-label="English version"><span class="on">PT</span> · <span class="off">EN</span></a>
+    <a class="lang-btn" href="../index.html" hreflang="pt-BR" aria-label="Versão em português"><span class="off">PT</span> · <span class="on">EN</span></a>
   </div>
 </nav>
 
@@ -43,7 +43,7 @@
   <div class="wrap">
     <div class="neofetch">
       <figure class="nf-photo" aria-hidden="false">
-        <img src="assets/img/perfil.png" alt="Lucas Rodrigues Albino"
+        <img src="../assets/img/perfil.png" alt="Lucas Rodrigues Albino"
              onerror="this.style.display='none';this.parentNode.classList.add('noimg')">
         <span class="nf-fallback" aria-hidden="true">LR</span>
         <figcaption>./perfil.png</figcaption>
@@ -53,13 +53,13 @@
         <div class="nf-id glitch" data-text="root@albino"><b>root</b>@<b>albino</b></div>
         <div class="nf-rule">-----------------------------</div>
         <dl>
-          <dt>role</dt><dd class="nf-typed" id="typed" data-roles="analista de cibersegurança|pentester web &amp; api|red team / active directory|segurança OT/ICS"><span class="cursor"></span></dd>
+          <dt>role</dt><dd class="nf-typed" id="typed" data-roles="cybersecurity analyst|web &amp; api pentester|red team / active directory|OT/ICS security"><span class="cursor"></span></dd>
           <dt>focus</dt><dd><b>offensive security</b> — web · api · AD · OT/ICS</dd>
-          <dt>base</dt><dd>Campina Grande, PB — BR</dd>
-          <dt>uptime</dt><dd>2+ anos em offensive security</dd>
-          <dt>edu</dt><dd>eng. elétrica — UFCG (TCC: ICS/SCADA)</dd>
+          <dt>base</dt><dd>Campina Grande, PB — Brazil</dd>
+          <dt>uptime</dt><dd>2+ years in offensive security</dd>
+          <dt>edu</dt><dd>electrical eng. — UFCG (thesis: ICS/SCADA)</dd>
           <dt>certs</dt><dd>eJPT · CRTA</dd>
-          <dt>lang</dt><dd>PT nativo · EN B2</dd>
+          <dt>lang</dt><dd>PT native · EN B2</dd>
           <dt>shell</dt><dd>python · bash · powershell · C</dd>
         </dl>
         <div class="nf-swatch" aria-hidden="true">
@@ -85,45 +85,43 @@
   </div>
 </header>
 
-<!-- ============ SOBRE ============ -->
-<section id="sobre" class="alt">
+<!-- ============ ABOUT ============ -->
+<section id="about" class="alt">
   <div class="wrap">
-    <div class="cmd rv"><span class="u">root</span><span class="at">@</span><span class="h">albino</span><span class="sep">:</span><span class="path">~</span>$ <span class="arg">cat sobre.md</span></div>
-    <div class="sec-head rv"><h2>sobre</h2></div>
+    <div class="cmd rv"><span class="u">root</span><span class="at">@</span><span class="h">albino</span><span class="sep">:</span><span class="path">~</span>$ <span class="arg">cat about.md</span></div>
+    <div class="sec-head rv"><h2>about</h2></div>
 
     <div class="about-grid">
       <div class="rv">
         <p>
-          Trabalho como <strong>analista de cibersegurança com foco em Offensive Security</strong>.
-          Faço pentest de aplicações Web, APIs e Active Directory, exploro e valido vulnerabilidades
-          e escrevo o relatório que traduz cada achado em risco de negócio. Priorizo a exploração
-          manual: o scanner é o ponto de partida, nunca a conclusão.
+          I work as a <strong>cybersecurity analyst focused on Offensive Security</strong>. I do
+          pentesting of Web applications, APIs and Active Directory, exploit and validate
+          vulnerabilities, and write the report that turns each finding into business risk. Manual
+          exploitation comes first: the scanner is the starting point, never the conclusion.
         </p>
         <p>
-          Também atuo do lado defensivo, com <strong>EDR, análise de malware e de phishing, triagem
-          de alertas, investigação de IOCs e criação de regras de detecção</strong>, além de apoio a
-          controles da ISO/IEC 27001. Entender como a defesa enxerga é o que torna o ataque mais
-          preciso.
+          I also work on the defensive side, with <strong>EDR, malware and phishing analysis, alert
+          triage, IOC investigation and detection-rule authoring</strong>, plus support for ISO/IEC
+          27001 controls. Understanding how the defense sees is what makes the attack sharper.
         </p>
         <p>
-          Sou engenheiro eletricista pela UFCG. No meu TCC estudei ataques a redes ICS/SCADA no
-          simulador LabShock, explorando vetores sobre o protocolo Modbus como Write Coil, MITM e
-          DoS. Foi ali que nasceu meu interesse por <strong>segurança de infraestrutura e redes
-          IT/OT</strong>, o ponto em que uma falha deixa de ser apenas digital e passa a ter efeito
-          físico.
+          I'm an electrical engineer from UFCG. In my thesis I studied attacks on ICS/SCADA networks
+          using the LabShock simulator, exploring Modbus vectors such as Write Coil, MITM and DoS.
+          That's where my interest in <strong>infrastructure and IT/OT network security</strong> was
+          born — the point where a fault stops being merely digital and becomes physical.
         </p>
         <p>
-          Neste espaço reúno o que produzo: write-ups de laboratórios e CTFs, pesquisas e notas
-          técnicas. Tudo feito em ambiente próprio, autorizado ou de treino.
+          This is where I keep what I produce: write-ups from labs and CTFs, research and technical
+          notes. All of it in my own, authorized or training environments.
         </p>
       </div>
 
       <div class="facts rv">
         <div class="fact"><span class="l">base</span><span class="v">Campina Grande, PB</span></div>
-        <div class="fact"><span class="l">formação</span><span class="v">eng. elétrica — UFCG</span></div>
-        <div class="fact"><span class="l">experiência</span><span class="v">2+ anos offensive security</span></div>
-        <div class="fact"><span class="l">idiomas</span><span class="v">PT nativo · EN B2</span></div>
-        <div class="fact"><span class="l">modelo</span><span class="v">remoto / híbrido</span></div>
+        <div class="fact"><span class="l">education</span><span class="v">electrical eng. — UFCG</span></div>
+        <div class="fact"><span class="l">experience</span><span class="v">2+ yrs offensive security</span></div>
+        <div class="fact"><span class="l">languages</span><span class="v">PT native · EN B2</span></div>
+        <div class="fact"><span class="l">model</span><span class="v">remote / hybrid</span></div>
         <div class="fact"><span class="l">mail</span><span class="v">lucasalbinoar@gmail.com</span></div>
       </div>
     </div>
@@ -135,17 +133,17 @@
   <div class="wrap">
     <div class="cmd rv"><span class="u">root</span><span class="at">@</span><span class="h">albino</span><span class="sep">:</span><span class="path">~</span>$ <span class="arg">ls -la stack/</span></div>
     <div class="sec-head rv"><h2>stack</h2></div>
-    <p class="out-note rv">o que eu uso — em ambiente autorizado ou em lab próprio.</p>
+    <p class="out-note rv">what I use — in authorized environments or my own lab.</p>
 
     <div class="grid g2">
       <div class="skill-card rv">
         <h3>pentest &amp; offensive</h3>
         <div class="tags">
-          <span class="tag">Web</span><span class="tag">API</span><span class="tag">Infraestrutura</span>
+          <span class="tag">Web</span><span class="tag">API</span><span class="tag">Infrastructure</span>
           <span class="tag">Active Directory</span><span class="tag">OT/ICS</span>
-          <span class="tag">Exploração manual</span><span class="tag">Fuzzing</span>
-          <span class="tag">Recon &amp; enum</span><span class="tag">Pós-exploração</span>
-          <span class="tag">Validação de impacto</span>
+          <span class="tag">Manual exploitation</span><span class="tag">Fuzzing</span>
+          <span class="tag">Recon &amp; enum</span><span class="tag">Post-exploitation</span>
+          <span class="tag">Impact validation</span>
         </div>
       </div>
 
@@ -153,24 +151,24 @@
         <h3>red team &amp; AD labs</h3>
         <div class="tags">
           <span class="tag">Privesc</span><span class="tag">Sliver C2</span>
-          <span class="tag">Evasão</span><span class="tag">Windows Defender</span>
+          <span class="tag">Evasion</span><span class="tag">Windows Defender</span>
           <span class="tag">AppLocker</span><span class="tag">Credential dumping</span>
           <span class="tag">Lateral movement</span><span class="tag">OPSEC</span>
         </div>
       </div>
 
       <div class="skill-card rv">
-        <h3>blue team &amp; detecção</h3>
+        <h3>blue team &amp; detection</h3>
         <div class="tags">
           <span class="tag">EDR</span><span class="tag">Wazuh</span><span class="tag">Malware</span>
           <span class="tag">Phishing</span><span class="tag">IOCs</span>
-          <span class="tag">Triagem</span><span class="tag">Detection rules</span>
-          <span class="tag">Resposta a incidentes</span>
+          <span class="tag">Triage</span><span class="tag">Detection rules</span>
+          <span class="tag">Incident response</span>
         </div>
       </div>
 
       <div class="skill-card rv">
-        <h3>ferramentas</h3>
+        <h3>tools</h3>
         <div class="tags">
           <span class="tag">Burp Suite</span><span class="tag">Nmap</span><span class="tag">Metasploit</span>
           <span class="tag">SQLMap</span><span class="tag">OWASP ZAP</span><span class="tag">BloodHound</span>
@@ -180,16 +178,16 @@
       </div>
 
       <div class="skill-card rv">
-        <h3>código &amp; automação</h3>
+        <h3>code &amp; automation</h3>
         <div class="tags">
           <span class="tag">Python</span><span class="tag">Shell</span><span class="tag">PowerShell</span>
-          <span class="tag">C / C++</span><span class="tag">Automação de recon</span>
-          <span class="tag">Coleta de IOCs</span><span class="tag">Varreduras internas</span>
+          <span class="tag">C / C++</span><span class="tag">Recon automation</span>
+          <span class="tag">IOC collection</span><span class="tag">Internal scanning</span>
         </div>
       </div>
 
       <div class="skill-card rv">
-        <h3>frameworks &amp; normas</h3>
+        <h3>frameworks &amp; standards</h3>
         <div class="tags">
           <span class="tag">OWASP Top 10</span><span class="tag">OWASP API Top 10</span>
           <span class="tag">PTES</span><span class="tag">OSSTMM</span><span class="tag">NIST</span>
@@ -201,67 +199,67 @@
   </div>
 </section>
 
-<!-- ============ EXPERIÊNCIA ============ -->
+<!-- ============ EXPERIENCE ============ -->
 <section id="exp" class="alt">
   <div class="wrap">
     <div class="cmd rv"><span class="u">root</span><span class="at">@</span><span class="h">albino</span><span class="sep">:</span><span class="path">~</span>$ <span class="arg">tail -f exp.log</span></div>
-    <div class="sec-head rv"><h2>experiência</h2></div>
-    <p class="out-note rv">processo e metodologia. cliente, ativo e achado não entram.</p>
+    <div class="sec-head rv"><h2>experience</h2></div>
+    <p class="out-note rv">process and methodology. clients, assets and findings stay out.</p>
 
     <div class="tl">
       <div class="tl-item rv">
-        <div class="tl-when">JUL 2026 — ATUAL</div>
-        <h3>Analista de Cibersegurança</h3>
+        <div class="tl-when">JUL 2026 — PRESENT</div>
+        <h3>Cybersecurity Analyst</h3>
         <p class="tl-org">SMi Group</p>
         <ul>
-          <li>Pentest Web e API com exploração manual, validação de impacto, priorização de risco e relatório técnico + executivo.</li>
-          <li>Operação de EDR: detecção, triagem de alertas, investigação de IOCs, resposta a incidentes e validação de correções.</li>
-          <li>Análise de malware e de campanhas de phishing contra colaboradores.</li>
-          <li>Apoio a controles ISO/IEC 27001 e automação em Python/Shell para recon, coleta e varreduras.</li>
+          <li>Web and API pentesting with manual exploitation, impact validation, risk prioritization and technical + executive reporting.</li>
+          <li>EDR operation: detection, alert triage, IOC investigation, incident response and remediation validation.</li>
+          <li>Malware analysis and phishing-campaign analysis targeting employees.</li>
+          <li>Support for ISO/IEC 27001 controls and Python/Shell automation for recon, collection and scanning.</li>
         </ul>
       </div>
 
       <div class="tl-item rv">
-        <div class="tl-when">SET 2025 — ATUAL</div>
-        <h3>Pentester</h3>
-        <p class="tl-org">Freelance / Autônomo</p>
+        <div class="tl-when">SEP 2025 — PRESENT</div>
+        <h3>Penetration Tester</h3>
+        <p class="tl-org">Freelance / Self-employed</p>
         <ul>
-          <li>Testes de intrusão Web/API com foco em OWASP Top 10 e API Top 10.</li>
-          <li>SQLi, XSS, Broken Access Control e falhas em APIs REST — mapeamento, exploração e validação.</li>
-          <li>Relatório com vetor, evidência, impacto, criticidade e remediação.</li>
+          <li>Web/API penetration testing focused on OWASP Top 10 and API Top 10.</li>
+          <li>SQLi, XSS, Broken Access Control and REST API flaws — mapping, exploitation and validation.</li>
+          <li>Reporting with vector, evidence, impact, severity and remediation.</li>
         </ul>
       </div>
 
       <div class="tl-item rv">
-        <div class="tl-when">AGO 2025 — JUN 2026</div>
-        <h3>Estagiário em Cibersegurança</h3>
+        <div class="tl-when">AUG 2025 — JUN 2026</div>
+        <h3>Cybersecurity Intern</h3>
         <p class="tl-org">SMi Group</p>
         <ul>
-          <li>Apoio em pentest Web/API, coleta de evidência e documentação de achados.</li>
-          <li>Triagem de alertas de EDR, análise inicial de incidentes e validação de hardening.</li>
-          <li>Automação em Python/Shell para recon e coleta de indicadores.</li>
+          <li>Support in Web/API pentests, evidence collection and findings documentation.</li>
+          <li>EDR alert triage, initial incident analysis and hardening validation.</li>
+          <li>Python/Shell automation for recon and indicator collection.</li>
         </ul>
       </div>
 
       <div class="tl-item rv">
-        <div class="tl-when">FEV 2024 — JUN 2025</div>
-        <h3>Pesquisador em Cibersegurança</h3>
+        <div class="tl-when">FEB 2024 — JUN 2025</div>
+        <h3>Cybersecurity Researcher</h3>
         <p class="tl-org">LAPSI / UFCG</p>
         <ul>
-          <li>ETSC — ambiente de treino com labs de Redes, Red Team e Blue Team.</li>
-          <li>Instrutor em treinamentos para PM e Polícia Civil da PB: exploração, defesa e resposta a incidentes.</li>
-          <li>Pentest com Burp, Metasploit, Nmap, SQLMap e ZAP; regras de detecção via MITRE ATT&amp;CK + Wazuh.</li>
-          <li>Dispositivos de ataque com Raspberry Pi, ESP32, C/C++ e Python.</li>
+          <li>ETSC — a training environment with Networking, Red Team and Blue Team labs.</li>
+          <li>Instructor in hands-on training for the Military and Civil Police of Paraíba: exploitation, defense and incident response.</li>
+          <li>Pentesting with Burp, Metasploit, Nmap, SQLMap and ZAP; detection rules via MITRE ATT&amp;CK + Wazuh.</li>
+          <li>Attack devices built with Raspberry Pi, ESP32, C/C++ and Python.</li>
         </ul>
       </div>
 
       <div class="tl-item rv">
-        <div class="tl-when">OUT 2022 — MAR 2023</div>
-        <h3>Desenvolvedor de Dispositivos IoT</h3>
+        <div class="tl-when">OCT 2022 — MAR 2023</div>
+        <h3>IoT Device Developer</h3>
         <p class="tl-org">NUTES</p>
         <ul>
-          <li>Sistemas embarcados e comunicação via SIM900A para monitoramento remoto.</li>
-          <li>C/C++ em microcontroladores + Python para interface e automação.</li>
+          <li>Embedded systems and SIM900A communication for remote monitoring.</li>
+          <li>C/C++ on microcontrollers + Python for interface and automation.</li>
         </ul>
       </div>
     </div>
@@ -272,26 +270,26 @@
 <section id="labs">
   <div class="wrap">
     <div class="cmd rv"><span class="u">root</span><span class="at">@</span><span class="h">albino</span><span class="sep">:</span><span class="path">~</span>$ <span class="arg">ls labs/ research/</span></div>
-    <div class="sec-head rv"><h2>pesquisa &amp; labs</h2></div>
-    <p class="out-note rv">ambientes isolados e autorizados. estudo cadeia de ataque, detecção e mitigação.</p>
+    <div class="sec-head rv"><h2>research &amp; labs</h2></div>
+    <p class="out-note rv">isolated, authorized environments. I study attack chains, detection and mitigation.</p>
 
     <div class="grid g3">
-      <article class="card rv"><span class="ico">[ AD ]</span><h3>Active Directory lab</h3><p>Domínio Windows Server: enumeração, privesc, movimentação lateral, ataques a credenciais, detecção e hardening.</p></article>
-      <article class="card rv"><span class="ico">[ EVASION ]</span><h3>Evasão em ambiente controlado</h3><p>Validação de Windows Defender e AppLocker com foco em telemetria, detecção e mitigação — em lab, não em produção alheia.</p></article>
-      <article class="card rv"><span class="ico">[ C2 ]</span><h3>Command &amp; Control — Sliver</h3><p>Simulação Red Team: cadeia de ataque, pós-exploração, privesc, OPSEC e análise dos eventos gerados.</p></article>
-      <article class="card rv"><span class="ico">[ OT/ICS ]</span><h3>Ataques industriais — LabShock</h3><p>Modbus: Write Coil, MITM e DoS, com análise de impacto e mitigação. Tema do meu TCC na UFCG.</p></article>
-      <article class="card rv"><span class="ico">[ HW ]</span><h3>Hardware hacking</h3><p>Raspberry Pi, ESP32, dispositivos ofensivos customizados, USB HID e Wi-Fi hacking em ambientes autorizados.</p></article>
-      <article class="card rv"><span class="ico">[ CTF ]</span><h3>CTFs</h3><p>HTB, TryHackMe, GoHacking e Hacking Club — AD, Web e escalação de privilégios.</p></article>
+      <article class="card rv"><span class="ico">[ AD ]</span><h3>Active Directory lab</h3><p>Windows Server domain: enumeration, privesc, lateral movement, credential attacks, detection and hardening.</p></article>
+      <article class="card rv"><span class="ico">[ EVASION ]</span><h3>Evasion in a controlled environment</h3><p>Validating Windows Defender and AppLocker with a focus on telemetry, detection and mitigation — in a lab, not against someone else's production.</p></article>
+      <article class="card rv"><span class="ico">[ C2 ]</span><h3>Command &amp; Control — Sliver</h3><p>Red Team simulation: attack chain, post-exploitation, privesc, OPSEC and analysis of the generated events.</p></article>
+      <article class="card rv"><span class="ico">[ OT/ICS ]</span><h3>Industrial attacks — LabShock</h3><p>Modbus: Write Coil, MITM and DoS, with impact analysis and mitigation. Topic of my thesis at UFCG.</p></article>
+      <article class="card rv"><span class="ico">[ HW ]</span><h3>Hardware hacking</h3><p>Raspberry Pi, ESP32, custom offensive devices, USB HID and Wi-Fi hacking in authorized environments.</p></article>
+      <article class="card rv"><span class="ico">[ CTF ]</span><h3>CTFs</h3><p>HTB, TryHackMe, GoHacking and Hacking Club — AD, Web and privilege escalation.</p></article>
     </div>
   </div>
 </section>
 
 <!-- ============ WRITE-UPS ============ -->
-<section id="ultimos" class="alt">
+<section id="latest" class="alt">
   <div class="wrap">
     <div class="cmd rv"><span class="u">root</span><span class="at">@</span><span class="h">albino</span><span class="sep">:</span><span class="path">~</span>$ <span class="arg">head -3 writeups/</span></div>
-    <div class="sec-head rv"><h2>write-ups recentes</h2></div>
-    <p class="out-note rv">notas de lab, CTF e pesquisa. <a href="writeups.html">ver todos &rarr;</a></p>
+    <div class="sec-head rv"><h2>recent write-ups</h2></div>
+    <p class="out-note rv">notes from labs, CTFs and research. <a href="writeups.html">see all &rarr;</a></p>
     <div class="grid g3" id="latest-posts"></div>
   </div>
 </section>
@@ -300,7 +298,7 @@
 <section id="certs">
   <div class="wrap">
     <div class="cmd rv"><span class="u">root</span><span class="at">@</span><span class="h">albino</span><span class="sep">:</span><span class="path">~</span>$ <span class="arg">cat certs.txt</span></div>
-    <div class="sec-head rv"><h2>cursos / certificações</h2></div>
+    <div class="sec-head rv"><h2>courses / certifications</h2></div>
 
     <div class="grid g2">
       <div class="cert rv"><span class="badge">CRTA</span><div><strong>Certified Red Team Analyst</strong><span>CyberWarfare Labs · 2026</span></div></div>
@@ -310,17 +308,17 @@
       <div class="cert rv"><span class="badge">WIFI</span><div><strong>Ethical Hacking Wi-Fi Pentesting</strong><span>GoHacking · 2025</span></div></div>
       <div class="cert rv"><span class="badge">ICS</span><div><strong>Virtual ICS Cybersecurity Training</strong><span>CISA · 2024</span></div></div>
       <div class="cert rv"><span class="badge">EP</span><div><strong>Endpoint Security</strong><span>Cisco · 2024</span></div></div>
-      <div class="cert rv"><span class="badge">HdB</span><div><strong>Hackers do Bem — Básico e Nivelamento</strong><span>RNP · 2024</span></div></div>
+      <div class="cert rv"><span class="badge">HdB</span><div><strong>Hackers do Bem — Basic &amp; Leveling</strong><span>RNP · 2024</span></div></div>
     </div>
   </div>
 </section>
 
-<!-- ============ CONTATO ============ -->
-<section id="contato" class="alt">
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="alt">
   <div class="wrap">
     <div class="cmd rv"><span class="u">root</span><span class="at">@</span><span class="h">albino</span><span class="sep">:</span><span class="path">~</span>$ <span class="arg">whoami --contact</span></div>
-    <div class="sec-head rv"><h2>contato</h2></div>
-    <p class="out-note rv">offensive security, red team, análise de vulnerabilidades, IT/OT. também pesquisa e troca técnica.</p>
+    <div class="sec-head rv"><h2>contact</h2></div>
+    <p class="out-note rv">offensive security, red team, vulnerability analysis, IT/OT. also research and technical exchange.</p>
     <div class="cta-row">
       <a class="btn btn-primary" href="mailto:lucasalbinoar@gmail.com">mail lucasalbinoar@gmail.com</a>
       <a class="btn btn-ghost" href="https://linkedin.com/in/lucasralbino" target="_blank" rel="noopener">linkedin</a>
@@ -332,11 +330,11 @@
 <footer>
   <div class="wrap foot-in">
     <span>&copy; <span id="year">2026</span> lucas rodrigues albino</span>
-    <span>Campina Grande, PB · BR</span>
-    <span><a href="#top">^ topo</a></span>
+    <span>Campina Grande, PB · Brazil</span>
+    <span><a href="#top">^ top</a></span>
   </div>
 </footer>
 
-<script src="assets/js/main.js"></script>
+<script src="../assets/js/main.js"></script>
 </body>
 </html>
