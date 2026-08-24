@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>lucas.albino — segurança ofensiva // pentest · red team · OT</title>
+<meta name="description" content="Segurança ofensiva: pentest Web/API, Active Directory, Red Team labs e segurança de redes industriais OT/ICS. Write-ups e pesquisa.">
+<meta name="author" content="Lucas Rodrigues Albino">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="lucas.albino — segurança ofensiva">
+<meta property="og:description" content="Pentest Web/API, Active Directory, Red Team e OT/ICS. Write-ups e pesquisa.">
+<meta property="og:locale" content="pt_BR">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%230a0e13'/><text y='68' x='50' text-anchor='middle' font-size='58' font-family='monospace' fill='%23ff2b3d'>&gt;_</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body id="top">
+<canvas id="matrix" aria-hidden="true"></canvas>
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="index.html"><span class="sig">&gt;_</span> lucas<span class="sig">.</span>albino</a>
+    <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">&#9776;</button>
+    <div class="nav-links">
+      <a href="#sobre">./sobre</a>
+      <a href="#stack">./stack</a>
+      <a href="#exp">./exp</a>
+      <a href="#labs">./labs</a>
+      <a href="writeups.html">./writeups</a>
+      <a href="#contato">./contato</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO (neofetch) ============ -->
+<header class="hero">
+  <div class="wrap">
+    <div class="neofetch">
+      <figure class="nf-photo" aria-hidden="false">
+        <img src="assets/img/perfil.png" alt="Lucas Rodrigues Albino"
+             onerror="this.style.display='none';this.parentNode.classList.add('noimg')">
+        <span class="nf-fallback" aria-hidden="true">LR</span>
+        <figcaption>./perfil.png</figcaption>
+      </figure>
+
+      <div class="nf-info">
+        <div class="nf-id glitch" data-text="root@albino"><b>root</b>@<b>albino</b></div>
+        <div class="nf-rule">-----------------------------</div>
+        <dl>
+          <dt>role</dt><dd class="nf-typed" id="typed" data-roles="analista de cibersegurança|pentester web &amp; api|red team / active directory|segurança OT/ICS"><span class="cursor"></span></dd>
+          <dt>focus</dt><dd><b>ofensiva</b> — web · api · AD · OT/ICS</dd>
+          <dt>base</dt><dd>Campina Grande, PB — BR (remoto)</dd>
+          <dt>uptime</dt><dd>2+ anos em segurança ofensiva</dd>
+          <dt>edu</dt><dd>eng. elétrica — UFCG (TCC: ICS/SCADA)</dd>
+          <dt>certs</dt><dd>CRTA · eJPT · EWH · +5</dd>
+          <dt>lang</dt><dd>PT nativo · EN B2</dd>
+          <dt>shell</dt><dd>python · bash · powershell · C</dd>
+        </dl>
+        <div class="nf-swatch" aria-hidden="true">
+          <span style="background:#0a0e13;border:1px solid #1d2b3a"></span>
+          <span style="background:#ef5f5f"></span>
+          <span style="background:#29e88f"></span>
+          <span style="background:#f0b232"></span>
+          <span style="background:#43b7f0"></span>
+          <span style="background:#b48cf2"></span>
+          <span style="background:#dbe4ed"></span>
+        </div>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="writeups.html">cat writeups/</a>
+          <div class="links">
+            <a href="https://github.com/LucasRAlbino" target="_blank" rel="noopener">github</a>
+            <a href="https://linkedin.com/in/lucasralbino" target="_blank" rel="noopener">linkedin</a>
+            <a href="mailto:lucasalbinoar@gmail.com">mail</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ SOBRE ============ -->
+<section id="sobre" class="alt">
+  <div class="wrap">
+    <div class="cmd rv"><span class="u">root</span><span class="at">@</span><span class="h">albino</span><span class="sep">:</span><span class="path">~</span>$ <span class="arg">cat sobre.md</span></div>
+    <div class="sec-head rv"><h2>sobre</h2></div>
+
+    <div class="about-grid">
+      <div class="rv">
+        <p>
+          Trabalho como <strong>analista de cibersegurança com foco em Offensive Security</strong>.
+          Faço pentest de aplicações Web, APIs e Active Directory, exploro e valido vulnerabilidades
+          e escrevo o relatório que traduz cada achado em risco de negócio. Priorizo a exploração
+          manual: o scanner é o ponto de partida, nunca a conclusão.
+        </p>
+        <p>
+          Também atuo do lado defensivo, com <strong>EDR, análise de malware e de phishing, triagem
+          de alertas, investigação de IOCs e criação de regras de detecção</strong>, além de apoio a
+          controles da ISO/IEC 27001. Entender como a defesa enxerga é o que torna o ataque mais
+          preciso.
+        </p>
+        <p>
+          Sou engenheiro eletricista pela UFCG. No meu TCC estudei ataques a redes ICS/SCADA no
+          simulador LabShock, explorando vetores sobre o protocolo Modbus como Write Coil, MITM e
+          DoS. Foi ali que nasceu meu interesse por <strong>segurança de infraestrutura e redes
+          IT/OT</strong>, o ponto em que uma falha deixa de ser apenas digital e passa a ter efeito
+          físico.
+        </p>
+        <p>
+          Neste espaço reúno o que produzo: write-ups de laboratórios e CTFs, pesquisas e notas
+          técnicas. Tudo feito em ambiente próprio, autorizado ou de treino.
+        </p>
+      </div>
+
+      <div class="facts rv">
+        <div class="fact"><span class="l">base</span><span class="v">Campina Grande, PB</span></div>
+        <div class="fact"><span class="l">formação</span><span class="v">eng. elétrica — UFCG</span></div>
+        <div class="fact"><span class="l">experiência</span><span class="v">2+ anos ofensiva</span></div>
+        <div class="fact"><span class="l">idiomas</span><span class="v">PT nativo · EN B2</span></div>
+        <div class="fact"><span class="l">modelo</span><span class="v">remoto / híbrido</span></div>
+        <div class="fact"><span class="l">mail</span><span class="v">lucasalbinoar@gmail.com</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STACK ============ -->
+<section id="stack">
+  <div class="wrap">
+    <div class="cmd rv"><span class="u">root</span><span class="at">@</span><span class="h">albino</span><span class="sep">:</span><span class="path">~</span>$ <span class="arg">ls -la stack/</span></div>
+    <div class="sec-head rv"><h2>stack</h2></div>
+    <p class="out-note rv">o que eu uso — em ambiente autorizado ou em lab próprio.</p>
+
+    <div class="grid g2">
+      <div class="skill-card rv">
+        <h3>pentest &amp; ofensiva</h3>
+        <div class="tags">
+          <span class="tag">Web</span><span class="tag">API</span><span class="tag">Infraestrutura</span>
+          <span class="tag">Active Directory</span><span class="tag">OT/ICS</span>
+          <span class="tag">Exploração manual</span><span class="tag">Fuzzing</span>
+          <span class="tag">Recon &amp; enum</span><span class="tag">Pós-exploração</span>
+          <span class="tag">Validação de impacto</span>
+        </div>
+      </div>
+
+      <div class="skill-card rv">
+        <h3>red team &amp; AD labs</h3>
+        <div class="tags">
+          <span class="tag">Privesc</span><span class="tag">Sliver C2</span>
+          <span class="tag">Evasão</span><span class="tag">Windows Defender</span>
+          <span class="tag">AppLocker</span><span class="tag">Credential dumping</span>
+          <span class="tag">Lateral movement</span><span class="tag">OPSEC</span>
+        </div>
+      </div>
+
+      <div class="skill-card rv">
+        <h3>blue team &amp; detecção</h3>
+        <div class="tags">
+          <span class="tag">EDR</span><span class="tag">Wazuh</span><span class="tag">Malware</span>
+          <span class="tag">Phishing</span><span class="tag">IOCs</span>
+          <span class="tag">Triagem</span><span class="tag">Detection rules</span>
+          <span class="tag">Resposta a incidentes</span>
+        </div>
+      </div>
+
+      <div class="skill-card rv">
+        <h3>ferramentas</h3>
+        <div class="tags">
+          <span class="tag">Burp Suite</span><span class="tag">Nmap</span><span class="tag">Metasploit</span>
+          <span class="tag">SQLMap</span><span class="tag">OWASP ZAP</span><span class="tag">BloodHound</span>
+          <span class="tag">CrackMapExec</span><span class="tag">Responder</span><span class="tag">OpenVAS</span>
+          <span class="tag">Docker</span><span class="tag">LabShock</span>
+        </div>
+      </div>
+
+      <div class="skill-card rv">
+        <h3>código &amp; automação</h3>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">Shell</span><span class="tag">PowerShell</span>
+          <span class="tag">C / C++</span><span class="tag">Automação de recon</span>
+          <span class="tag">Coleta de IOCs</span><span class="tag">Varreduras internas</span>
+        </div>
+      </div>
+
+      <div class="skill-card rv">
+        <h3>frameworks &amp; normas</h3>
+        <div class="tags">
+          <span class="tag">OWASP Top 10</span><span class="tag">OWASP API Top 10</span>
+          <span class="tag">PTES</span><span class="tag">OSSTMM</span><span class="tag">NIST</span>
+          <span class="tag">MITRE ATT&amp;CK</span><span class="tag">ISO 27001</span>
+          <span class="tag">Hardening</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXPERIÊNCIA ============ -->
+<section id="exp" class="alt">
+  <div class="wrap">
+    <div class="cmd rv"><span class="u">root</span><span class="at">@</span><span class="h">albino</span><span class="sep">:</span><span class="path">~</span>$ <span class="arg">tail -f exp.log</span></div>
+    <div class="sec-head rv"><h2>experiência</h2></div>
+    <p class="out-note rv">processo e metodologia. cliente, ativo e achado não entram.</p>
+
+    <div class="tl">
+      <div class="tl-item rv">
+        <div class="tl-when">JUL 2026 — ATUAL</div>
+        <h3>Analista de Cibersegurança</h3>
+        <p class="tl-org">SMi Group</p>
+        <ul>
+          <li>Pentest Web e API com exploração manual, validação de impacto, priorização de risco e relatório técnico + executivo.</li>
+          <li>Operação de EDR: detecção, triagem de alertas, investigação de IOCs, resposta a incidentes e validação de correções.</li>
+          <li>Análise de malware e de campanhas de phishing contra colaboradores.</li>
+          <li>Apoio a controles ISO/IEC 27001 e automação em Python/Shell para recon, coleta e varreduras.</li>
+        </ul>
+      </div>
+
+      <div class="tl-item rv">
+        <div class="tl-when">SET 2025 — ATUAL</div>
+        <h3>Pentester</h3>
+        <p class="tl-org">Freelance / Autônomo</p>
+        <ul>
+          <li>Testes de intrusão Web/API com foco em OWASP Top 10 e API Top 10.</li>
+          <li>SQLi, XSS, Broken Access Control e falhas em APIs REST — mapeamento, exploração e validação.</li>
+          <li>Relatório com vetor, evidência, impacto, criticidade e remediação.</li>
+        </ul>
+      </div>
+
+      <div class="tl-item rv">
+        <div class="tl-when">AGO 2025 — JUN 2026</div>
+        <h3>Estagiário em Cibersegurança</h3>
+        <p class="tl-org">SMi Group</p>
+        <ul>
+          <li>Apoio em pentest Web/API, coleta de evidência e documentação de achados.</li>
+          <li>Triagem de alertas de EDR, análise inicial de incidentes e validação de hardening.</li>
+          <li>Automação em Python/Shell para recon e coleta de indicadores.</li>
+        </ul>
+      </div>
+
+      <div class="tl-item rv">
+        <div class="tl-when">FEV 2024 — JUN 2025</div>
+        <h3>Pesquisador em Cibersegurança</h3>
+        <p class="tl-org">LAPSI / UFCG</p>
+        <ul>
+          <li>ETSC — ambiente de treino com labs de Redes, Red Team e Blue Team.</li>
+          <li>Instrutor em treinamentos para PM e Polícia Civil da PB: exploração, defesa e resposta a incidentes.</li>
+          <li>Pentest com Burp, Metasploit, Nmap, SQLMap e ZAP; regras de detecção via MITRE ATT&amp;CK + Wazuh.</li>
+          <li>Dispositivos de ataque com Raspberry Pi, ESP32, C/C++ e Python.</li>
+        </ul>
+      </div>
+
+      <div class="tl-item rv">
+        <div class="tl-when">OUT 2022 — MAR 2023</div>
+        <h3>Desenvolvedor de Dispositivos IoT</h3>
+        <p class="tl-org">NUTES</p>
+        <ul>
+          <li>Sistemas embarcados e comunicação via SIM900A para monitoramento remoto.</li>
+          <li>C/C++ em microcontroladores + Python para interface e automação.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LABS ============ -->
+<section id="labs">
+  <div class="wrap">
+    <div class="cmd rv"><span class="u">root</span><span class="at">@</span><span class="h">albino</span><span class="sep">:</span><span class="path">~</span>$ <span class="arg">ls labs/ research/</span></div>
+    <div class="sec-head rv"><h2>pesquisa &amp; labs</h2></div>
+    <p class="out-note rv">ambientes isolados e autorizados. estudo cadeia de ataque, detecção e mitigação.</p>
+
+    <div class="grid g3">
+      <article class="card rv"><span class="ico">[ AD ]</span><h3>Active Directory lab</h3><p>Domínio Windows Server: enumeração, privesc, movimentação lateral, ataques a credenciais, detecção e hardening.</p></article>
+      <article class="card rv"><span class="ico">[ EVASION ]</span><h3>Evasão em ambiente controlado</h3><p>Validação de Windows Defender e AppLocker com foco em telemetria, detecção e mitigação — em lab, não em produção alheia.</p></article>
+      <article class="card rv"><span class="ico">[ C2 ]</span><h3>Command &amp; Control — Sliver</h3><p>Simulação Red Team: cadeia de ataque, pós-exploração, privesc, OPSEC e análise dos eventos gerados.</p></article>
+      <article class="card rv"><span class="ico">[ OT/ICS ]</span><h3>Ataques industriais — LabShock</h3><p>Modbus: Write Coil, MITM e DoS, com análise de impacto e mitigação. Tema do meu TCC na UFCG.</p></article>
+      <article class="card rv"><span class="ico">[ HW ]</span><h3>Hardware hacking</h3><p>Raspberry Pi, ESP32, dispositivos ofensivos customizados, USB HID e Wi-Fi hacking em ambientes autorizados.</p></article>
+      <article class="card rv"><span class="ico">[ CTF ]</span><h3>CTFs</h3><p>HTB, TryHackMe, GoHacking e Hacking Club — AD, Web e escalação de privilégios.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WRITE-UPS ============ -->
+<section id="ultimos" class="alt">
+  <div class="wrap">
+    <div class="cmd rv"><span class="u">root</span><span class="at">@</span><span class="h">albino</span><span class="sep">:</span><span class="path">~</span>$ <span class="arg">head -3 writeups/</span></div>
+    <div class="sec-head rv"><h2>write-ups recentes</h2></div>
+    <p class="out-note rv">notas de lab, CTF e pesquisa. <a href="writeups.html">ver todos &rarr;</a></p>
+    <div class="grid g3" id="latest-posts"></div>
+  </div>
+</section>
+
+<!-- ============ CERTS ============ -->
+<section id="certs">
+  <div class="wrap">
+    <div class="cmd rv"><span class="u">root</span><span class="at">@</span><span class="h">albino</span><span class="sep">:</span><span class="path">~</span>$ <span class="arg">cat certs.txt</span></div>
+    <div class="sec-head rv"><h2>certificações</h2></div>
+
+    <div class="grid g2">
+      <div class="cert rv"><span class="badge">CRTA</span><div><strong>Certified Red Team Analyst</strong><span>CyberWarfare Labs · 2026</span></div></div>
+      <div class="cert rv"><span class="badge">eJPT</span><div><strong>Junior Penetration Tester</strong><span>INE Security · 2026</span></div></div>
+      <div class="cert rv"><span class="badge">EWH</span><div><strong>Essential Web Hacking</strong><span>Hacking Club · 2026</span></div></div>
+      <div class="cert rv"><span class="badge">EHPT</span><div><strong>Ethical Hacking Penetration Tester</strong><span>GoHacking · 2025</span></div></div>
+      <div class="cert rv"><span class="badge">WIFI</span><div><strong>Ethical Hacking Wi-Fi Pentesting</strong><span>GoHacking · 2025</span></div></div>
+      <div class="cert rv"><span class="badge">ICS</span><div><strong>Virtual ICS Cybersecurity Training</strong><span>CISA · 2024</span></div></div>
+      <div class="cert rv"><span class="badge">EP</span><div><strong>Endpoint Security</strong><span>Cisco · 2024</span></div></div>
+      <div class="cert rv"><span class="badge">HdB</span><div><strong>Hackers do Bem — Básico e Nivelamento</strong><span>RNP · 2024</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTATO ============ -->
+<section id="contato" class="alt">
+  <div class="wrap">
+    <div class="cmd rv"><span class="u">root</span><span class="at">@</span><span class="h">albino</span><span class="sep">:</span><span class="path">~</span>$ <span class="arg">whoami --contact</span></div>
+    <div class="sec-head rv"><h2>contato</h2></div>
+    <p class="out-note rv">segurança ofensiva, red team, análise de vulnerabilidades, IT/OT. também pesquisa e troca técnica.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="mailto:lucasalbinoar@gmail.com">mail lucasalbinoar@gmail.com</a>
+      <a class="btn btn-ghost" href="https://linkedin.com/in/lucasralbino" target="_blank" rel="noopener">linkedin</a>
+      <a class="btn btn-ghost" href="https://github.com/LucasRAlbino" target="_blank" rel="noopener">github</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-in">
+    <span>&copy; <span id="year">2026</span> lucas rodrigues albino</span>
+    <span>Campina Grande, PB · BR</span>
+    <span><a href="#top">^ topo</a></span>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

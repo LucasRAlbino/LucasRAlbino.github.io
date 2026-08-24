@@ -1,0 +1,32 @@
+[
+  {
+    "titulo": "Windows Privilege Escalation — cheat sheet",
+    "resumo": "Enumeração e vetores comuns de privesc no Windows via CMD e PowerShell: serviços, ACLs, scheduled tasks, DLL hijacking e dump de hashes.",
+    "data": "2026-08-22",
+    "url": "writeups/windows-privesc.html",
+    "leitura": "8 min",
+    "tags": [{ "nome": "Windows", "classe": "ad" }, { "nome": "Privilege Escalation", "classe": "red" }]
+  },
+  {
+    "titulo": "Linux Privilege Escalation — cheat sheet",
+    "resumo": "Enumeração manual e exploração de vetores comuns em Linux: SUID, cron jobs, capabilities, arquivos de config expostos e pós-exploração.",
+    "data": "2026-08-21",
+    "url": "writeups/linux-privesc.html",
+    "leitura": "7 min",
+    "tags": [{ "nome": "Linux", "classe": "blue" }, { "nome": "Privilege Escalation", "classe": "red" }]
+  },
+  {
+    "titulo": "Bypass de AppLocker + Constrained Language Mode",
+    "resumo": "Pesquisa própria sobre execução em hosts com AppLocker e PowerShell CLM ativos: superfícies de bypass, LOLBins, e o que a telemetria enxerga. Em redação.",
+    "data": "2026-08-23",
+    "status": "producao",
+    "tags": [{ "nome": "Red Team", "classe": "red" }, { "nome": "Windows", "classe": "ad" }]
+  },
+  {
+    "titulo": "Active Directory: da enumeração ao Domain Admin",
+    "resumo": "Cadeia completa em lab de AD — enumeração, ataques a credenciais, movimentação lateral e escalonamento — com a telemetria correspondente do lado defensivo. Em redação.",
+    "data": "2026-08-23",
+    "status": "producao",
+    "tags": [{ "nome": "Active Directory", "classe": "ad" }, { "nome": "Red Team", "classe": "red" }]
+  }
+]

