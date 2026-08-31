@@ -20,7 +20,7 @@
     "resumo": "Estação com AppLocker e PowerShell em Constrained Language Mode. Do bloqueio do New-Object à ideia do wrapper via System.Management.Automation.dll para recuperar Full Language e carregar o PowerView em memória.",
     "data": "2026-08-24",
     "url": "writeups/applocker-clm-bypass.html",
-    "leitura": "11 min",
+    "leitura": "12 min",
     "tags": [{ "nome": "Red Team", "classe": "red" }, { "nome": "Windows", "classe": "ad" }]
   },
   {
