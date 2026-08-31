@@ -640,3 +640,15 @@ body::after {
 @media (max-width: 720px) {
   .lang-btn { margin-left: auto; }
 }
+
+/* ---------- screenshots dentro de write-ups ---------- */
+.prose figure.shot { margin: 22px 0; }
+.prose figure.shot img {
+  width: 100%; border: 1px solid var(--line); border-radius: 8px;
+  background: #0a0a0d;
+}
+.prose figure.shot figcaption {
+  font-family: var(--mono); font-size: .78rem; color: var(--txt-faint);
+  margin-top: 8px; padding-left: 2px;
+}
+.prose figure.shot figcaption::before { content: "› "; color: var(--acc); }

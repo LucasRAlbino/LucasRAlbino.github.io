@@ -16,10 +16,11 @@
     "tags": [{ "nome": "Linux", "classe": "blue" }, { "nome": "Privilege Escalation", "classe": "red" }]
   },
   {
-    "titulo": "Bypass de AppLocker + Constrained Language Mode",
-    "resumo": "Pesquisa própria sobre execução em hosts com AppLocker e PowerShell CLM ativos: superfícies de bypass, LOLBins, e o que a telemetria enxerga. Em redação.",
-    "data": "2026-08-23",
-    "status": "producao",
+    "titulo": "Bypass de AppLocker e Constrained Language Mode",
+    "resumo": "Estação com AppLocker e PowerShell em Constrained Language Mode. Do bloqueio do New-Object à ideia do wrapper via System.Management.Automation.dll para recuperar Full Language e carregar o PowerView em memória.",
+    "data": "2026-08-24",
+    "url": "writeups/applocker-clm-bypass.html",
+    "leitura": "11 min",
     "tags": [{ "nome": "Red Team", "classe": "red" }, { "nome": "Windows", "classe": "ad" }]
   },
   {
