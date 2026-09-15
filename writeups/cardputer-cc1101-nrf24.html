@@ -57,9 +57,7 @@
 
     <div class="disclosure">
       <strong>// escopo</strong><br>
-      Projeto de bancada, em equipamento próprio. Sub-GHz e 2,4 GHz são faixas reguladas pela Anatel,
-      com limites de faixa e de potência. Use somente em rádio próprio ou com autorização formal por
-      escrito. Nada aqui é para operar sobre sinais de terceiros.
+      Projeto de bancada, em equipamento próprio, para testes em ambientes autorizados e uso acadêmico.
     </div>
 
     <h2>1. O que é e por quê</h2>
@@ -88,11 +86,11 @@
     <h3>Alimentação: 3,3 V, e só 3,3 V</h3>
     <p>
       Este é o detalhe que evita queimar a placa. O conector EXT entrega 5 V no pino 6, mas o
-      <strong>ESP32-S3 não tolera 5 V em nenhum GPIO</strong>. Então os 5 V passam por um regulador
-      local <strong>AMS1117-3.3</strong> no próprio hat, e os dois rádios são alimentados
-      <strong>somente com 3,3 V</strong>. Os sinais lógicos já são 3,3 V nos dois lados, então não
-      precisa de level shifter. Inverter o 5 V com um GPIO danifica o Stamp-S3A: confira o pinout do seu
-      conector contra a documentação oficial antes de energizar.
+      <strong>ESP32-S3 não tolera 5 V em nenhum GPIO</strong>. Então os 5 V passam por um conversor
+      DC-DC <strong>buck-boost V987 Mini</strong> no próprio hat, com a saída ajustada para 3,3 V, e os
+      dois rádios são alimentados <strong>somente com 3,3 V</strong>. Os sinais lógicos já são 3,3 V nos
+      dois lados, então não precisa de level shifter. Inverter o 5 V com um GPIO danifica o Stamp-S3A:
+      confira o pinout do seu conector contra a documentação oficial antes de energizar.
     </p>
 
     <h3>Barramento SPI compartilhado</h3>
@@ -117,19 +115,27 @@ Reservado: NAO usar G8 / G9  (I2C interno: teclado, IMU, audio)</code></pre>
       O <code>G8/G9</code> ficam fora dos planos de propósito: são o I2C interno do Cardputer, onde
       estão o teclado, a IMU e o áudio. Ocupar esse barramento quebra essas três funções de uma vez.
     </p>
-    <p style="color:var(--txt-dim)">
-      O esquemático, a tabela de ligação ponto a ponto e o roteiro de verificação de bancada estão no
-      <a href="../assets/img/cardputer/esquematico.pdf" target="_blank" rel="noopener">esquemático completo (PDF)</a>
-      (Rev. B).
-    </p>
+    <div class="disclosure">
+      <strong>// quer montar?</strong><br>
+      O esquemático completo (Rev. B) traz o desenho, a tabela de ligação ponto a ponto e o roteiro de
+      verificação de bancada, tudo pronto para reproduzir a placa:
+      <a href="../assets/img/cardputer/esquematico.pdf" target="_blank" rel="noopener">baixar o esquemático (PDF)</a>.
+    </div>
 
     <h3>Remapeamento no firmware Bruce</h3>
     <p>
-      O firmware que roda o conjunto é o <strong>Bruce</strong>. O detalhe que faz tudo funcionar: o
-      build padrão do Cardputer aponta os dois rádios para os <strong>mesmos pinos</strong>
-      (<code>cs=1</code>, <code>io0=2</code>). Sem reatribuir, os dois módulos não operam ligados ao
-      mesmo tempo. O remapeamento vive no arquivo <code>/brucePins.conf</code>, indexado pelo MAC Wi-Fi
-      do aparelho:
+      O firmware que roda o conjunto é o <strong>Bruce</strong>, um firmware aberto para dispositivos
+      ESP32 voltado a segurança ofensiva e experimentação de RF. Ele já traz os drivers do CC1101 e do
+      nRF24, os menus de sub-GHz e de 2,4 GHz, o analisador de espectro que aparece na tela da foto lá
+      em cima, além de módulos de Wi-Fi, Bluetooth, infravermelho e RFID. É ele que transforma o
+      hardware em ferramenta usável sem escrever código: dá para escolher rádio, faixa e função direto
+      pelo teclado.
+    </p>
+    <p>
+      O detalhe que faz tudo funcionar: o build padrão do Cardputer aponta os dois rádios para os
+      <strong>mesmos pinos</strong> (<code>cs=1</code>, <code>io0=2</code>). Sem reatribuir, os dois
+      módulos não operam ligados ao mesmo tempo. O remapeamento vive no arquivo
+      <code>/brucePins.conf</code>, indexado pelo MAC Wi-Fi do aparelho:
     </p>
     <pre><code>{
   "AA:BB:CC:DD:EE:FF": {
@@ -176,18 +182,17 @@ Reservado: NAO usar G8 / G9  (I2C interno: teclado, IMU, audio)</code></pre>
       A graça de usar o Cardputer como base é a soma de coisas que normalmente ficam espalhadas:
       um <strong>ESP32-S3</strong> com folga de processamento e memória, <strong>teclado</strong> físico
       para digitar comandos e frequências, <strong>tela</strong> para ver o espectro na hora, bateria, e
-      um <strong>firmware aberto</strong> (o Bruce) que já traz os drivers dos dois rádios e a interface
-      de RF. Tudo isso num formato de cartão, que cabe no bolso e não precisa de notebook ao lado. O hat
+      o <strong>firmware aberto Bruce</strong> costurando tudo. Tudo isso num formato de cartão, que cabe
+      no bolso e não precisa de notebook ao lado. O hat
       é a única parte feita à mão, e é reversível: sai do EXT e o Cardputer volta ao normal.
     </p>
 
     <h2>5. Uso responsável</h2>
     <p>
-      Vale repetir, porque importa: <strong>sub-GHz e 2,4 GHz são faixas reguladas pela Anatel</strong>,
-      com regras de faixa e limites de potência. Este projeto é de pesquisa e estudo, em rádio próprio.
-      Transmitir fora dos limites, ou operar sobre sinais e sistemas de terceiros sem autorização, não é
-      só má prática: é ilegal. A parte de RX (escutar, analisar espectro, caracterizar o próprio sinal)
-      é o terreno de estudo; a de TX pede cuidado redobrado com potência e faixa.
+      Este projeto é de pesquisa e estudo, feito para <strong>testes em ambientes autorizados e uso
+      acadêmico</strong>, sempre em equipamento próprio. Operar sobre sinais e sistemas de terceiros sem
+      autorização não é só má prática: é ilegal. A parte de RX (escutar, analisar espectro, caracterizar
+      o próprio sinal) é o terreno de estudo; a de TX pede cuidado redobrado.
     </p>
 
     <h2>Referências e créditos</h2>

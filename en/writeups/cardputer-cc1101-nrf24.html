@@ -57,9 +57,7 @@
 
     <div class="disclosure">
       <strong>// scope</strong><br>
-      A bench project, on my own equipment. Sub-GHz and 2.4 GHz are bands regulated by Anatel (Brazil's
-      telecom authority), with band and power limits. Use it only on your own radio or with formal
-      written authorization. Nothing here is meant to operate on third-party signals.
+      A bench project, on my own equipment, for testing in authorized environments and academic use.
     </div>
 
     <h2>1. What it is and why</h2>
@@ -88,11 +86,11 @@
     <h3>Power: 3.3 V, and only 3.3 V</h3>
     <p>
       This is the detail that keeps the board from frying. The EXT connector delivers 5 V on pin 6, but
-      the <strong>ESP32-S3 does not tolerate 5 V on any GPIO</strong>. So the 5 V goes through a local
-      <strong>AMS1117-3.3</strong> regulator on the hat, and both radios are fed <strong>only with
-      3.3 V</strong>. The logic signals are already 3.3 V on both sides, so no level shifter is needed.
-      Swapping 5 V for a GPIO would damage the Stamp-S3A: check your connector pinout against the
-      official documentation before powering it up.
+      the <strong>ESP32-S3 does not tolerate 5 V on any GPIO</strong>. So the 5 V goes through a
+      <strong>V987 Mini buck-boost DC-DC converter</strong> on the hat, with its output set to 3.3 V,
+      and both radios are fed <strong>only with 3.3 V</strong>. The logic signals are already 3.3 V on
+      both sides, so no level shifter is needed. Swapping 5 V for a GPIO would damage the Stamp-S3A:
+      check your connector pinout against the official documentation before powering it up.
     </p>
 
     <h3>Shared SPI bus</h3>
@@ -117,18 +115,26 @@ Reserved: do NOT use G8 / G9  (internal I2C: keyboard, IMU, audio)</code></pre>
       <code>G8/G9</code> are off the table on purpose: they are the Cardputer's internal I2C, where the
       keyboard, the IMU and the audio live. Taking over that bus breaks all three at once.
     </p>
-    <p style="color:var(--txt-dim)">
-      The schematic, the point-to-point wiring table and the bench verification checklist are in the
-      <a href="../../assets/img/cardputer/esquematico.pdf" target="_blank" rel="noopener">full schematic (PDF)</a>
-      (Rev. B).
-    </p>
+    <div class="disclosure">
+      <strong>// want to build one?</strong><br>
+      The full schematic (Rev. B) has the drawing, the point-to-point wiring table and the bench
+      verification checklist, everything you need to reproduce the board:
+      <a href="../../assets/img/cardputer/esquematico.pdf" target="_blank" rel="noopener">download the schematic (PDF)</a>.
+    </div>
 
     <h3>Remapping in Bruce firmware</h3>
     <p>
-      The firmware running the rig is <strong>Bruce</strong>. The detail that makes it all work: the
-      default Cardputer build points both radios at the <strong>same pins</strong> (<code>cs=1</code>,
-      <code>io0=2</code>). Without reassigning them, the two modules will not operate wired at the same
-      time. The remap lives in the <code>/brucePins.conf</code> file, keyed by the device's Wi-Fi MAC:
+      The firmware running the rig is <strong>Bruce</strong>, an open-source firmware for ESP32 devices
+      aimed at offensive security and RF experimentation. It already ships drivers for the CC1101 and the
+      nRF24, sub-GHz and 2.4 GHz menus, the spectrum analyzer you see on screen in the photo above, plus
+      Wi-Fi, Bluetooth, infrared and RFID modules. It is what turns the hardware into a usable tool
+      without writing code: you pick radio, band and function straight from the keyboard.
+    </p>
+    <p>
+      The detail that makes it all work: the default Cardputer build points both radios at the
+      <strong>same pins</strong> (<code>cs=1</code>, <code>io0=2</code>). Without reassigning them, the
+      two modules will not operate wired at the same time. The remap lives in the
+      <code>/brucePins.conf</code> file, keyed by the device's Wi-Fi MAC:
     </p>
     <pre><code>{
   "AA:BB:CC:DD:EE:FF": {
@@ -175,20 +181,19 @@ Reserved: do NOT use G8 / G9  (internal I2C: keyboard, IMU, audio)</code></pre>
       The appeal of using the Cardputer as a base is the sum of things that are usually scattered
       around: an <strong>ESP32-S3</strong> with headroom in processing and memory, a physical
       <strong>keyboard</strong> for typing commands and frequencies, a <strong>screen</strong> to see
-      the spectrum in real time, a battery, and <strong>open firmware</strong> (Bruce) that already
-      ships the drivers for both radios and the RF interface. All of it in a card-sized form factor that
-      fits in a pocket and needs no laptop next to it. The hat is the only hand-made part, and it is
+      the spectrum in real time, a battery, and the <strong>open-source Bruce firmware</strong> tying it
+      all together. All of it in a card-sized form factor that fits in a pocket and needs no laptop next
+      to it. The hat is the only hand-made part, and it is
       reversible: pull it off the EXT and the Cardputer is back to stock.
     </p>
 
     <h2>5. Responsible use</h2>
     <p>
-      Worth repeating, because it matters: <strong>sub-GHz and 2.4 GHz are bands regulated by
-      Anatel</strong>, with band rules and power limits. This is a research and study project, on my own
-      radio. Transmitting outside the limits, or operating on someone else's signals and systems without
-      authorization, is not just bad practice: it is illegal. The RX side (listening, analyzing the
-      spectrum, characterizing your own signal) is the study ground; the TX side calls for extra care
-      with power and band.
+      This is a research and study project, built for <strong>testing in authorized environments and
+      academic use</strong>, always on my own equipment. Operating on someone else's signals and systems
+      without authorization is not just bad practice: it is illegal. The RX side (listening, analyzing
+      the spectrum, characterizing your own signal) is the study ground; the TX side calls for extra
+      care.
     </p>
 
     <h2>References and credits</h2>
