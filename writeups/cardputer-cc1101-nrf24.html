@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cardputer ADV como multi-tool de RF: CC1101 + nRF24L01+ | lucas.albino</title>
-<meta name="description" content="Um hat feito à mão transforma o M5Stack Cardputer ADV numa base de pesquisa de RF: CC1101 para sub-GHz e nRF24L01+ para 2,4 GHz, num barramento SPI compartilhado, com firmware Bruce.">
+<meta name="description" content="Uma placa perfurada transforma o M5Stack Cardputer ADV numa base de pesquisa de RF: CC1101 para sub-GHz e nRF24L01+ para 2,4 GHz, num barramento SPI compartilhado, com firmware Bruce.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%230a0e13'/><text y='68' x='50' text-anchor='middle' font-size='58' font-family='monospace' fill='%23ff2b3d'>&gt;_</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,7 +41,7 @@
       </div>
       <h1>Cardputer ADV como multi-tool de RF: CC1101 + nRF24L01+</h1>
       <p style="color:var(--txt-dim);margin:0">
-        Um M5Stack Cardputer ADV, um hat de placa perfurada feito à mão e dois rádios: o
+        Um M5Stack Cardputer ADV, uma placa perfurada e dois rádios: o
         <strong>CC1101</strong> para sub-GHz (433/868/915 MHz) e o <strong>nRF24L01+ PA/LNA</strong>
         para os 2,4 GHz. Os dois no mesmo barramento SPI, chaveados por software, dentro de um
         aparelho que cabe no bolso e tem teclado e tela. O objetivo: uma base de bancada para estudar
@@ -51,8 +51,8 @@
 
     <figure class="shot">
       <a href="../assets/img/cardputer/circuito.jpg" target="_blank" rel="noopener">
-        <img src="../assets/img/cardputer/circuito.jpg" alt="Cardputer ADV com hat de placa perfurada, módulos CC1101 e nRF24L01+ e duas antenas SMA, rodando o analisador de espectro na tela"></a>
-      <figcaption>O conjunto montado: hat com CC1101 (à esquerda, 433 MHz) e nRF24L01+ PA/LNA (à direita), o Cardputer rodando o analisador de espectro de 2,4 GHz</figcaption>
+        <img src="../assets/img/cardputer/circuito.jpg" alt="Cardputer ADV com placa perfurada, módulos CC1101 e nRF24L01+ e duas antenas SMA, rodando o analisador de espectro na tela"></a>
+      <figcaption>O conjunto montado: a placa com CC1101 (à esquerda, 433 MHz) e nRF24L01+ PA/LNA (à direita), o Cardputer rodando o analisador de espectro de 2,4 GHz</figcaption>
     </figure>
 
     <div class="disclosure">
@@ -78,7 +78,7 @@
 
     <h2>2. O build</h2>
     <p>
-      Os dois módulos moram num hat de placa perfurada que encaixa no conector de expansão
+      Os dois módulos moram numa placa perfurada que encaixa no conector de expansão
       <strong>EXT 2.54-14P</strong> do Cardputer ADV (o modelo com o Stamp-S3A / ESP32-S3FN8). Três
       decisões guiaram a montagem: alimentação, o barramento SPI e o remapeamento de pinos no firmware.
     </p>
@@ -87,7 +87,7 @@
     <p>
       Este é o detalhe que evita queimar a placa. O conector EXT entrega 5 V no pino 6, mas o
       <strong>ESP32-S3 não tolera 5 V em nenhum GPIO</strong>. Então os 5 V passam por um conversor
-      DC-DC <strong>buck-boost V987 Mini</strong> no próprio hat, com a saída ajustada para 3,3 V, e os
+      DC-DC <strong>buck-boost V987 Mini</strong> na própria placa, com a saída ajustada para 3,3 V, e os
       dois rádios são alimentados <strong>somente com 3,3 V</strong>. Os sinais lógicos já são 3,3 V nos
       dois lados, então não precisa de level shifter. Inverter o 5 V com um GPIO danifica o Stamp-S3A:
       confira o pinout do seu conector contra a documentação oficial antes de energizar.
@@ -183,8 +183,8 @@ Reservado: NAO usar G8 / G9  (I2C interno: teclado, IMU, audio)</code></pre>
       um <strong>ESP32-S3</strong> com folga de processamento e memória, <strong>teclado</strong> físico
       para digitar comandos e frequências, <strong>tela</strong> para ver o espectro na hora, bateria, e
       o <strong>firmware aberto Bruce</strong> costurando tudo. Tudo isso num formato de cartão, que cabe
-      no bolso e não precisa de notebook ao lado. O hat
-      é a única parte feita à mão, e é reversível: sai do EXT e o Cardputer volta ao normal.
+      no bolso e não precisa de notebook ao lado. A placa
+      é a única parte que você monta, e é reversível: sai do EXT e o Cardputer volta ao normal.
     </p>
 
     <h2>5. Uso responsável</h2>

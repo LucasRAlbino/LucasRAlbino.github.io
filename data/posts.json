@@ -1,7 +1,7 @@
 [
   {
     "titulo": "Cardputer ADV como multi-tool de RF: CC1101 + nRF24L01+",
-    "resumo": "Um M5Stack Cardputer ADV com um hat de placa perfurada feito à mão vira base de pesquisa de RF: CC1101 para sub-GHz (433/868/915 MHz) e nRF24L01+ PA/LNA para 2,4 GHz, num barramento SPI compartilhado e chaveados por software, com firmware Bruce.",
+    "resumo": "Um M5Stack Cardputer ADV com uma placa perfurada vira base de pesquisa de RF: CC1101 para sub-GHz (433/868/915 MHz) e nRF24L01+ PA/LNA para 2,4 GHz, num barramento SPI compartilhado e chaveados por software, com firmware Bruce.",
     "data": "2026-09-15",
     "url": "writeups/cardputer-cc1101-nrf24.html",
     "leitura": "7 min",

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cardputer ADV as an RF multi-tool: CC1101 + nRF24L01+ | lucas.albino</title>
-<meta name="description" content="A hand-made hat turns the M5Stack Cardputer ADV into an RF research bench: CC1101 for sub-GHz and nRF24L01+ for 2.4 GHz, on a shared SPI bus, running Bruce firmware.">
+<meta name="description" content="A perfboard turns the M5Stack Cardputer ADV into an RF research bench: CC1101 for sub-GHz and nRF24L01+ for 2.4 GHz, on a shared SPI bus, running Bruce firmware.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%230a0e13'/><text y='68' x='50' text-anchor='middle' font-size='58' font-family='monospace' fill='%23ff2b3d'>&gt;_</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,7 +41,7 @@
       </div>
       <h1>Cardputer ADV as an RF multi-tool: CC1101 + nRF24L01+</h1>
       <p style="color:var(--txt-dim);margin:0">
-        An M5Stack Cardputer ADV, a hand-made perfboard hat and two radios: the
+        An M5Stack Cardputer ADV, a perfboard and two radios: the
         <strong>CC1101</strong> for sub-GHz (433/868/915 MHz) and the <strong>nRF24L01+ PA/LNA</strong>
         for 2.4 GHz. Both on the same SPI bus, switched in software, inside a device that fits in a
         pocket and has a keyboard and a screen. The goal: a bench platform to study RF without leaning
@@ -51,8 +51,8 @@
 
     <figure class="shot">
       <a href="../../assets/img/cardputer/circuito.jpg" target="_blank" rel="noopener">
-        <img src="../../assets/img/cardputer/circuito.jpg" alt="Cardputer ADV with a perfboard hat, CC1101 and nRF24L01+ modules and two SMA antennas, running the spectrum analyzer on screen"></a>
-      <figcaption>The assembled rig: hat with the CC1101 (left, 433 MHz) and the nRF24L01+ PA/LNA (right), the Cardputer running the 2.4 GHz spectrum analyzer</figcaption>
+        <img src="../../assets/img/cardputer/circuito.jpg" alt="Cardputer ADV with a perfboard, CC1101 and nRF24L01+ modules and two SMA antennas, running the spectrum analyzer on screen"></a>
+      <figcaption>The assembled rig: the board with the CC1101 (left, 433 MHz) and the nRF24L01+ PA/LNA (right), the Cardputer running the 2.4 GHz spectrum analyzer</figcaption>
     </figure>
 
     <div class="disclosure">
@@ -78,7 +78,7 @@
 
     <h2>2. The build</h2>
     <p>
-      Both modules live on a perfboard hat that plugs into the <strong>EXT 2.54-14P</strong> expansion
+      Both modules live on a perfboard that plugs into the <strong>EXT 2.54-14P</strong> expansion
       connector of the Cardputer ADV (the one with the Stamp-S3A / ESP32-S3FN8). Three decisions drove
       the build: power, the SPI bus, and remapping pins in firmware.
     </p>
@@ -87,7 +87,7 @@
     <p>
       This is the detail that keeps the board from frying. The EXT connector delivers 5 V on pin 6, but
       the <strong>ESP32-S3 does not tolerate 5 V on any GPIO</strong>. So the 5 V goes through a
-      <strong>V987 Mini buck-boost DC-DC converter</strong> on the hat, with its output set to 3.3 V,
+      <strong>V987 Mini buck-boost DC-DC converter</strong> on the board, with its output set to 3.3 V,
       and both radios are fed <strong>only with 3.3 V</strong>. The logic signals are already 3.3 V on
       both sides, so no level shifter is needed. Swapping 5 V for a GPIO would damage the Stamp-S3A:
       check your connector pinout against the official documentation before powering it up.
@@ -183,7 +183,7 @@ Reserved: do NOT use G8 / G9  (internal I2C: keyboard, IMU, audio)</code></pre>
       <strong>keyboard</strong> for typing commands and frequencies, a <strong>screen</strong> to see
       the spectrum in real time, a battery, and the <strong>open-source Bruce firmware</strong> tying it
       all together. All of it in a card-sized form factor that fits in a pocket and needs no laptop next
-      to it. The hat is the only hand-made part, and it is
+      to it. The board is the only part you build, and it is
       reversible: pull it off the EXT and the Cardputer is back to stock.
     </p>
 
