@@ -1,124 +1,1343 @@
-%PDF-1.4
-%“Œ‹ž ReportLab Generated PDF document (opensource)
+%PDF-1.3
+%âãÏÓ
 1 0 obj
 <<
-/F1 2 0 R /F2 3 0 R /F3 4 0 R /F4 7 0 R
+/PageMode /UseNone
+/Pages 2 0 R
+/Type /Catalog
 >>
 endobj
 2 0 obj
 <<
-/BaseFont /Helvetica /Encoding /WinAnsiEncoding /Name /F1 /Subtype /Type1 /Type /Font
+/Count 3
+/Kids [ 3 0 R 10 0 R 12 0 R ]
+/Type /Pages
 >>
 endobj
 3 0 obj
 <<
-/BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding /Name /F2 /Subtype /Type1 /Type /Font
+/Contents 4 0 R
+/MediaBox [ 0 0 841.8898 595.2756 ]
+/Parent 2 0 R
+/Resources <<
+/Font 5 0 R
+/ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>>
+/Rotate 0
+/Trans <<
+>>
+/Type /Page
 >>
 endobj
 4 0 obj
 <<
-/BaseFont /Helvetica-Oblique /Encoding /WinAnsiEncoding /Name /F3 /Subtype /Type1 /Type /Font
+/Length 15347
 >>
+stream
+1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
+.8 .82 .84 RG
+.8 w
+n 20 20 801.8898 555.2756 re S
+n 20 523.2756 m 821.8898 523.2756 l S
+.09 .1 .12 rg
+BT /F2 13.5 Tf 16.2 TL ET
+BT 1 0 0 1 34 545.2756 Tm (Esquematico - CC1101 \(Sub-GHz\) + nRF24L01+ \(2,4 GHz\) em placa perfurada) Tj T* ET
+.45 .47 .5 rg
+BT /F1 8.5 Tf 10.2 TL ET
+BT 1 0 0 1 34 531.2756 Tm (M5Stack Cardputer ADV \(Stamp-S3A / ESP32-S3FN8\)  -  barramento SPI compartilhado  -  5 V do conector EXT com regulador local de 3,3 V) Tj T* ET
+BT /F1 7.5 Tf 9 TL ET
+BT 1 0 0 1 736.1898 545.2756 Tm (Rev. B  -  2026-09-04) Tj T* ET
+BT 1 0 0 1 761.6073 533.2756 Tm (Pagina 1 de 3) Tj T* ET
+0 0 0 rg
+.965 .965 .955 rg
+.09 .1 .12 RG
+1 w
+n 46 196 132 300 re B*
+.09 .1 .12 rg
+BT /F2 8.6 Tf 10.32 TL ET
+BT 1 0 0 1 52 508 Tm (J1) Tj T* ET
+BT 1 0 0 1 66.5632 508 Tm (EXT 2.54-14P) Tj T* ET
+.45 .47 .5 rg
+BT /F1 6.9 Tf 8.28 TL ET
+BT 1 0 0 1 52 499 Tm (conector de expansao do Cardputer ADV   \(pino / GPIO\)) Tj T* ET
+0 0 0 rg
+.09 .1 .12 rg
+BT /F2 7.4 Tf 8.88 TL ET
+BT 1 0 0 1 54 473.4 Tm (6) Tj T* ET
+BT /F1 7.4 Tf 8.88 TL ET
+BT 1 0 0 1 74 473.4 Tm (5VOUT) Tj T* ET
+.72 .16 .13 RG
+.9 w
+n 178 476 m 204 476 l S
+.09 .1 .12 rg
+BT /F2 7.4 Tf 8.88 TL ET
+BT 1 0 0 1 54 447.4 Tm (4) Tj T* ET
+BT /F1 7.4 Tf 8.88 TL ET
+BT 1 0 0 1 74 447.4 Tm (GND) Tj T* ET
+.09 .1 .12 RG
+.9 w
+n 178 450 m 204 450 l S
+BT /F2 7.2 Tf 8.64 TL ET
+.09 .1 .12 rg
+BT 1 0 0 1 208 447.4 Tm (GND) Tj T* ET
+0 0 0 rg
+.09 .1 .12 rg
+BT /F2 7.4 Tf 8.88 TL ET
+BT 1 0 0 1 54 397.4 Tm (7) Tj T* ET
+BT /F1 7.4 Tf 8.88 TL ET
+BT 1 0 0 1 74 397.4 Tm (G40) Tj T* ET
+.11 .3 .55 RG
+.9 w
+n 178 400 m 204 400 l S
+BT /F2 7.2 Tf 8.64 TL ET
+.11 .3 .55 rg
+BT 1 0 0 1 208 397.4 Tm (SCK) Tj T* ET
+0 0 0 rg
+.09 .1 .12 rg
+BT /F2 7.4 Tf 8.88 TL ET
+BT 1 0 0 1 54 372.4 Tm (9) Tj T* ET
+BT /F1 7.4 Tf 8.88 TL ET
+BT 1 0 0 1 74 372.4 Tm (G14) Tj T* ET
+.11 .3 .55 RG
+.9 w
+n 178 375 m 204 375 l S
+BT /F2 7.2 Tf 8.64 TL ET
+.11 .3 .55 rg
+BT 1 0 0 1 208 372.4 Tm (MOSI) Tj T* ET
+0 0 0 rg
+.09 .1 .12 rg
+BT /F2 7.4 Tf 8.88 TL ET
+BT 1 0 0 1 54 347.4 Tm (11) Tj T* ET
+BT /F1 7.4 Tf 8.88 TL ET
+BT 1 0 0 1 74 347.4 Tm (G39) Tj T* ET
+.11 .3 .55 RG
+.9 w
+n 178 350 m 204 350 l S
+BT /F2 7.2 Tf 8.64 TL ET
+.11 .3 .55 rg
+BT 1 0 0 1 208 347.4 Tm (MISO) Tj T* ET
+0 0 0 rg
+.09 .1 .12 rg
+BT /F2 7.4 Tf 8.88 TL ET
+BT 1 0 0 1 54 307.4 Tm (12) Tj T* ET
+BT /F1 7.4 Tf 8.88 TL ET
+BT 1 0 0 1 74 307.4 Tm (G13) Tj T* ET
+.11 .3 .55 RG
+.9 w
+n 178 310 m 204 310 l S
+BT /F2 7.2 Tf 8.64 TL ET
+.11 .3 .55 rg
+BT 1 0 0 1 208 307.4 Tm (CC_CSN) Tj T* ET
+0 0 0 rg
+.09 .1 .12 rg
+BT /F2 7.4 Tf 8.88 TL ET
+BT 1 0 0 1 54 282.4 Tm (13) Tj T* ET
+BT /F1 7.4 Tf 8.88 TL ET
+BT 1 0 0 1 74 282.4 Tm (G5) Tj T* ET
+.11 .3 .55 RG
+.9 w
+n 178 285 m 204 285 l S
+BT /F2 7.2 Tf 8.64 TL ET
+.11 .3 .55 rg
+BT 1 0 0 1 208 282.4 Tm (CC_GDO0) Tj T* ET
+0 0 0 rg
+.09 .1 .12 rg
+BT /F2 7.4 Tf 8.88 TL ET
+BT 1 0 0 1 54 242.4 Tm (5) Tj T* ET
+BT /F1 7.4 Tf 8.88 TL ET
+BT 1 0 0 1 74 242.4 Tm (G6) Tj T* ET
+.11 .3 .55 RG
+.9 w
+n 178 245 m 204 245 l S
+BT /F2 7.2 Tf 8.64 TL ET
+.11 .3 .55 rg
+BT 1 0 0 1 208 242.4 Tm (NRF_CSN) Tj T* ET
+0 0 0 rg
+.09 .1 .12 rg
+BT /F2 7.4 Tf 8.88 TL ET
+BT 1 0 0 1 54 217.4 Tm (3) Tj T* ET
+BT /F1 7.4 Tf 8.88 TL ET
+BT 1 0 0 1 74 217.4 Tm (G4) Tj T* ET
+.11 .3 .55 RG
+.9 w
+n 178 220 m 204 220 l S
+BT /F2 7.2 Tf 8.64 TL ET
+.11 .3 .55 rg
+BT 1 0 0 1 208 217.4 Tm (NRF_CE) Tj T* ET
+0 0 0 rg
+0 0 0 rg
+.8 .82 .84 RG
+.5 w
+n 50 430 m 174 430 l S
+n 50 331 m 174 331 l S
+n 50 266 m 174 266 l S
+.965 .965 .955 rg
+.09 .1 .12 RG
+1 w
+n 300 452 116 50 re B*
+.09 .1 .12 rg
+BT /F2 8.6 Tf 10.32 TL ET
+BT 1 0 0 1 306 514 Tm (U1) Tj T* ET
+BT 1 0 0 1 321.9908 514 Tm (V987 Mini) Tj T* ET
+.45 .47 .5 rg
+BT /F1 6.9 Tf 8.28 TL ET
+BT 1 0 0 1 306 505 Tm (buck-boost 5 V -> 3,3 V) Tj T* ET
+0 0 0 rg
+.09 .1 .12 rg
+BT /F1 7.5 Tf 9 TL ET
+BT 1 0 0 1 308 473.4 Tm (VIN) Tj T* ET
+BT 1 0 0 1 387.165 473.4 Tm (VOUT) Tj T* ET
+BT /F1 7 Tf 8.4 TL ET
+BT 1 0 0 1 350.223 464 Tm (GND) Tj T* ET
+0 0 0 rg
+.72 .16 .13 RG
+1.15 w
+n 274 476 m 300 476 l S
+.72 .16 .13 RG
+1.15 w
+n 416 476 m 442 476 l S
+.09 .1 .12 RG
+.9 w
+n 358 452 m 358 442 l S
+.09 .1 .12 RG
+.9 w
+n 358 442 m 358 434 l S
+1.3 w
+n 351 434 m 365 434 l S
+.9 w
+n 353.5 431 m 362.5 431 l S
+n 356 428.4 m 360 428.4 l S
+.72 .16 .13 RG
+1.15 w
+n 204 476 m 274 476 l S
+.72 .16 .13 rg
+BT /F2 7.2 Tf 8.64 TL ET
+BT 1 0 0 1 208 481 Tm (+5 V) Tj T* ET
+0 0 0 rg
+.72 .16 .13 RG
+1.6 w
+n 442 476 m 590 476 l S
+.72 .16 .13 rg
+BT /F2 7.8 Tf 9.36 TL ET
+BT 1 0 0 1 424 482 Tm (+3,3 V) Tj T* ET
+0 0 0 rg
+.965 .965 .955 rg
+.09 .1 .12 RG
+1 w
+n 596 288 176 162 re B*
+.09 .1 .12 rg
+BT /F2 8.6 Tf 10.32 TL ET
+BT 1 0 0 1 602 462 Tm (U2) Tj T* ET
+BT 1 0 0 1 617.9908 462 Tm (CC1101) Tj T* ET
+.45 .47 .5 rg
+BT /F1 6.9 Tf 8.28 TL ET
+BT 1 0 0 1 602 453 Tm (Sub-GHz 433 / 868 / 915 MHz  -  modulo de 8 pinos) Tj T* ET
+0 0 0 rg
+.72 .16 .13 RG
+.9 w
+n 566 436 m 596 436 l S
+.09 .1 .12 rg
+BT /F1 7.5 Tf 9 TL ET
+BT 1 0 0 1 601 433.4 Tm (VCC   3,3 V) Tj T* ET
+.45 .47 .5 rg
+BT /F1 5.8 Tf 6.96 TL ET
+BT 1 0 0 1 590.7752 438.6 Tm (1) Tj T* ET
+0 0 0 rg
+.09 .1 .12 RG
+.9 w
+n 566 416 m 596 416 l S
+.09 .1 .12 rg
+BT /F1 7.5 Tf 9 TL ET
+BT 1 0 0 1 601 413.4 Tm (GND) Tj T* ET
+.45 .47 .5 rg
+BT /F1 5.8 Tf 6.96 TL ET
+BT 1 0 0 1 590.7752 418.6 Tm (2) Tj T* ET
+0 0 0 rg
+BT /F2 7.2 Tf 8.64 TL ET
+.09 .1 .12 rg
+BT 1 0 0 1 546.0016 413.4 Tm (GND) Tj T* ET
+0 0 0 rg
+.11 .3 .55 RG
+.9 w
+n 566 396 m 596 396 l S
+.09 .1 .12 rg
+BT /F1 7.5 Tf 9 TL ET
+BT 1 0 0 1 601 393.4 Tm (SCK) Tj T* ET
+.45 .47 .5 rg
+BT /F1 5.8 Tf 6.96 TL ET
+BT 1 0 0 1 590.7752 398.6 Tm (3) Tj T* ET
+0 0 0 rg
+BT /F2 7.2 Tf 8.64 TL ET
+.11 .3 .55 rg
+BT 1 0 0 1 546.8008 393.4 Tm (SCK) Tj T* ET
+0 0 0 rg
+.11 .3 .55 RG
+.9 w
+n 566 376 m 596 376 l S
+.09 .1 .12 rg
+BT /F1 7.5 Tf 9 TL ET
+BT 1 0 0 1 601 373.4 Tm (MOSI) Tj T* ET
+.45 .47 .5 rg
+BT /F1 5.8 Tf 6.96 TL ET
+BT 1 0 0 1 590.7752 378.6 Tm (4) Tj T* ET
+0 0 0 rg
+BT /F2 7.2 Tf 8.64 TL ET
+.11 .3 .55 rg
+BT 1 0 0 1 543.5968 373.4 Tm (MOSI) Tj T* ET
+0 0 0 rg
+.11 .3 .55 RG
+.9 w
+n 566 356 m 596 356 l S
+.09 .1 .12 rg
+BT /F1 7.5 Tf 9 TL ET
+BT 1 0 0 1 601 353.4 Tm (MISO / GDO1) Tj T* ET
+.45 .47 .5 rg
+BT /F1 5.8 Tf 6.96 TL ET
+BT 1 0 0 1 590.7752 358.6 Tm (5) Tj T* ET
+0 0 0 rg
+BT /F2 7.2 Tf 8.64 TL ET
+.11 .3 .55 rg
+BT 1 0 0 1 543.5968 353.4 Tm (MISO) Tj T* ET
+0 0 0 rg
+.11 .3 .55 RG
+.9 w
+n 566 336 m 596 336 l S
+.09 .1 .12 rg
+BT /F1 7.5 Tf 9 TL ET
+BT 1 0 0 1 601 333.4 Tm (CSN) Tj T* ET
+.45 .47 .5 rg
+BT /F1 5.8 Tf 6.96 TL ET
+BT 1 0 0 1 590.7752 338.6 Tm (6) Tj T* ET
+0 0 0 rg
+BT /F2 7.2 Tf 8.64 TL ET
+.11 .3 .55 rg
+BT 1 0 0 1 532.4008 333.4 Tm (CC_CSN) Tj T* ET
+0 0 0 rg
+.11 .3 .55 RG
+.9 w
+n 566 316 m 596 316 l S
+.09 .1 .12 rg
+BT /F1 7.5 Tf 9 TL ET
+BT 1 0 0 1 601 313.4 Tm (GDO0) Tj T* ET
+.45 .47 .5 rg
+BT /F1 5.8 Tf 6.96 TL ET
+BT 1 0 0 1 590.7752 318.6 Tm (7) Tj T* ET
+0 0 0 rg
+BT /F2 7.2 Tf 8.64 TL ET
+.11 .3 .55 rg
+BT 1 0 0 1 527.1952 313.4 Tm (CC_GDO0) Tj T* ET
+0 0 0 rg
+.45 .47 .5 rg
+BT /F1 7.5 Tf 9 TL ET
+BT 1 0 0 1 601 297.4 Tm (GDO2) Tj T* ET
+0 0 0 rg
+.45 .47 .5 RG
+.9 w
+n 578 300 m 596 300 l S
+1.1 w
+n 574 296 m 582 304 l S
+n 574 304 m 582 296 l S
+.45 .47 .5 rg
+BT /F3 6.6 Tf 7.92 TL ET
+BT 1 0 0 1 557.3608 297.6 Tm (n.c.) Tj T* ET
+0 0 0 rg
+.09 .1 .12 RG
+.9 w
+n 772 436 m 790 436 l S
+n
+800 436 m
+800 438.7614 797.7614 441 795 441 c
+792.2386 441 790 438.7614 790 436 c
+790 433.2386 792.2386 431 795 431 c
+797.7614 431 800 433.2386 800 436 c
+S
+.45 .47 .5 rg
+BT /F1 6.4 Tf 7.68 TL ET
+BT 1 0 0 1 776 446 Tm (ANT / SMA) Tj T* ET
+0 0 0 rg
+.72 .16 .13 RG
+1.15 w
+n 590 476 m 590 436 l S
+n 590 436 m 596 436 l S
+.965 .965 .955 rg
+.09 .1 .12 RG
+1 w
+n 596 94 176 162 re B*
+.09 .1 .12 rg
+BT /F2 8.6 Tf 10.32 TL ET
+BT 1 0 0 1 602 268 Tm (U3) Tj T* ET
+BT 1 0 0 1 617.9908 268 Tm (nRF24L01+ \(PA / LNA\)) Tj T* ET
+.45 .47 .5 rg
+BT /F1 6.9 Tf 8.28 TL ET
+BT 1 0 0 1 602 259 Tm (2,4 GHz  -  modulo de 8 pinos \(2x4\)) Tj T* ET
+0 0 0 rg
+.72 .16 .13 RG
+.9 w
+n 566 242 m 596 242 l S
+.09 .1 .12 rg
+BT /F1 7.5 Tf 9 TL ET
+BT 1 0 0 1 601 239.4 Tm (VCC   3,3 V) Tj T* ET
+.45 .47 .5 rg
+BT /F1 5.8 Tf 6.96 TL ET
+BT 1 0 0 1 590.7752 244.6 Tm (2) Tj T* ET
+0 0 0 rg
+.09 .1 .12 RG
+.9 w
+n 566 222 m 596 222 l S
+.09 .1 .12 rg
+BT /F1 7.5 Tf 9 TL ET
+BT 1 0 0 1 601 219.4 Tm (GND) Tj T* ET
+.45 .47 .5 rg
+BT /F1 5.8 Tf 6.96 TL ET
+BT 1 0 0 1 590.7752 224.6 Tm (1) Tj T* ET
+0 0 0 rg
+BT /F2 7.2 Tf 8.64 TL ET
+.09 .1 .12 rg
+BT 1 0 0 1 546.0016 219.4 Tm (GND) Tj T* ET
+0 0 0 rg
+.11 .3 .55 RG
+.9 w
+n 566 202 m 596 202 l S
+.09 .1 .12 rg
+BT /F1 7.5 Tf 9 TL ET
+BT 1 0 0 1 601 199.4 Tm (SCK) Tj T* ET
+.45 .47 .5 rg
+BT /F1 5.8 Tf 6.96 TL ET
+BT 1 0 0 1 590.7752 204.6 Tm (5) Tj T* ET
+0 0 0 rg
+BT /F2 7.2 Tf 8.64 TL ET
+.11 .3 .55 rg
+BT 1 0 0 1 546.8008 199.4 Tm (SCK) Tj T* ET
+0 0 0 rg
+.11 .3 .55 RG
+.9 w
+n 566 182 m 596 182 l S
+.09 .1 .12 rg
+BT /F1 7.5 Tf 9 TL ET
+BT 1 0 0 1 601 179.4 Tm (MOSI) Tj T* ET
+.45 .47 .5 rg
+BT /F1 5.8 Tf 6.96 TL ET
+BT 1 0 0 1 590.7752 184.6 Tm (6) Tj T* ET
+0 0 0 rg
+BT /F2 7.2 Tf 8.64 TL ET
+.11 .3 .55 rg
+BT 1 0 0 1 543.5968 179.4 Tm (MOSI) Tj T* ET
+0 0 0 rg
+.11 .3 .55 RG
+.9 w
+n 566 162 m 596 162 l S
+.09 .1 .12 rg
+BT /F1 7.5 Tf 9 TL ET
+BT 1 0 0 1 601 159.4 Tm (MISO) Tj T* ET
+.45 .47 .5 rg
+BT /F1 5.8 Tf 6.96 TL ET
+BT 1 0 0 1 590.7752 164.6 Tm (7) Tj T* ET
+0 0 0 rg
+BT /F2 7.2 Tf 8.64 TL ET
+.11 .3 .55 rg
+BT 1 0 0 1 543.5968 159.4 Tm (MISO) Tj T* ET
+0 0 0 rg
+.11 .3 .55 RG
+.9 w
+n 566 142 m 596 142 l S
+.09 .1 .12 rg
+BT /F1 7.5 Tf 9 TL ET
+BT 1 0 0 1 601 139.4 Tm (CSN) Tj T* ET
+.45 .47 .5 rg
+BT /F1 5.8 Tf 6.96 TL ET
+BT 1 0 0 1 590.7752 144.6 Tm (4) Tj T* ET
+0 0 0 rg
+BT /F2 7.2 Tf 8.64 TL ET
+.11 .3 .55 rg
+BT 1 0 0 1 528.0016 139.4 Tm (NRF_CSN) Tj T* ET
+0 0 0 rg
+.11 .3 .55 RG
+.9 w
+n 566 122 m 596 122 l S
+.09 .1 .12 rg
+BT /F1 7.5 Tf 9 TL ET
+BT 1 0 0 1 601 119.4 Tm (CE) Tj T* ET
+.45 .47 .5 rg
+BT /F1 5.8 Tf 6.96 TL ET
+BT 1 0 0 1 590.7752 124.6 Tm (3) Tj T* ET
+0 0 0 rg
+BT /F2 7.2 Tf 8.64 TL ET
+.11 .3 .55 rg
+BT 1 0 0 1 533.2 119.4 Tm (NRF_CE) Tj T* ET
+0 0 0 rg
+.45 .47 .5 rg
+BT /F1 7.5 Tf 9 TL ET
+BT 1 0 0 1 601 103.4 Tm (IRQ) Tj T* ET
+0 0 0 rg
+.45 .47 .5 RG
+.9 w
+n 578 106 m 596 106 l S
+1.1 w
+n 574 102 m 582 110 l S
+n 574 110 m 582 102 l S
+.45 .47 .5 rg
+BT /F3 6.6 Tf 7.92 TL ET
+BT 1 0 0 1 557.3608 103.6 Tm (n.c.) Tj T* ET
+0 0 0 rg
+.09 .1 .12 RG
+.9 w
+n 772 242 m 790 242 l S
+n
+800 242 m
+800 244.7614 797.7614 247 795 247 c
+792.2386 247 790 244.7614 790 242 c
+790 239.2386 792.2386 237 795 237 c
+797.7614 237 800 239.2386 800 242 c
+S
+.45 .47 .5 rg
+BT /F1 6.4 Tf 7.68 TL ET
+BT 1 0 0 1 776 252 Tm (ANT / SMA) Tj T* ET
+0 0 0 rg
+.72 .16 .13 RG
+1.15 w
+n 514 476 m 514 242 l S
+n 514 242 m 596 242 l S
+.72 .16 .13 rg
+n
+515.9 476 m
+515.9 477.0493 515.0493 477.9 514 477.9 c
+512.9507 477.9 512.1 477.0493 512.1 476 c
+512.1 474.9507 512.9507 474.1 514 474.1 c
+515.0493 474.1 515.9 474.9507 515.9 476 c
+f*
+0 0 0 rg
+.945 .95 .93 rg
+.8 .82 .84 RG
+.7 w
+n 256 300 250 112 re B*
+.09 .1 .12 rg
+BT /F2 8 Tf 9.6 TL ET
+BT 1 0 0 1 264 399 Tm (Barramento SPI compartilhado) Tj T* ET
+BT /F1 7.3 Tf 8.76 TL ET
+.09 .1 .12 rg
+BT 1 0 0 1 264 386 Tm (SCK = G40   MOSI = G14   MISO = G39) Tj T* ET
+BT /F1 7.3 Tf 8.76 TL ET
+.09 .1 .12 rg
+BT 1 0 0 1 264 375.6 Tm (As tres linhas vao em paralelo aos dois modulos.) Tj T* ET
+BT /F1 7.3 Tf 8.76 TL ET
+.09 .1 .12 rg
+BT 1 0 0 1 264 365.2 Tm (Cada radio tem o seu proprio CSN, entao os dois) Tj T* ET
+BT /F1 7.3 Tf 8.76 TL ET
+.09 .1 .12 rg
+BT 1 0 0 1 264 354.8 Tm (ficam ligados ao mesmo tempo e a selecao e feita) Tj T* ET
+BT /F1 7.3 Tf 8.76 TL ET
+.09 .1 .12 rg
+BT 1 0 0 1 264 344.4 Tm (por software - sem jumper e sem reset.) Tj T* ET
+BT /F2 7.3 Tf 8.76 TL ET
+.72 .16 .13 rg
+BT 1 0 0 1 264 334 Tm (Sao as mesmas linhas do microSD \(CS do SD = G12\).) Tj T* ET
+BT /F2 7.3 Tf 8.76 TL ET
+.72 .16 .13 rg
+BT 1 0 0 1 264 323.6 Tm (Mantenha os fios curtos, abaixo de 10 cm.) Tj T* ET
+0 0 0 rg
+.945 .95 .93 rg
+.8 .82 .84 RG
+.7 w
+n 256 94 250 196 re B*
+.09 .1 .12 rg
+BT /F2 8 Tf 9.6 TL ET
+BT 1 0 0 1 264 277 Tm (Notas de projeto) Tj T* ET
+BT /F2 7.3 Tf 8.76 TL ET
+.72 .16 .13 rg
+BT 1 0 0 1 264 264 Tm (1. Alimente os modulos SOMENTE com 3,3 V.) Tj T* ET
+BT /F1 7.3 Tf 8.76 TL ET
+.09 .1 .12 rg
+BT 1 0 0 1 264 253.6 Tm (    O ESP32-S3 nao tolera 5 V em nenhum GPIO.) Tj T* ET
+BT /F1 7.3 Tf 8.76 TL ET
+.09 .1 .12 rg
+BT 1 0 0 1 264 243.2 Tm (2. Os sinais logicos ja sao 3,3 V nos dois lados:) Tj T* ET
+BT /F1 7.3 Tf 8.76 TL ET
+.09 .1 .12 rg
+BT 1 0 0 1 264 232.8 Tm (    nao e preciso level shifter.) Tj T* ET
+BT /F2 7.3 Tf 8.76 TL ET
+.72 .16 .13 rg
+BT 1 0 0 1 264 222.4 Tm (3. Nao use G8 / G9 \(pinos 8 e 10 do EXT\).) Tj T* ET
+BT /F1 7.3 Tf 8.76 TL ET
+.09 .1 .12 rg
+BT 1 0 0 1 264 212 Tm (    Sao o I2C interno: ES8311, BMI270 e o CI do) Tj T* ET
+BT /F1 7.3 Tf 8.76 TL ET
+.09 .1 .12 rg
+BT 1 0 0 1 264 201.6 Tm (    teclado TCA8418. Ocupar esse barramento) Tj T* ET
+BT /F1 7.3 Tf 8.76 TL ET
+.09 .1 .12 rg
+BT 1 0 0 1 264 191.2 Tm (    quebra audio, IMU e teclado.) Tj T* ET
+BT /F1 7.3 Tf 8.76 TL ET
+.09 .1 .12 rg
+BT 1 0 0 1 264 180.8 Tm (4. Esta revisao nao leva capacitores. O nRF24) Tj T* ET
+BT /F1 7.3 Tf 8.76 TL ET
+.09 .1 .12 rg
+BT 1 0 0 1 264 170.4 Tm (    PA/LNA puxa picos de cerca de 115 mA em TX,) Tj T* ET
+BT /F1 7.3 Tf 8.76 TL ET
+.09 .1 .12 rg
+BT 1 0 0 1 264 160 Tm (    entao deixe o fio de 3,3 V bem curto e reserve) Tj T* ET
+BT /F1 7.3 Tf 8.76 TL ET
+.09 .1 .12 rg
+BT 1 0 0 1 264 149.6 Tm (    furos livres em VCC / GND \(ver pagina 2\).) Tj T* ET
+BT /F1 7.3 Tf 8.76 TL ET
+.09 .1 .12 rg
+BT 1 0 0 1 264 139.2 Tm (5. Usando G13 \(pino 12\) no CSN do CC1101 voce) Tj T* ET
+BT /F1 7.3 Tf 8.76 TL ET
+.09 .1 .12 rg
+BT 1 0 0 1 264 128.8 Tm (    perde o UART_TX exposto no conector.) Tj T* ET
+BT /F1 7.3 Tf 8.76 TL ET
+.09 .1 .12 rg
+BT 1 0 0 1 264 118.4 Tm (6. Afaste as duas antenas entre si e do corpo) Tj T* ET
+BT /F1 7.3 Tf 8.76 TL ET
+.09 .1 .12 rg
+BT 1 0 0 1 264 108 Tm (    do Cardputer para reduzir dessensibilizacao.) Tj T* ET
+0 0 0 rg
+.945 .95 .93 rg
+.8 .82 .84 RG
+.7 w
+n 46 94 210 88 re B*
+.09 .1 .12 rg
+BT /F2 8 Tf 9.6 TL ET
+BT 1 0 0 1 54 169 Tm (Uso do conector) Tj T* ET
+BT /F1 7.3 Tf 8.76 TL ET
+.09 .1 .12 rg
+BT 1 0 0 1 54 156 Tm (9 dos 14 pinos do EXT sao usados.) Tj T* ET
+BT /F1 7.3 Tf 8.76 TL ET
+.09 .1 .12 rg
+BT 1 0 0 1 54 145.6 Tm (Livres: pino 1 \(G3\), 14 \(G15\) e o) Tj T* ET
+BT /F1 7.3 Tf 8.76 TL ET
+.09 .1 .12 rg
+BT 1 0 0 1 54 135.2 Tm (Grove HY2.0-4P \(G1 / G2\).) Tj T* ET
+BT /F1 7.3 Tf 8.76 TL ET
+.09 .1 .12 rg
+BT 1 0 0 1 54 124.8 Tm (Reservados: pinos 8 e 10 \(I2C\).) Tj T* ET
+BT /F1 7.3 Tf 8.76 TL ET
+.09 .1 .12 rg
+BT 1 0 0 1 54 114.4 Tm (Pino 2 \(5VIN\) nao e usado - ele) Tj T* ET
+BT /F1 7.3 Tf 8.76 TL ET
+.09 .1 .12 rg
+BT 1 0 0 1 54 104 Tm (serve para alimentar a placa.) Tj T* ET
+0 0 0 rg
+.945 .95 .93 rg
+.8 .82 .84 RG
+.7 w
+n 46 26 366 60 re B*
+.09 .1 .12 rg
+BT /F2 8 Tf 9.6 TL ET
+BT 1 0 0 1 54 73 Tm (Revisao B - montagem sem capacitores) Tj T* ET
+BT /F1 7.3 Tf 8.76 TL ET
+.09 .1 .12 rg
+BT 1 0 0 1 54 60 Tm (Nomes de net identicos indicam a mesma ligacao eletrica; o simbolo) Tj T* ET
+BT /F1 7.3 Tf 8.76 TL ET
+.09 .1 .12 rg
+BT 1 0 0 1 54 49.6 Tm (de terra e a net GND. Nenhum capacitor de desacoplamento e usado:) Tj T* ET
+BT /F1 7.3 Tf 8.76 TL ET
+.09 .1 .12 rg
+BT 1 0 0 1 54 39.2 Tm (reserve furos livres em VCC / GND - ver a pagina 2.) Tj T* ET
+0 0 0 rg
+.45 .47 .5 rg
+BT /F1 6.8 Tf 8.16 TL ET
+BT 1 0 0 1 440 46 Tm (Legenda:) Tj T* ET
+.72 .16 .13 RG
+1.6 w
+n 480 48.5 m 500 48.5 l S
+.45 .47 .5 rg
+BT 1 0 0 1 504 46 Tm (alimentacao) Tj T* ET
+.11 .3 .55 RG
+1 w
+n 564 48.5 m 584 48.5 l S
+BT 1 0 0 1 588 46 Tm (sinal / SPI) Tj T* ET
+.09 .1 .12 RG
+n 642 48.5 m 662 48.5 l S
+BT 1 0 0 1 666 46 Tm (terra) Tj T* ET
+0 0 0 rg
+ 
+
+endstream
 endobj
 5 0 obj
 <<
-/Contents 12 0 R /MediaBox [ 0 0 841.8898 595.2756 ] /Parent 11 0 R /Resources <<
-/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
->> /Rotate 0 /Trans <<
-
->> 
-  /Type /Page
+/F1 6 0 R
+/F2 7 0 R
+/F3 8 0 R
+/F4 9 0 R
 >>
 endobj
 6 0 obj
 <<
-/Contents 13 0 R /MediaBox [ 0 0 841.8898 595.2756 ] /Parent 11 0 R /Resources <<
-/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
->> /Rotate 0 /Trans <<
-
->> 
-  /Type /Page
+/BaseFont /Helvetica
+/Encoding /WinAnsiEncoding
+/Name /F1
+/Subtype /Type1
+/Type /Font
 >>
 endobj
 7 0 obj
 <<
-/BaseFont /Courier /Encoding /WinAnsiEncoding /Name /F4 /Subtype /Type1 /Type /Font
+/BaseFont /Helvetica-Bold
+/Encoding /WinAnsiEncoding
+/Name /F2
+/Subtype /Type1
+/Type /Font
 >>
 endobj
 8 0 obj
 <<
-/Contents 14 0 R /MediaBox [ 0 0 841.8898 595.2756 ] /Parent 11 0 R /Resources <<
-/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
->> /Rotate 0 /Trans <<
-
->> 
-  /Type /Page
+/BaseFont /Helvetica-Oblique
+/Encoding /WinAnsiEncoding
+/Name /F3
+/Subtype /Type1
+/Type /Font
 >>
 endobj
 9 0 obj
 <<
-/PageMode /UseNone /Pages 11 0 R /Type /Catalog
+/BaseFont /Courier
+/Encoding /WinAnsiEncoding
+/Name /F4
+/Subtype /Type1
+/Type /Font
 >>
 endobj
 10 0 obj
 <<
-/Author (anonymous) /CreationDate (D:20260904174928+00'00') /Creator (anonymous) /Keywords () /ModDate (D:20260904174928+00'00') /Producer (ReportLab PDF Library - \(opensource\)) 
-  /Subject (Placa perfurada: SPI compartilhado + regulador 5V/3V3) /Title (Esquematico CC1101 + nRF24L01+ - M5Stack Cardputer ADV) /Trapped /False
+/Contents 11 0 R
+/MediaBox [ 0 0 841.8898 595.2756 ]
+/Parent 2 0 R
+/Resources <<
+/Font 5 0 R
+/ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>>
+/Rotate 0
+/Trans <<
+>>
+/Type /Page
 >>
 endobj
 11 0 obj
 <<
-/Count 3 /Kids [ 5 0 R 6 0 R 8 0 R ] /Type /Pages
+/Length 15438
 >>
+stream
+1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
+.8 .82 .84 RG
+.8 w
+n 20 20 801.8898 555.2756 re S
+n 20 523.2756 m 821.8898 523.2756 l S
+.09 .1 .12 rg
+BT /F2 13.5 Tf 16.2 TL ET
+BT 1 0 0 1 34 545.2756 Tm (Tabela de ligacao ponto a ponto e mapa fisico do conector) Tj T* ET
+.45 .47 .5 rg
+BT /F1 8.5 Tf 10.2 TL ET
+BT 1 0 0 1 34 531.2756 Tm (Pagina de bancada: cada linha da tabela corresponde a um fio da placa perfurada) Tj T* ET
+BT /F1 7.5 Tf 9 TL ET
+BT 1 0 0 1 736.1898 545.2756 Tm (Rev. B  -  2026-09-04) Tj T* ET
+BT 1 0 0 1 761.6073 533.2756 Tm (Pagina 2 de 3) Tj T* ET
+0 0 0 rg
+.09 .1 .12 rg
+BT /F2 9.5 Tf 11.4 TL ET
+BT 1 0 0 1 34 499.2756 Tm (1. Ligacoes) Tj T* ET
+0 0 0 rg
+.09 .1 .12 rg
+n 34 473.4756 774 15.8 re f*
+1 1 1 rg
+BT /F2 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 39 478.0756 Tm (Net) Tj T* ET
+1 1 1 rg
+BT /F2 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 111 478.0756 Tm (Serigrafia EXT) Tj T* ET
+1 1 1 rg
+BT /F2 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 214.3712 478.0756 Tm (GPIO) Tj T* ET
+1 1 1 rg
+BT /F2 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 257.6571 478.0756 Tm (Pino) Tj T* ET
+1 1 1 rg
+BT /F2 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 291 478.0756 Tm (Destino) Tj T* ET
+.09 .1 .12 rg
+BT /F2 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 39 462.2756 Tm (+5 V) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 111 462.2756 Tm (5VOUT) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 222.718 462.2756 Tm (-) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 263.8594 462.2756 Tm (6) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 291 462.2756 Tm (U1 VIN) Tj T* ET
+.945 .95 .93 rg
+n 34 441.8756 774 15.8 re f*
+.09 .1 .12 rg
+BT /F2 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 39 446.4756 Tm (GND) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 111 446.4756 Tm (GND) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 222.718 446.4756 Tm (-) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 263.8594 446.4756 Tm (4) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 291 446.4756 Tm (terra comum: J1, U1, U2 e U3) Tj T* ET
+.09 .1 .12 rg
+BT /F2 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 39 430.6756 Tm (+3,3 V) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 111 430.6756 Tm (U1 VOUT) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 222.718 430.6756 Tm (-) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 264.7179 430.6756 Tm (-) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 291 430.6756 Tm (U2 VCC   e   U3 VCC) Tj T* ET
+.945 .95 .93 rg
+n 34 410.2756 774 15.8 re f*
+.09 .1 .12 rg
+BT /F2 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 39 414.8756 Tm (SCK) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 111 414.8756 Tm (SCK) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 216.7235 414.8756 Tm (G40) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 263.8594 414.8756 Tm (7) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 291 414.8756 Tm (U2 SCK   e   U3 SCK) Tj T* ET
+.09 .1 .12 rg
+BT /F2 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 39 399.0756 Tm (MOSI) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 111 399.0756 Tm (MOSI) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 216.7235 399.0756 Tm (G14) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 263.8594 399.0756 Tm (9) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 291 399.0756 Tm (U2 MOSI   e   U3 MOSI) Tj T* ET
+.945 .95 .93 rg
+n 34 378.6756 774 15.8 re f*
+.09 .1 .12 rg
+BT /F2 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 39 383.2756 Tm (MISO) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 111 383.2756 Tm (MISO) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 216.7235 383.2756 Tm (G39) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 261.7188 383.2756 Tm (11) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 291 383.2756 Tm (U2 MISO / GDO1   e   U3 MISO) Tj T* ET
+.09 .1 .12 rg
+BT /F2 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 39 367.4756 Tm (CC_CSN) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 111 367.4756 Tm (UART_TX) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 216.7235 367.4756 Tm (G13) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 261.7188 367.4756 Tm (12) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 291 367.4756 Tm (U2 CSN   -   chip select exclusivo do CC1101) Tj T* ET
+.945 .95 .93 rg
+n 34 347.0756 774 15.8 re f*
+.09 .1 .12 rg
+BT /F2 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 39 351.6756 Tm (CC_GDO0) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 111 351.6756 Tm (CS) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 218.8641 351.6756 Tm (G5) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 261.7188 351.6756 Tm (13) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 291 351.6756 Tm (U2 GDO0   -   exclusivo do CC1101) Tj T* ET
+.09 .1 .12 rg
+BT /F2 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 39 335.8756 Tm (NRF_CSN) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 111 335.8756 Tm (BUSY) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 218.8641 335.8756 Tm (G6) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 263.8594 335.8756 Tm (5) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 291 335.8756 Tm (U3 CSN   -   chip select exclusivo do nRF24) Tj T* ET
+.945 .95 .93 rg
+n 34 315.4756 774 15.8 re f*
+.09 .1 .12 rg
+BT /F2 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 39 320.0756 Tm (NRF_CE) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 111 320.0756 Tm (INT) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 218.8641 320.0756 Tm (G4) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 263.8594 320.0756 Tm (3) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 291 320.0756 Tm (U3 CE   -   exclusivo do nRF24) Tj T* ET
+.09 .1 .12 rg
+BT /F2 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 39 304.2756 Tm (n.c.) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 111 304.2756 Tm (-) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 222.718 304.2756 Tm (-) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 264.7179 304.2756 Tm (-) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.7 Tf 9.24 TL ET
+BT 1 0 0 1 291 304.2756 Tm (U2 GDO2 e U3 IRQ ficam sem ligacao) Tj T* ET
+.8 .82 .84 RG
+.5 w
+n 34 489.2756 m 808 489.2756 l S
+n 34 473.4756 m 808 473.4756 l S
+n 34 457.6756 m 808 457.6756 l S
+n 34 441.8756 m 808 441.8756 l S
+n 34 426.0756 m 808 426.0756 l S
+n 34 410.2756 m 808 410.2756 l S
+n 34 394.4756 m 808 394.4756 l S
+n 34 378.6756 m 808 378.6756 l S
+n 34 362.8756 m 808 362.8756 l S
+n 34 347.0756 m 808 347.0756 l S
+n 34 331.2756 m 808 331.2756 l S
+n 34 315.4756 m 808 315.4756 l S
+n 34 299.6756 m 808 299.6756 l S
+n 34 489.2756 m 34 299.6756 l S
+n 106 489.2756 m 106 299.6756 l S
+n 202 489.2756 m 202 299.6756 l S
+n 246 489.2756 m 246 299.6756 l S
+n 286 489.2756 m 286 299.6756 l S
+n 808 489.2756 m 808 299.6756 l S
+.09 .1 .12 RG
+.8 w
+n 34 299.6756 774 189.6 re S
+0 0 0 rg
+.45 .47 .5 rg
+BT /F3 7 Tf 8.4 TL ET
+BT 1 0 0 1 34 287.6756 Tm (A coluna 'Serigrafia EXT' e apenas o nome impresso pela M5Stack no conector; a funcao real de cada GPIO e definida pelo firmware.) Tj T* ET
+0 0 0 rg
+.09 .1 .12 rg
+BT /F2 9.5 Tf 11.4 TL ET
+BT 1 0 0 1 34 259.6756 Tm (2. Mapa fisico do EXT 2.54-14P \(2 x 7\)) Tj T* ET
+0 0 0 rg
+.09 .1 .12 rg
+BT /F2 7 Tf 8.4 TL ET
+BT 1 0 0 1 34 246.6756 Tm (coluna impar) Tj T* ET
+BT 1 0 0 1 153 246.6756 Tm (coluna par) Tj T* ET
+0 0 0 rg
+1 1 1 rg
+.09 .1 .12 RG
+.7 w
+n 34 222.6756 119 19 re B*
+.09 .1 .12 rg
+BT /F2 7.4 Tf 8.88 TL ET
+BT 1 0 0 1 39 228.4756 Tm (1) Tj T* ET
+BT 1 0 0 1 58 228.4756 Tm (G3) Tj T* ET
+.45 .47 .5 rg
+BT /F1 6.6 Tf 7.92 TL ET
+BT 1 0 0 1 86 228.4756 Tm (RESET) Tj T* ET
+1 1 1 rg
+.09 .1 .12 RG
+.7 w
+n 153 222.6756 119 19 re B*
+.09 .1 .12 rg
+BT /F2 7.4 Tf 8.88 TL ET
+BT 1 0 0 1 158 228.4756 Tm (2) Tj T* ET
+BT 1 0 0 1 177 228.4756 Tm (5VIN) Tj T* ET
+.45 .47 .5 rg
+BT /F1 6.6 Tf 7.92 TL ET
+BT 1 0 0 1 205 228.4756 Tm  T* ET
+.84 .9 .83 rg
+.09 .1 .12 RG
+.7 w
+n 34 203.6756 119 19 re B*
+.09 .1 .12 rg
+BT /F2 7.4 Tf 8.88 TL ET
+BT 1 0 0 1 39 209.4756 Tm (3) Tj T* ET
+BT 1 0 0 1 58 209.4756 Tm (G4) Tj T* ET
+.45 .47 .5 rg
+BT /F1 6.6 Tf 7.92 TL ET
+BT 1 0 0 1 86 209.4756 Tm (INT) Tj T* ET
+.84 .9 .83 rg
+.09 .1 .12 RG
+.7 w
+n 153 203.6756 119 19 re B*
+.09 .1 .12 rg
+BT /F2 7.4 Tf 8.88 TL ET
+BT 1 0 0 1 158 209.4756 Tm (4) Tj T* ET
+BT 1 0 0 1 177 209.4756 Tm (GND) Tj T* ET
+.45 .47 .5 rg
+BT /F1 6.6 Tf 7.92 TL ET
+BT 1 0 0 1 205 209.4756 Tm  T* ET
+.84 .9 .83 rg
+.09 .1 .12 RG
+.7 w
+n 34 184.6756 119 19 re B*
+.09 .1 .12 rg
+BT /F2 7.4 Tf 8.88 TL ET
+BT 1 0 0 1 39 190.4756 Tm (5) Tj T* ET
+BT 1 0 0 1 58 190.4756 Tm (G6) Tj T* ET
+.45 .47 .5 rg
+BT /F1 6.6 Tf 7.92 TL ET
+BT 1 0 0 1 86 190.4756 Tm (BUSY) Tj T* ET
+.84 .9 .83 rg
+.09 .1 .12 RG
+.7 w
+n 153 184.6756 119 19 re B*
+.09 .1 .12 rg
+BT /F2 7.4 Tf 8.88 TL ET
+BT 1 0 0 1 158 190.4756 Tm (6) Tj T* ET
+BT 1 0 0 1 177 190.4756 Tm (5VOUT) Tj T* ET
+.45 .47 .5 rg
+BT /F1 6.6 Tf 7.92 TL ET
+BT 1 0 0 1 205 190.4756 Tm  T* ET
+.84 .9 .83 rg
+.09 .1 .12 RG
+.7 w
+n 34 165.6756 119 19 re B*
+.09 .1 .12 rg
+BT /F2 7.4 Tf 8.88 TL ET
+BT 1 0 0 1 39 171.4756 Tm (7) Tj T* ET
+BT 1 0 0 1 58 171.4756 Tm (G40) Tj T* ET
+.45 .47 .5 rg
+BT /F1 6.6 Tf 7.92 TL ET
+BT 1 0 0 1 86 171.4756 Tm (SCK) Tj T* ET
+.96 .85 .82 rg
+.09 .1 .12 RG
+.7 w
+n 153 165.6756 119 19 re B*
+.09 .1 .12 rg
+BT /F2 7.4 Tf 8.88 TL ET
+BT 1 0 0 1 158 171.4756 Tm (8) Tj T* ET
+BT 1 0 0 1 177 171.4756 Tm (G8) Tj T* ET
+.45 .47 .5 rg
+BT /F1 6.6 Tf 7.92 TL ET
+BT 1 0 0 1 205 171.4756 Tm (I2C_SDA) Tj T* ET
+.84 .9 .83 rg
+.09 .1 .12 RG
+.7 w
+n 34 146.6756 119 19 re B*
+.09 .1 .12 rg
+BT /F2 7.4 Tf 8.88 TL ET
+BT 1 0 0 1 39 152.4756 Tm (9) Tj T* ET
+BT 1 0 0 1 58 152.4756 Tm (G14) Tj T* ET
+.45 .47 .5 rg
+BT /F1 6.6 Tf 7.92 TL ET
+BT 1 0 0 1 86 152.4756 Tm (MOSI) Tj T* ET
+.96 .85 .82 rg
+.09 .1 .12 RG
+.7 w
+n 153 146.6756 119 19 re B*
+.09 .1 .12 rg
+BT /F2 7.4 Tf 8.88 TL ET
+BT 1 0 0 1 158 152.4756 Tm (10) Tj T* ET
+BT 1 0 0 1 177 152.4756 Tm (G9) Tj T* ET
+.45 .47 .5 rg
+BT /F1 6.6 Tf 7.92 TL ET
+BT 1 0 0 1 205 152.4756 Tm (I2C_SCL) Tj T* ET
+.84 .9 .83 rg
+.09 .1 .12 RG
+.7 w
+n 34 127.6756 119 19 re B*
+.09 .1 .12 rg
+BT /F2 7.4 Tf 8.88 TL ET
+BT 1 0 0 1 39 133.4756 Tm (11) Tj T* ET
+BT 1 0 0 1 58 133.4756 Tm (G39) Tj T* ET
+.45 .47 .5 rg
+BT /F1 6.6 Tf 7.92 TL ET
+BT 1 0 0 1 86 133.4756 Tm (MISO) Tj T* ET
+.84 .9 .83 rg
+.09 .1 .12 RG
+.7 w
+n 153 127.6756 119 19 re B*
+.09 .1 .12 rg
+BT /F2 7.4 Tf 8.88 TL ET
+BT 1 0 0 1 158 133.4756 Tm (12) Tj T* ET
+BT 1 0 0 1 177 133.4756 Tm (G13) Tj T* ET
+.45 .47 .5 rg
+BT /F1 6.6 Tf 7.92 TL ET
+BT 1 0 0 1 205 133.4756 Tm (UART_TX) Tj T* ET
+.84 .9 .83 rg
+.09 .1 .12 RG
+.7 w
+n 34 108.6756 119 19 re B*
+.09 .1 .12 rg
+BT /F2 7.4 Tf 8.88 TL ET
+BT 1 0 0 1 39 114.4756 Tm (13) Tj T* ET
+BT 1 0 0 1 58 114.4756 Tm (G5) Tj T* ET
+.45 .47 .5 rg
+BT /F1 6.6 Tf 7.92 TL ET
+BT 1 0 0 1 86 114.4756 Tm (CS) Tj T* ET
+1 1 1 rg
+.09 .1 .12 RG
+.7 w
+n 153 108.6756 119 19 re B*
+.09 .1 .12 rg
+BT /F2 7.4 Tf 8.88 TL ET
+BT 1 0 0 1 158 114.4756 Tm (14) Tj T* ET
+BT 1 0 0 1 177 114.4756 Tm (G15) Tj T* ET
+.45 .47 .5 rg
+BT /F1 6.6 Tf 7.92 TL ET
+BT 1 0 0 1 205 114.4756 Tm (UART_RX) Tj T* ET
+0 0 0 rg
+.84 .9 .83 rg
+.09 .1 .12 RG
+.6 w
+n 34 92.67559 10 8 re B*
+.45 .47 .5 rg
+BT /F1 6.8 Tf 8.16 TL ET
+BT 1 0 0 1 48 94.17559 Tm (usado neste projeto) Tj T* ET
+.96 .85 .82 rg
+.09 .1 .12 RG
+.6 w
+n 152 92.67559 10 8 re B*
+.45 .47 .5 rg
+BT /F1 6.8 Tf 8.16 TL ET
+BT 1 0 0 1 166 94.17559 Tm (NAO USAR - I2C interno) Tj T* ET
+1 1 1 rg
+.09 .1 .12 RG
+.6 w
+n 284 92.67559 10 8 re B*
+.45 .47 .5 rg
+BT /F1 6.8 Tf 8.16 TL ET
+BT 1 0 0 1 298 94.17559 Tm (livre) Tj T* ET
+0 0 0 rg
+.09 .1 .12 rg
+BT /F2 9.5 Tf 11.4 TL ET
+BT 1 0 0 1 430 259.6756 Tm (3. Lista de material) Tj T* ET
+0 0 0 rg
+.09 .1 .12 rg
+n 430 234.4756 378 15.2 re f*
+1 1 1 rg
+BT /F2 7.5 Tf 9 TL ET
+BT 1 0 0 1 439.9588 239.0756 Tm (Ref) Tj T* ET
+1 1 1 rg
+BT /F2 7.5 Tf 9 TL ET
+BT 1 0 0 1 467 239.0756 Tm (Item) Tj T* ET
+1 1 1 rg
+BT /F2 7.5 Tf 9 TL ET
+BT 1 0 0 1 653 239.0756 Tm (Observacao) Tj T* ET
+.09 .1 .12 rg
+BT /F2 7.5 Tf 9 TL ET
+BT 1 0 0 1 441.2075 223.8756 Tm (U2) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.5 Tf 9 TL ET
+BT 1 0 0 1 467 223.8756 Tm (Modulo CC1101 com SMA) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.5 Tf 9 TL ET
+BT 1 0 0 1 653 223.8756 Tm (ex. AS07-M1101D-SMA) Tj T* ET
+.945 .95 .93 rg
+n 430 204.0756 378 15.2 re f*
+.09 .1 .12 rg
+BT /F2 7.5 Tf 9 TL ET
+BT 1 0 0 1 441.2075 208.6756 Tm (U3) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.5 Tf 9 TL ET
+BT 1 0 0 1 467 208.6756 Tm (Modulo nRF24L01+ PA/LNA) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.5 Tf 9 TL ET
+BT 1 0 0 1 653 208.6756 Tm (ex. AS01-ML01DP5) Tj T* ET
+.09 .1 .12 rg
+BT /F2 7.5 Tf 9 TL ET
+BT 1 0 0 1 441.2075 193.4756 Tm (U1) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.5 Tf 9 TL ET
+BT 1 0 0 1 467 193.4756 Tm (Regulador 5 V -> 3,3 V) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.5 Tf 9 TL ET
+BT 1 0 0 1 653 193.4756 Tm (modulo buck-boost V987 Mini) Tj T* ET
+.945 .95 .93 rg
+n 430 173.6756 378 15.2 re f*
+.09 .1 .12 rg
+BT /F2 7.5 Tf 9 TL ET
+BT 1 0 0 1 441.83 178.2756 Tm (J1) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.5 Tf 9 TL ET
+BT 1 0 0 1 467 178.2756 Tm (Header femea 2x7, passo 2,54) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.5 Tf 9 TL ET
+BT 1 0 0 1 653 178.2756 Tm (encaixe no EXT do Cardputer) Tj T* ET
+.09 .1 .12 rg
+BT /F2 7.5 Tf 9 TL ET
+BT 1 0 0 1 444.7513 163.0756 Tm (-) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.5 Tf 9 TL ET
+BT 1 0 0 1 467 163.0756 Tm (Placa perfurada 2,54 mm) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.5 Tf 9 TL ET
+BT 1 0 0 1 653 163.0756 Tm (ilhas simples ou em fita) Tj T* ET
+.945 .95 .93 rg
+n 430 143.2756 378 15.2 re f*
+.09 .1 .12 rg
+BT /F2 7.5 Tf 9 TL ET
+BT 1 0 0 1 444.7513 147.8756 Tm (-) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.5 Tf 9 TL ET
+BT 1 0 0 1 467 147.8756 Tm (Fio 26 a 28 AWG) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.5 Tf 9 TL ET
+BT 1 0 0 1 653 147.8756 Tm (wire-wrap ou fio esmaltado) Tj T* ET
+.09 .1 .12 rg
+BT /F2 7.5 Tf 9 TL ET
+BT 1 0 0 1 444.7513 132.6756 Tm (-) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.5 Tf 9 TL ET
+BT 1 0 0 1 467 132.6756 Tm (2 antenas SMA) Tj T* ET
+.09 .1 .12 rg
+BT /F1 7.5 Tf 9 TL ET
+BT 1 0 0 1 653 132.6756 Tm (uma Sub-GHz e uma de 2,4 GHz) Tj T* ET
+.8 .82 .84 RG
+.5 w
+n 430 249.6756 m 808 249.6756 l S
+n 430 234.4756 m 808 234.4756 l S
+n 430 219.2756 m 808 219.2756 l S
+n 430 204.0756 m 808 204.0756 l S
+n 430 188.8756 m 808 188.8756 l S
+n 430 173.6756 m 808 173.6756 l S
+n 430 158.4756 m 808 158.4756 l S
+n 430 143.2756 m 808 143.2756 l S
+n 430 128.0756 m 808 128.0756 l S
+n 430 249.6756 m 430 128.0756 l S
+n 462 249.6756 m 462 128.0756 l S
+n 648 249.6756 m 648 128.0756 l S
+n 808 249.6756 m 808 128.0756 l S
+.09 .1 .12 RG
+.8 w
+n 430 128.0756 378 121.6 re S
+0 0 0 rg
+.945 .95 .93 rg
+.8 .82 .84 RG
+.7 w
+n 430 30 378 96 re B*
+.09 .1 .12 rg
+BT /F2 8 Tf 9.6 TL ET
+BT 1 0 0 1 438 113 Tm (Se houver instabilidade \(montagem sem capacitores\)) Tj T* ET
+BT /F1 7.3 Tf 8.76 TL ET
+.09 .1 .12 rg
+BT 1 0 0 1 438 100 Tm (O modulo V987 ja traz indutor e capacitores proprios de entrada) Tj T* ET
+BT /F1 7.3 Tf 8.76 TL ET
+.09 .1 .12 rg
+BT 1 0 0 1 438 89.6 Tm (e saida, entao em geral nada falta na alimentacao do regulador.) Tj T* ET
+BT /F1 7.3 Tf 8.76 TL ET
+.09 .1 .12 rg
+BT 1 0 0 1 438 79.2 Tm (Se aparecer instabilidade ou alcance curto, o ponto critico e o) Tj T* ET
+BT /F1 7.3 Tf 8.76 TL ET
+.09 .1 .12 rg
+BT 1 0 0 1 438 68.8 Tm (pico de cerca de 115 mA em TX do nRF24 num fio de 3,3 V longo.) Tj T* ET
+BT /F1 7.3 Tf 8.76 TL ET
+.09 .1 .12 rg
+BT 1 0 0 1 438 58.4 Tm (Deixe dois furos livres atravessando VCC / GND de cada modulo:) Tj T* ET
+BT /F1 7.3 Tf 8.76 TL ET
+.09 .1 .12 rg
+BT 1 0 0 1 438 48 Tm (assim da para soldar um 10 uF depois, sem desmontar a placa.) Tj T* ET
+0 0 0 rg
+ 
+
+endstream
 endobj
 12 0 obj
 <<
-/Filter [ /ASCII85Decode /FlateDecode ] /Length 4106
+/Contents 13 0 R
+/MediaBox [ 0 0 841.8898 595.2756 ]
+/Parent 2 0 R
+/Resources <<
+/Font 5 0 R
+/ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
 >>
-stream
-Gau0GD/\Gm')nJ00d"#EU5El8l/<,n-<W9OH+V^3li@J.MQEW-ZRo7adm\cbc&`Vk40mmK3p\2e,a's231P8KPSj2jO6PQd']A!WIf@99E>Uh>PFdHT'jQ]X]El0+j,\lj!F>YL1^!0ps2\hZ'ZCY4V*#g!!6P_)k-<p_gmURJlY?++$.e\F(d*QQ3L%i[=ulm84Jh-E*k1_1$+$W=#teAmUFH+[;>mcDVTC#X$TN^D1WFeH?[inF+&<*Urq5pdqujA':L%6%lmKHlO!U1jfbES4,Y_[<Pu#RY)(-M6oF48Sl2aN]SdYWWW>/nS=hX`MH3q%.lWO`68budR9?QdP\]@B&4o\35/X#ArA1143B=Jf8$'++C2\@NmlGI+0QH:tQ/IE?O>s_^gk=N5*-bh%h6<@"Q)6fJDZRfAr-!Yg8;(VqLGr`]5,ts1QRD:caE@g$h@n_%[Tc$;sH3g2M4Jq;?$1NB:ik\,:SGPE.n`(9iY'91m#acG'Tg0mAWe7qE3M.VmQum("oQ;[;f8B`!g\aqfn:k5A]eOAA1&r*MO5M..T<.D>O6m,cH%DM6d5"RVKCU7hffrX:3.eqEJQUGIOL_:M$'TRO)+ic*,WtXBe1+\BZ0p)c+JP$IT-prp.;3>Fm01jGk4u)D@i='-hL>FMMI.;.+Y@$K,AP[pJd_h55YZhg)qiUuCc5=dD]_GC9L<h7/AN@$>t(jXNeJ(R+[<bjWCpGss-n>Xd#++okj99!DU+_TYM!,YC$!r=@u6FnC2tOJE'A;`1ppSK<jYS?[lG.Bh.ue7/67`8dViU2:^qtFXZ!HR*>\WY=KM@DNQ"NZnEaN\@1dP7CO?*tY47%aIBX9VZ<0r&!u=Z$p$M7S5;8V<0m3O8.q9=a?>-iK,2QQN44/#!Y:k[?rLr132#%)b\CLa/p-OBl1fu+^SD^`[hp-s8^#?f&g?@)lZmQoqecW;j*'C6f$C)*V@jMrM(nBL[rS\pcT%*j\\Aj//00#b[6["(!ah>7be?=/%g?oHU%^q6EHbmPa`BpC2E&bBHNf,eP<j8['1J2G8SkBDgL(R8o7N$VY#\J!Rakc)F?uJt8':QUj/?r959TUDl;B:Rpn?G,4K7;IiA-Ji9EK'\B'i2#gN3Vk?GbPk8e\Za2qj\G^jeRF-o37cWSG_DIlESMTG@`%OW0?81T.b,kN%ta&F/ij&F]MZR1?4KKJeTPS>[W`"S#*6n>NRYM4$8anhs/=cq<aL%'(;7B;Xu_(]NQLG7G:e>VM*KD=-]p<k+bn@iJK?cRD+GP#q5]#25QOAC,6Y,[q0(5!jal.#rHtjg[_N+eJ*Mu@+hX;oL57MI$6N[9M``*C5YAp.M3MR/[//MEVkDGFbmF#Gp7L8KB+upoG(Pbm:O&`_H3,=EqGh0eR8JCI,tSsN\3"X4n//&&YMM@/&/6#[RN;0H7`2)_qiQA$X/G'j>72fr#MO9>iS!$/$MbLZeGa6K<=j74_p&bh5M*#nk<aj[^aM'"?m^9o*8o@QqMAC?Rl3#QidE;@Ld'G?5QQY0D#qjLO-kaD2aC`EO!F%`ThG[Up1r[_s6d][dh!plW#_0I%NOW(1gQL[;c;c9#NSf<&tR@&_H$oZcrt^M7CR*FZ\pf"GX.<I%;1b/%Z$eTu1XBm`M#$\bN^tNHP=QXML'JJVCoi%\i@EmX^[EBPlX`IM4<pjC>Vj4*9YpDu/'K5uTXSWc-88P^X]fc6\Cd?*\E%Gs,a'!g[oH5u1kp9Wdr->Ud9J"5aHPoCV$]:G5boF$8RNJsUQO@8D,fUu/HF=mV9F[qWPq"hr]j4MP`m:Q8*gZTt!7HIGd<K&*e%Snam,iasB.6q7TicKt1pO0nY,*I1t,/J)U?dZA.MSMR2U)'u,VW4g#ok,$qkC`s4tAO.J:=M*X+8!._mVR@1a@=ZI*Lf/=\8q]!$qJUZo`n]Su$LI/f#,WKBj(kZjl`D'2gQ+&eeD9/]&SrE9qP6W`-kW;?#,Ru0b9/(\$p:FHfDpZXVsd3jC4:)hILVLQg)uN)'D5K$_p`m=cB'*c)a(g:fK?:KUJo%1S("cdT>Pn8=6A;[*e:\?F?1QC0"7?+D<:%fB:V)qH(CVr]uEM=s5N<Kb$EeG.p(ohNJelB/f+3+eN&u.EfU]8I@IN\7m$-#XSd^U@WC0^=6I<aRn6bc^.m:iZ!pRi'pT9J.ZA`;l7A)]1T?gdDUin@ZiZ"`E&_#NDPt0RcjF=04NaA*:"qhXEk[n]mYdM)`P%CUk'V,TBcrIqcWVd0lQB^g?I$Tt_gOXgDKG4'TaP,N`V6dZ5]j-%kk7r<"8FnJCYjPds6k0ZF6;'_NCo]4S=-#_OlChBShkf3WpeQUk&>WAara1#%IkV<>SA2Hch2]jOrO%`UR"<Kl#23GS(h]f9L"9''0BBqk?QYg7+e<uFK#Gq%;L;$Vrq=T%eQ:ALB1!XT%DG)Y;UXcq?Hob825gClOI/[oR%MaTM&R`40]MgV%d]cV"]?%*c[^a7RM57fU>d*VLG;6`;?E-.]#WEETWB\`\jjj9TPcoC`X!USSI)DBK:>Hc%1^,fdTu.3SU*CR$3CCf>.Q8V8mQQO#u2BCcg&[`f#Md>=;<rM1V2h^u&QCI3e+meEI&)_@,',_[Flg,0p'rL!$RCdg?k%<l$&RrLR!XOqd`rcD4,\)5](ojt>[<YA?g0H/1mob-M=#aZ+i,)<V/S:hB`.[Y/p/bY,U$n`CZ"C"12'cs<r?Sk0*XnhccoOIpOL.NB[,ZYHMJR,dZZ5tr\/8l3<%Q7nEhU8>5WHsW%6'i0`P'=>am'JtM^bNV,>;&3Hq>\&ao..]?JY7BC>,RV_gE>1C91r.&SnealeVe%SFa2IUd8Cprh46'[4oHBaVY5^PN/M`P^PPCC&YB3o"MWu%Aa!C\f;e/A$8@QWpI2@/[bo2Xq_q-jY6PI7n"X0+m-%=#QYL`CDdGX`bRsAs6aiSsA"G^8[0YG*5\/AT9[uGNNhL1B'<TB-X")crlcnIh&=;6t#9_98-BQ#\sS`Nhc"P\Q6.I>dN*o'dmjg,)<a/!t*;]P$\>ZdqT*[JsEcU)PO=2/jD/\#*B2!134]^mmOo;[=4p6&.CqE9=3A7Z;Fc$B8JORV0474kPK#'<a)M!^,>'q1W#D-U9]?UcWjlMVr<gl7A\FTIj,%!"2&E`W*iP8jnKNoB$k,nGD<N_]3ZH3d4"B+8W[A1>b?N6Y0C3o#DCFG\rXZ3i<g]k6/).Z9_()Xecklk,48=^n`tL<Jlf*1tcW40U:,Xm&@e/uf(EV<fKU;^F4dj%1@fk"2!p$?XTR@e8\KGIaDcc%q+!GP^p]bpgl'h\2CCon#pec,qlj?4qP@oTWDCkf[siaarpARNO];o'^*EkbR#n%e,;6[)5A?.57#?=a/7KDHPB:Z7ICT]atE7Bs^BeX6>9>dgHB!\bX7=/M+SB1/W8%A`^`qQ-@U4#IqM8QN.`scmo_"d,,4u04%tB["gAG:;-3m)!o9Gou$%mkdSqUqF[H[&EDI/o914"bG+hh":R@f8VKHcin>#pl'REZETSu\<]SI.rq*%WpTSK4eNha#\faV%7PnHNQ.*2[kUgCHrg6LP^Ck'\LW=mY_EWA#-orpU.p<I<i'110o.-J/BMc239:ZoUB-N0kOhl\R*=J2K7DE`h9nHp#kHFMUq?;gLUMUO[f+5nI)iID;pK>j[Q:[UF3W,O$?8D<K5MYj+jIMT&laQJ3,pBpulhB-+BUSp:Z1[Dn(]jLF`G0^J8$I""=FIor+b-/1KUsK#l^/E/(?HK$g6nBuOVguP0f1Ulc?3;!*-9sZJ7/*ZYe(Z<.-g9MF:A)'".p@-h_Y+A8l6M3YU^VM%,DVbT2=1.AIHT"#_n@hq/!,G[D\jo3apK?fd'ddpuH@X1Zm0,@a`r(>u2FQY<W_qdm-e9@hE`D_iiis8QYOm8Qt&*R1014-/FBYrq=Dc/K8YQKZFh"&=L$Nfkrb9HW-&(M7($c.=JEJa&gr82B+$g6#Cs'1r;`S+m0Q(Di:_:Li00`2QMs<0*%NsXfo1fc-&@5.?Rk,C%`K7Fha/i9PA5/DXAEVD:`b3!PQorq@!G^g1NZ((n*XrEO=[58,iZc5qG>~>endstream
+/Rotate 0
+/Trans <<
+>>
+/Type /Page
+>>
 endobj
 13 0 obj
 <<
-/Filter [ /ASCII85Decode /FlateDecode ] /Length 3472
+/Filter [ /ASCII85Decode /FlateDecode ]
+/Length 3730
 >>
 stream
-Gatm?CN%re(B*)sEPG4\-<<Q5cRuGPS"uY"k-_YHSHT?7X@&oN>*:&^BedAO0D-S*q%6P]PEtq8iI)]/Qb4"5)h1EKG7aq)R)?Os":0_W&r:$X0Y`@cq&:ga/"l\'^iUc)5MdYND>=NT@Kf%7JEsc^oj&(`!OM?,Qa61a(]mm!eaKV:b-FC=#eh]t:N)-I.1g+%7K8rJX8_W&;Q7eYE1O#,GmnWSr2Wq>GSIB>T(mo8YYLBV$G?4:5g7h"Q;J\T;KtlDOX=PB8[Dc4rZ1.9($7M/=H3pEDlj4pT[L^6V$/*G(AI_U8d[/anmoQYq0S3Q;5`Io^<L(bWjt[,9]W,i8oiS(W)kH5?E[1J=Gq"+c1$(;DO!,/WD3.c'q]ae.6OZBALa9'p])uL$j?5mFuZcJ*OZ"<Lum;R6]9S)Ml=">.:9H?DkWYH@i&0@,7Sd;V`A2<G!R[hQ8)$$I^k$+pq"d*:AAthGC[1o6mUOX[l6i\r+X^N/\ge@7JkR?&LXgL>)cak;7_5l'HolbRY`SAb4maOE;A,`<*5#FO83IuL-<)^\iUeWoe"M_45/O]8U<.$fE&Sqq*rEjA]V^7GdM&'mk0"A%nM]dOG`7N\pKe`5uL<,T*.4Aa:-L,<oA^mNp2s?L)nGZ#^j4p<A?j$m=k+t[3No3H+IXASJFl=.u.n+hqJP1:_!fa"B#CD.Zc-W@ie/UDBlG\XsENqILgpk1O,"r'N_jNAj#pWD0aCi@qTV6nY]hg((N5(<FF:k3=+l)K49R@gF7M256ntp!QI_i%Lu!sILJ+SEENU:Q0S9Sk)gYsOCGre;s*AD'?;/-7&m3"H!jW3$nPT>#54]?%`aH8U=:`r2g;SYj'W=SfL/AbSIi]LY)\g&)B)+=K>V@oo@n5,S^BA-)5]IO:]lg`8tp`T27kXTm\#AQE)kNs1COES1N;%XFAtTNUT<CrkbA%F%ON!96j`EMV]6:-cYo0/oCFWuZWm%BWL+4Vl28a&YCV;',#?:2gu.DSWMkK=#>_[u!r<UgD(@0O7;Ku`$?teYIP+[U4F/W'nE8tff]:tHFo6:(%l.U"d]VUIH/t:E\l=>h".^<!4g5"6l$uOaJV(%VRPH>Y.#C6Vm]<.3+OVV@O1FX]I67Bebd^Y=5<R0h4&G]OfSSQ&YZX\#:d[j.*?B-74^uJZduW!=3+?llp7:WA(3F:A7m&QjQf^#(0s>I(G;2h5<Rf,e$'YcX^joGDAB6G$L?jaGT+j9>BijoE>$0oq;\9K5FOer`8B?,C3@&4hZ+?H8b;040Rf47ld=TCu<9*i->jY<Om<=K;I^p=*_WEi8%bg'F3:Bq0B.JPEfa>f184B1h[K?-l;^G7!>64#S7'$OVAh-^HQn*a!fa+h/;3bsdX[&HB<s!NN(%A0%ACG>ulI;RAW10nS>s"tfl=MPC:PG'!h/!3BmV!:\RqCuA2HZu(q)P]C<BrH('%EeYKPYfX*">7n]+TZI&\O4PB[gOK_Ygk1Umb5`'F7N8S_Df6bDHd^@_`+..MFZ.gQZ4WMfc@$3;fKmkl65:Lp'7aF26H]N<M`?3YQe1_HN7LDVWp"0E-_K2.`Y7!/KYoObKc.n<GQ&'U9heRZD-C@MpJSX8n)WMPDqbJ+-.1F.QONKt:].(:E'i08?/p5V:S*&a(3!^SUE5r6N,!h>;Y^3aUQ`j\Kt7="A4S9^T.BYNT>,oP'0t*KKn(7rYI\YQtO9?V$7h4*(_+1^$b5^*SWa5hYc$X7$8(fL/qcq[/9qWpJ9F_O^h(*%NMooQ#-.>>ONA^[U>Mp62XjF@Z7V?^Ggqjb?k6JD./\fITf.VN&)JZ+],*fjNdJ_q$<G48c+GT#[B9IMK#LC``:8_17)A5e=u&-mTT;d%$b1BMKe&!r+5HOMD`k!$nod>43_e-Dp7f:*G,lfA0jVa+0k25e>Nl],@8'X'=pNM$#6glT!h5K5n[SX]bX@%]Ej-il+J7;"6ShL!W3ah',qX97h_b5e?(]HUsg?+Y[PZMK_M8^W\=MY8[t7%<ZhK!#o1sl4`StK.>G$Nh"#l(%4TEi^c*=j9<u>O4\gSTK+2QkC\XnnDX<AomEG3@!l?UEQ%8Z;3U;[<)+WjMUsG"*4\NIj9<shO6fFPF[$GD>e(u1$J89H3K=Yo0GkshUNg6ld\t:Pa7UhM6&!c[$AUPK6Wm3rAs#7PU2E1MF$N"o'sJgt<$alCTA@NnY@^1)m%I\VLCHQ:OaauqdNc\WWL"8`kZFV\P%niT/l,,/^(ITpddLY/*^,X4<P7N\\e39;Q+J'o_8C(OKb<7]$;n)@=oU@q?Hm.;Ph0U$ESDshcGVCa,7_'QUCejAU?7s)$?+/9jG:""\Wg7tZ&3SGQV4&AGMYsJFbeRWTbY-uQmblc.SRg%n*S>iBV)C0?#;uW&s=VdOXef8f3Dk4h=KY*.:T3$%^@E+ing9+GA%JYGjdLl"hR>J\#[)f.'Le0lt1W+Ic1JG?i79=4L>"6NU5S4e3SR]gaZE84/F#\/32C1olOK*A.6/LJlUYXW]AZhq&SnDn#gS'rMT?cq2^JP&HCbh5Y:MpGE>Wq!04QgZHjO0fMjtM=#aW$i5-iYr=b4((:ha1=pO)W)'Qp?0oMS'ZYbN=OD]%VMXlD$,(=[SA'QQ/$&Kb225<B1SZ%/=+o%hR?n#R$Jc>;f@*Rf<3B_GEW-I`QV:po"(-MFBj8lnUg6PeGGkSZ(ie23d0urij,'VJ:SI1FVd-^LdMKQ*er_[nDin2U4C(J_W)p][giq5q)P$LC<Ha;Uc$0G3RX%Wh#qp=lfH.:?!.b;WGg#N/p07`SB-AK65Oafce)#_PN>5CrWYTr_+Y;S?d%)FA^?Zk=PY<Pu;$62u'=fO5`q_[)Fb[IsY3h$!:2[GKs9UY+4"8Km0,''pu3dTo9d40`O5#k0.X[65_&A;[HZq@^6g/\i/Z]uY!TN6'%VBSm`Xd)<1<$^6ae[0$?&e7htD46=b%9-&kVIE3a1$o@6KL[m+Cj%'d-Vu+"ZQl.IU.::$3io2O0fr5&Z4PcY<'%DU)^P5GN6p=gmgR>h%t.Y5-9%Ks4=1g4/_rVNEYBaddXR6Wd3GeXnG-pk-6)q0b)6c<^?1>eP@c#j8tO:h@--7`YIf.TP1DXrgVp$O9pSY2PBdq_,0EgM$KN:6cc`[FCXS(.*&\]7>?(gHl@lJm76Oo@Ji8Nt;lhAKE\>PZ,Ffl2Yt/ka;fmJCTAW0qQW7a)NY<kRP`qSJXG.h>-R[)^Uei?t+J0:1Th2\*72-AsI+uXr7pi1hJ(tY-'Vp4TZ^';eMa`m)4qRN>A\:9G2+sQ@roV<(SWN?`1M`"JP?lAS\<-C\9pVLX\D`QBo4P<`pPE)gb@C@TS4lj&djPH+o@"\:c#!q1KCXuki!JNunnF510Y+l1D@MgMH>fm?;`Y"ZYUG7[pcMhFnk;64MYm,78*k>WqNYK8`&1=#Sd_WS<I:nt^mk?+8Z!nu~>endstream
+Gatm>D/\/g')p`p1$F&,^=\>"/B_AT!I8SoS#3-j]fi%(JW]/\XXq&JjR2]Fs8AO_,hbiGG#JQ9)hsJ8_jP/o'p+K[_#Bt.LlS\'n3!?dV!B<1Yntm^YB4sd`(S3F6i;l,eHQ!HnOZ<Gcek]DG\K33Bel*$iH16EOgJg%4:.d+CIMsi5M#9<GfoVjj9>;gakT(be3aQeDdqrY?J*ZG?\4<g.&KSk;7^)]%k"qnWnYOL9PDQp/X9Ie'Ln*rV9<&taq[M%8>DJ#j(Eh:lZ[ILPJ'sY+YTE"aS"$b8iu&3Q\\/JQM@:Y9<jXkD+Up2W@KGU*LeAX"1bG_\l-aSe_Gb1>Ylk_?%<G>ATTMhZ(J+/L$p&53bG6@1UGCfR7<#L=F'<Aj-ADEFA+M<Ld+SQrbUrAGE6kO,_;<Wdg-bI[KjGZ[gFZUbZ(t@6/R+u;VJ1V=XUPk!TpQ/in;PI*dFf#^n3;&)R[t7Gf(IR<EXSb2#/`j9YH62V;=&^:FU/LECAJaZ&r';7]ib^9=9lcjK@b<k_/r3`oi3pf12'@&o/VeGcO=;\?(?uWiRX;jj@)KYduEo&Tgt8$nBPkGG6<Y6FiLB7RGX:0"ekQ$R,j-`kUT+#hbTBesO7"2"N/N*aiM4U#Vc:GVb`B%%j(N$,hojfLd:>,O60Z8:2q=s6WlL57sge$)4=f8+Yd$q8pbVoQ5P*2EsEU3iB0/0M8neihIkK6/W"J@En=tk\6<qa!14IoQ6oZNHI)<2(San+N?J&7tV'tV0smBFqnID%d;6dQO/H;QLKf6k@*/pI0eeB6p9N(%cK(iAOgFuIcVH^Q1pnt2*YR^cR)\Pr;0bal;Sil-*6qcnpB3]Za8.B")e_Bj,g!G@Mu_fWMJ4'9Zr;CI:F,`]i3_L@I>)aB9[US9Nm"+#stOW@X7PULmh]a'oYH->3(EdZ(RpqWBpnP&LLjD[5;s506ff\%-AfF]H3'ji?502@+ki^mf=tGAuZIoJfmSuTIY%gH%S\okO5S2'$:=crtb?`cVtYWrDFO:!sft"bXB`O6ETEmEI-_f>\Iu/L8uKi^#"K>cM6I`NPZq&.m+paFj'p&rT4@Y:e_*":ruQ=da@MoXl''OR6\W;CeR4^\(HIac3L(Sge$RaDAlO9:A]@<FgtK_`<=MTCWHhI:ftWug:b\9`T>WZ3&@*K;AY,Gr/aqNGIe&L"D.*Q`1:TC\JQc1UVO&N3Moh<D[I!3G>a+_@jOf]%\1_>b`j`2`^8K:%LLQda_IXaoiGol(ma-&k$WJrii;oDZ*FtbIoUVsaR]SZUDBmL>T\1kEbk0L3;nQBFG1&]MSZqNW<6bXa4#f5PZYU64\;-.jk?K9>_,3-lSVp8-Lk/4MPM_%VW;^$9N$YjUZ/^2.p?]Z^7s>;:CtBHRO-GnCI%T*%CXM,ko]O+^h%H;mHfnuJ'kS-IN-c=Yk5W#4Ug*;l1Ace,i8i0E%V>&/kA%.4d.(Fp&6b?Z<8@Hd3`K@r>#r"Wa(D7VS82o?*Jh#AV$r7Re;F?gOhNV-dIZ/^^-+6$,)'p8#R#iVK!s&Y^ob':@8==-C@Mt/Y04Iq;+c<ra;+Z[43-=75Tn;#OJ8fR!@ZN`Mo,S/oPUbZRQj:9H$!&P3b=S;]A\>=+sitco.n^oi;dEUKfL4S_Yi5(gDnleJ]=naCZ'27fm7=dgH;pL(Rg0G&:_$4b>U!P!89np]7:(<37o=#6X6%V?A0e&d`i#UDnZC89R,\/O"p\0o6k[H`6mp966\YK!R3$+,/F92X\=D3C-9ULrf&(QJoE3,6uOf!RiRX<s?2maW06JMA@k;e%5fJ(<glf+BW2$*U@O9<Ac`B$)5e_ZWZt:i-Vd8-mT?2Dc&V$,f@tpo!/YPR9oF.XUt9*bqM-*=SK/_@SO-dEeS%#n#ri8`.KQD[TVH?,W?^\&B7`?<YuT>T5h2Qd/,'.K.H.Wi4BU_o]YtVRDJX#fGA_5Nc3AsgXB!nLU33HgT=WXoHYRYg@Fjc3dVJbhJDI)3+gk^`ntqf5O>I"g,\;sL:@!8UCn8+gS8)sW[Y#Z5\Y*dJDK)!4rsR?4"#I8&UaPmD_s!2`SF[`i"\NmQl1&:4I;=-(r[UI<[Ni!la=da81XE$pUoPbUo"5e*8C_@&F%/^8.UJKc^hJ/*gOFb4^#E7/icG\,2gggOUqlV_Ii=Tm&SV\TdoCZL1n)%gf_An5_dHl%[A9>nh(Uc(X89);<.gZ59Gp-*sG3^7^0C++OGKT=WmZVa9qbd*=nL040+WS?Q6:\G?+$L&NVC#>1Y!`K:,H/OZ>?KO9&q13R$L`/=Q6lEACWYgTt4WUKhh^'7R:H=Ul4lQGPr>1XRL]2?t#8d[4s"X_9bD1i,Tpmm3/r_K0?AehX98Ee^>e'`\+Wc%t@-)U1U[I.h9a#TXr7W4X.11o5oX>&b2p)dLi/?-(('=OOh)l#8AfZX*W4:/oS(-b+][,Cn"#&@L5bR"e!gHt8u=k",nM0jWSb`I=mso?jcXpPq*O/jsp7d>_##lTZR)#k!'H]4\1PiNdQi!%;A2I=n1%3a=/b]/8q69.%)M@KSqXj&r(Jg/VSELjd"km:3Q15FM6B=RGH"Aa/ong=ZuarB=7DqnAikn'[2-4^DC]lq_u>]\;%7HFgcCfoLKk]\9&pn(U(Sm>#Dj+7;=b,lR>Ig@"^`\pOFi+]IYom'%DKmA0Ga/M0.1o_nK>./glOeg(6j@6:Vo+P[^@g()R-?E"fAXkD/*f;\3?8?$BhL%'TtF7srR`Q`&@''Tj<GAhrk\;OUk(t_-\eG\cR!Zm[i!kIa)LgegfT,u:dF,79VU<5CQ6Ija)`W^`les?>^c6bN@BY#3E\<`6DT"AZVrAt;q0k(=&ecmGj@pF32Nu3\u9"pD"f7b+DK6d'F>CpWr9-B%KVr<;mI[kq86*?.TaV?uJTK0d9k]qhc3qkY3Q-,%lfIdNPJu1-fc$WlnVttdCnSm2Z5<g7p&'3>Wc,`>m4g$*_U7uB3K/6og/"pE($uG?6qI)TE(t3Vo!or9W%_NK`"^0$=SOD(@C0Q.3j=t$_U^g]I.B@LoJ'\[e;VX2"pWU`#:;uZTpk&CPh9,kiD6Of=FSU<("ko;EMs%>+NJ%N(%4iUhUm&=]dG]:EPaUuJ)RS28#%d8-(7IC(dYm)&3FEVF;mUhP,Wi1BM4QVBAh""F&1l(N]&S[SL*mbFF/G92St`G07-hQt.F#!k`0T!>5Rn;l5r<_moeXoHfK02T(GDCf;(bJqa+G'A[90QOMs+h6eq,Sqk4DgkP0<lKd^h5r4Z\!#Qoh<1(VL_^)(BB?93Y;`_"3+or!7Q*feu<jU*&@.Id]64c-7*Y3k;oZ^5l["2cW):&Cm:/G()7fcEln[$E"j/*=K8Q*M0^U88s8amhnnaCp;,?e*VPJ[u,=_:>iW1rm7TdpFb1Rkd=:!9*^2MSSe[0U4Lm'-#>n@DGV$j%OEVHc9.cYrFO"_`COs[(9[&36\]dle:$e>Tm1<jKTpc^.td6TD9gn+rI.J72i5R@r,P3X^D(IDDUjM3Y!d,JRasnU5_`Q7jfKk#Za0<HA9oZI_b;"pk^Yi\auB3)'&qNkUAM,%G$4(UrNrZ.CNnel=6b!:NWUB4Wd`^X=:X7LDkV8MLmu<+E?Xnt36V*`EG:_I4D';,X,j:+h@aZ(ni6gWl?)smn`#@6%fu*VCe$).cF^Q@^sGUE?JT21^-$?a2_($AiL]e&*";&QrrH]3E'j~>
+endstream
 endobj
 14 0 obj
 <<
-/Filter [ /ASCII85Decode /FlateDecode ] /Length 3730
+/Author (anonymous)
+/CreationDate (D\07220260904174928\05300\04700\047)
+/Creator (anonymous)
+/Keywords ()
+/ModDate (D\07220260904174928\05300\04700\047)
+/Producer (ReportLab PDF Library \055 \050opensource\051)
+/Subject (Placa perfurada\072 SPI compartilhado \053 regulador 5V\0573V3)
+/Title (Esquematico CC1101 \053 nRF24L01\053 \055 M5Stack Cardputer ADV)
+/Trapped /False
 >>
-stream
-Gatm>D/\/g')p`p1$F&,^=\>"/B_AT!I8SoS#3-j]fi%(JW]/\XXq&JjR2]Fs8AO_,hbiGG#JQ9)hsJ8_jP/o'p+K[_#Bt.LlS\'n3!?dV!B<1Yntm^YB4sd`(S3F6i;l,eHQ!HnOZ<Gcek]DG\K33Bel*$iH16EOgJg%4:.d+CIMsi5M#9<GfoVjj9>;gakT(be3aQeDdqrY?J*ZG?\4<g.&KSk;7^)]%k"qnWnYOL9PDQp/X9Ie'Ln*rV9<&taq[M%8>DJ#j(Eh:lZ[ILPJ'sY+YTE"aS"$b8iu&3Q\\/JQM@:Y9<jXkD+Up2W@KGU*LeAX"1bG_\l-aSe_Gb1>Ylk_?%<G>ATTMhZ(J+/L$p&53bG6@1UGCfR7<#L=F'<Aj-ADEFA+M<Ld+SQrbUrAGE6kO,_;<Wdg-bI[KjGZ[gFZUbZ(t@6/R+u;VJ1V=XUPk!TpQ/in;PI*dFf#^n3;&)R[t7Gf(IR<EXSb2#/`j9YH62V;=&^:FU/LECAJaZ&r';7]ib^9=9lcjK@b<k_/r3`oi3pf12'@&o/VeGcO=;\?(?uWiRX;jj@)KYduEo&Tgt8$nBPkGG6<Y6FiLB7RGX:0"ekQ$R,j-`kUT+#hbTBesO7"2"N/N*aiM4U#Vc:GVb`B%%j(N$,hojfLd:>,O60Z8:2q=s6WlL57sge$)4=f8+Yd$q8pbVoQ5P*2EsEU3iB0/0M8neihIkK6/W"J@En=tk\6<qa!14IoQ6oZNHI)<2(San+N?J&7tV'tV0smBFqnID%d;6dQO/H;QLKf6k@*/pI0eeB6p9N(%cK(iAOgFuIcVH^Q1pnt2*YR^cR)\Pr;0bal;Sil-*6qcnpB3]Za8.B")e_Bj,g!G@Mu_fWMJ4'9Zr;CI:F,`]i3_L@I>)aB9[US9Nm"+#stOW@X7PULmh]a'oYH->3(EdZ(RpqWBpnP&LLjD[5;s506ff\%-AfF]H3'ji?502@+ki^mf=tGAuZIoJfmSuTIY%gH%S\okO5S2'$:=crtb?`cVtYWrDFO:!sft"bXB`O6ETEmEI-_f>\Iu/L8uKi^#"K>cM6I`NPZq&.m+paFj'p&rT4@Y:e_*":ruQ=da@MoXl''OR6\W;CeR4^\(HIac3L(Sge$RaDAlO9:A]@<FgtK_`<=MTCWHhI:ftWug:b\9`T>WZ3&@*K;AY,Gr/aqNGIe&L"D.*Q`1:TC\JQc1UVO&N3Moh<D[I!3G>a+_@jOf]%\1_>b`j`2`^8K:%LLQda_IXaoiGol(ma-&k$WJrii;oDZ*FtbIoUVsaR]SZUDBmL>T\1kEbk0L3;nQBFG1&]MSZqNW<6bXa4#f5PZYU64\;-.jk?K9>_,3-lSVp8-Lk/4MPM_%VW;^$9N$YjUZ/^2.p?]Z^7s>;:CtBHRO-GnCI%T*%CXM,ko]O+^h%H;mHfnuJ'kS-IN-c=Yk5W#4Ug*;l1Ace,i8i0E%V>&/kA%.4d.(Fp&6b?Z<8@Hd3`K@r>#r"Wa(D7VS82o?*Jh#AV$r7Re;F?gOhNV-dIZ/^^-+6$,)'p8#R#iVK!s&Y^ob':@8==-C@Mt/Y04Iq;+c<ra;+Z[43-=75Tn;#OJ8fR!@ZN`Mo,S/oPUbZRQj:9H$!&P3b=S;]A\>=+sitco.n^oi;dEUKfL4S_Yi5(gDnleJ]=naCZ'27fm7=dgH;pL(Rg0G&:_$4b>U!P!89np]7:(<37o=#6X6%V?A0e&d`i#UDnZC89R,\/O"p\0o6k[H`6mp966\YK!R3$+,/F92X\=D3C-9ULrf&(QJoE3,6uOf!RiRX<s?2maW06JMA@k;e%5fJ(<glf+BW2$*U@O9<Ac`B$)5e_ZWZt:i-Vd8-mT?2Dc&V$,f@tpo!/YPR9oF.XUt9*bqM-*=SK/_@SO-dEeS%#n#ri8`.KQD[TVH?,W?^\&B7`?<YuT>T5h2Qd/,'.K.H.Wi4BU_o]YtVRDJX#fGA_5Nc3AsgXB!nLU33HgT=WXoHYRYg@Fjc3dVJbhJDI)3+gk^`ntqf5O>I"g,\;sL:@!8UCn8+gS8)sW[Y#Z5\Y*dJDK)!4rsR?4"#I8&UaPmD_s!2`SF[`i"\NmQl1&:4I;=-(r[UI<[Ni!la=da81XE$pUoPbUo"5e*8C_@&F%/^8.UJKc^hJ/*gOFb4^#E7/icG\,2gggOUqlV_Ii=Tm&SV\TdoCZL1n)%gf_An5_dHl%[A9>nh(Uc(X89);<.gZ59Gp-*sG3^7^0C++OGKT=WmZVa9qbd*=nL040+WS?Q6:\G?+$L&NVC#>1Y!`K:,H/OZ>?KO9&q13R$L`/=Q6lEACWYgTt4WUKhh^'7R:H=Ul4lQGPr>1XRL]2?t#8d[4s"X_9bD1i,Tpmm3/r_K0?AehX98Ee^>e'`\+Wc%t@-)U1U[I.h9a#TXr7W4X.11o5oX>&b2p)dLi/?-(('=OOh)l#8AfZX*W4:/oS(-b+][,Cn"#&@L5bR"e!gHt8u=k",nM0jWSb`I=mso?jcXpPq*O/jsp7d>_##lTZR)#k!'H]4\1PiNdQi!%;A2I=n1%3a=/b]/8q69.%)M@KSqXj&r(Jg/VSELjd"km:3Q15FM6B=RGH"Aa/ong=ZuarB=7DqnAikn'[2-4^DC]lq_u>]\;%7HFgcCfoLKk]\9&pn(U(Sm>#Dj+7;=b,lR>Ig@"^`\pOFi+]IYom'%DKmA0Ga/M0.1o_nK>./glOeg(6j@6:Vo+P[^@g()R-?E"fAXkD/*f;\3?8?$BhL%'TtF7srR`Q`&@''Tj<GAhrk\;OUk(t_-\eG\cR!Zm[i!kIa)LgegfT,u:dF,79VU<5CQ6Ija)`W^`les?>^c6bN@BY#3E\<`6DT"AZVrAt;q0k(=&ecmGj@pF32Nu3\u9"pD"f7b+DK6d'F>CpWr9-B%KVr<;mI[kq86*?.TaV?uJTK0d9k]qhc3qkY3Q-,%lfIdNPJu1-fc$WlnVttdCnSm2Z5<g7p&'3>Wc,`>m4g$*_U7uB3K/6og/"pE($uG?6qI)TE(t3Vo!or9W%_NK`"^0$=SOD(@C0Q.3j=t$_U^g]I.B@LoJ'\[e;VX2"pWU`#:;uZTpk&CPh9,kiD6Of=FSU<("ko;EMs%>+NJ%N(%4iUhUm&=]dG]:EPaUuJ)RS28#%d8-(7IC(dYm)&3FEVF;mUhP,Wi1BM4QVBAh""F&1l(N]&S[SL*mbFF/G92St`G07-hQt.F#!k`0T!>5Rn;l5r<_moeXoHfK02T(GDCf;(bJqa+G'A[90QOMs+h6eq,Sqk4DgkP0<lKd^h5r4Z\!#Qoh<1(VL_^)(BB?93Y;`_"3+or!7Q*feu<jU*&@.Id]64c-7*Y3k;oZ^5l["2cW):&Cm:/G()7fcEln[$E"j/*=K8Q*M0^U88s8amhnnaCp;,?e*VPJ[u,=_:>iW1rm7TdpFb1Rkd=:!9*^2MSSe[0U4Lm'-#>n@DGV$j%OEVHc9.cYrFO"_`COs[(9[&36\]dle:$e>Tm1<jKTpc^.td6TD9gn+rI.J72i5R@r,P3X^D(IDDUjM3Y!d,JRasnU5_`Q7jfKk#Za0<HA9oZI_b;"pk^Yi\auB3)'&qNkUAM,%G$4(UrNrZ.CNnel=6b!:NWUB4Wd`^X=:X7LDkV8MLmu<+E?Xnt36V*`EG:_I4D';,X,j:+h@aZ(ni6gWl?)smn`#@6%fu*VCe$).cF^Q@^sGUE?JT21^-$?a2_($AiL]e&*";&QrrH]3E'j~>endstream
 endobj
 xref
 0 15
 0000000000 65535 f 
-0000000061 00000 n 
-0000000122 00000 n 
-0000000229 00000 n 
-0000000341 00000 n 
-0000000456 00000 n 
-0000000661 00000 n 
-0000000866 00000 n 
-0000000971 00000 n 
-0000001176 00000 n 
-0000001245 00000 n 
-0000001595 00000 n 
-0000001667 00000 n 
-0000005865 00000 n 
-0000009429 00000 n 
+0000000015 00000 n 
+0000000083 00000 n 
+0000000156 00000 n 
+0000000355 00000 n 
+0000015755 00000 n 
+0000015816 00000 n 
+0000015923 00000 n 
+0000016035 00000 n 
+0000016150 00000 n 
+0000016255 00000 n 
+0000016456 00000 n 
+0000031948 00000 n 
+0000032149 00000 n 
+0000035972 00000 n 
 trailer
 <<
-/ID 
-[<217e11723190f8001121ae4738cf4882><217e11723190f8001121ae4738cf4882>]
-% ReportLab generated PDF document -- digest (opensource)
-
-/Info 10 0 R
-/Root 9 0 R
 /Size 15
+/Root 1 0 R
+/Info 14 0 R
+/ID [ <217e11723190f8001121ae4738cf4882> <217e11723190f8001121ae4738cf4882> ]
 >>
 startxref
-13251
+36368
 %%EOF
