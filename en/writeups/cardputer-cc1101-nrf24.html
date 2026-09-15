@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cardputer ADV as an RF multi-tool: CC1101 + nRF24L01+ | lucas.albino</title>
+<meta name="description" content="A hand-made hat turns the M5Stack Cardputer ADV into an RF research bench: CC1101 for sub-GHz and nRF24L01+ for 2.4 GHz, on a shared SPI bus, running Bruce firmware.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%230a0e13'/><text y='68' x='50' text-anchor='middle' font-size='58' font-family='monospace' fill='%23ff2b3d'>&gt;_</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="../index.html"><span class="sig">&gt;_</span> lucas<span class="sig">.</span>albino</a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">&#9776;</button>
+    <div class="nav-links">
+      <a href="../index.html#about">./about</a>
+      <a href="../index.html#exp">./exp</a>
+      <a href="../index.html#labs">./labs</a>
+      <a href="../writeups.html" class="active">./writeups</a>
+      <a href="../index.html#contact">./contact</a>
+    </div>
+    <a class="lang-btn" href="../../writeups/cardputer-cc1101-nrf24.html" hreflang="pt-BR" aria-label="Versão em português"><span class="off">PT</span> · <span class="on">EN</span></a>
+  </div>
+</nav>
+
+<article class="article">
+  <div class="wrap prose">
+    <a class="back" href="../writeups.html">&larr; writeups</a>
+
+    <div class="article-head">
+      <div class="post-meta">
+        <span>sep 2026</span>
+        <span class="chip hw">Hardware</span>
+        <span class="chip rf">RF</span>
+        <span>lab · DIY</span>
+      </div>
+      <h1>Cardputer ADV as an RF multi-tool: CC1101 + nRF24L01+</h1>
+      <p style="color:var(--txt-dim);margin:0">
+        An M5Stack Cardputer ADV, a hand-made perfboard hat and two radios: the
+        <strong>CC1101</strong> for sub-GHz (433/868/915 MHz) and the <strong>nRF24L01+ PA/LNA</strong>
+        for 2.4 GHz. Both on the same SPI bus, switched in software, inside a device that fits in a
+        pocket and has a keyboard and a screen. The goal: a bench platform to study RF without leaning
+        on an SDR plugged into the laptop.
+      </p>
+    </div>
+
+    <figure class="shot">
+      <a href="../../assets/img/cardputer/circuito.jpg" target="_blank" rel="noopener">
+        <img src="../../assets/img/cardputer/circuito.jpg" alt="Cardputer ADV with a perfboard hat, CC1101 and nRF24L01+ modules and two SMA antennas, running the spectrum analyzer on screen"></a>
+      <figcaption>The assembled rig: hat with the CC1101 (left, 433 MHz) and the nRF24L01+ PA/LNA (right), the Cardputer running the 2.4 GHz spectrum analyzer</figcaption>
+    </figure>
+
+    <div class="disclosure">
+      <strong>// scope</strong><br>
+      A bench project, on my own equipment. Sub-GHz and 2.4 GHz are bands regulated by Anatel (Brazil's
+      telecom authority), with band and power limits. Use it only on your own radio or with formal
+      written authorization. Nothing here is meant to operate on third-party signals.
+    </div>
+
+    <h2>1. What it is and why</h2>
+    <p>
+      The Cardputer is M5Stack's pocket computer: an ESP32-S3, a QWERTY keyboard, a screen and a
+      battery, all the size of a card. On its own it already runs open firmware, but it has no radio
+      beyond the Wi-Fi and Bluetooth of the S3 itself. The point of this project was to give it
+      <strong>two research radios</strong> in a single accessory: sub-GHz and 2.4 GHz, covering much of
+      the spectrum where remotes, sensors, toys, peripherals and cheap IoT live.
+    </p>
+    <p>
+      The <strong>CC1101</strong> is the classic sub-GHz transceiver: it works at 433, 868 and 915 MHz,
+      the ISM bands where most gate remotes, sensors and low-cost telemetry sit. The
+      <strong>nRF24L01+ PA/LNA</strong> covers 2.4 GHz, with a power amplifier and a low-noise amplifier
+      for range, and serves both the chip's own protocols and spectrum activity scanning. Together, in a
+      device with a keyboard and a screen, they become a portable RF bench.
+    </p>
+
+    <h2>2. The build</h2>
+    <p>
+      Both modules live on a perfboard hat that plugs into the <strong>EXT 2.54-14P</strong> expansion
+      connector of the Cardputer ADV (the one with the Stamp-S3A / ESP32-S3FN8). Three decisions drove
+      the build: power, the SPI bus, and remapping pins in firmware.
+    </p>
+
+    <h3>Power: 3.3 V, and only 3.3 V</h3>
+    <p>
+      This is the detail that keeps the board from frying. The EXT connector delivers 5 V on pin 6, but
+      the <strong>ESP32-S3 does not tolerate 5 V on any GPIO</strong>. So the 5 V goes through a local
+      <strong>AMS1117-3.3</strong> regulator on the hat, and both radios are fed <strong>only with
+      3.3 V</strong>. The logic signals are already 3.3 V on both sides, so no level shifter is needed.
+      Swapping 5 V for a GPIO would damage the Stamp-S3A: check your connector pinout against the
+      official documentation before powering it up.
+    </p>
+
+    <h3>Shared SPI bus</h3>
+    <p>
+      Both radios share the same three SPI lines: <code>SCK=G40</code>, <code>MOSI=G14</code>,
+      <code>MISO=G39</code>. Each one has its own chip-select, so both stay wired at the same time and
+      selection is done in software: no jumper, no reset, you just address one or the other. These are
+      the same lines as the Cardputer's microSD (<code>CS_SD=G12</code>), which works fine as long as
+      the wires stay short. The full pinout:
+    </p>
+    <pre><code>SPI bus (shared with the microSD, CS_SD = G12)
+  SCK   = G40      MOSI = G14      MISO = G39
+
+CC1101  (sub-GHz 433 / 868 / 915 MHz)
+  CSN   = G13      GDO0 = G5
+
+nRF24L01+ PA/LNA  (2.4 GHz)
+  CSN   = G6       CE   = G4
+
+Reserved: do NOT use G8 / G9  (internal I2C: keyboard, IMU, audio)</code></pre>
+    <p>
+      <code>G8/G9</code> are off the table on purpose: they are the Cardputer's internal I2C, where the
+      keyboard, the IMU and the audio live. Taking over that bus breaks all three at once.
+    </p>
+    <p style="color:var(--txt-dim)">
+      The schematic, the point-to-point wiring table and the bench verification checklist are in the
+      <a href="../../assets/img/cardputer/esquematico.pdf" target="_blank" rel="noopener">full schematic (PDF)</a>
+      (Rev. B).
+    </p>
+
+    <h3>Remapping in Bruce firmware</h3>
+    <p>
+      The firmware running the rig is <strong>Bruce</strong>. The detail that makes it all work: the
+      default Cardputer build points both radios at the <strong>same pins</strong> (<code>cs=1</code>,
+      <code>io0=2</code>). Without reassigning them, the two modules will not operate wired at the same
+      time. The remap lives in the <code>/brucePins.conf</code> file, keyed by the device's Wi-Fi MAC:
+    </p>
+    <pre><code>{
+  "AA:BB:CC:DD:EE:FF": {
+    "CC1101_Pins": { "sck": 40, "miso": 39, "mosi": 14, "cs": 13, "io0": 5, "io2": -1 },
+    "NRF24_Pins":  { "sck": 40, "miso": 39, "mosi": 14, "cs":  6, "io0": 4, "io2": -1 }
+  }
+}</code></pre>
+    <p>
+      <code>sck/miso/mosi</code> are already the Cardputer family default, so in practice only
+      <code>cs</code> and <code>io0</code> change. <code>io0</code> carries a different signal on each
+      chip: it is <code>GDO0</code> on the CC1101 and <code>CE</code> on the nRF24. <code>io2</code>
+      stays at <code>-1</code>, unused here. The file exists in LittleFS and also on the SD card, and
+      Bruce reads the SD copy when a card is mounted: edit the right one and reboot.
+    </p>
+
+    <h3>RF and power gotchas</h3>
+    <ul>
+      <li><strong>nRF24 PA/LNA current spikes:</strong> it pulls peaks of about <strong>115 mA on
+      TX</strong>. Keep the 3.3 V wire to it short; if you see instability or short range, a
+      <code>10 uF</code> cap on VCC/GND fixes it.</li>
+      <li><strong>Desensitization:</strong> keep the two antennas apart from each other and from the
+      Cardputer body. Antennas touching or stacked, or sitting next to the device's metal and
+      electronics, drop the receiver's sensitivity.</li>
+      <li><strong>Short SPI wires:</strong> since the lines are shared with the microSD, a long wire or
+      a bad joint shows up as a card that will not mount or a radio that will not answer.</li>
+    </ul>
+
+    <h2>3. Applications</h2>
+    <p>With both radios on air, the device turns into a versatile study bench:</p>
+    <ul>
+      <li><strong>2.4 GHz spectrum analysis:</strong> sweep the channels and watch band activity, which
+      is what shows up on the screen in the photo above. Useful for reading Wi-Fi, Bluetooth and
+      peripheral occupancy.</li>
+      <li><strong>Sub-GHz protocol study:</strong> observe and characterize signals at 433 MHz, the
+      band most crowded with low-cost remotes and sensors.</li>
+      <li><strong>RF and IoT security research:</strong> a cheap platform to understand how these radios
+      behave, always on your own equipment.</li>
+      <li><strong>Hardware CTFs:</strong> challenges involving RF, SPI and embedded firmware fit nicely
+      in a pocket device with a keyboard and a screen.</li>
+    </ul>
+
+    <h2>4. Why the Cardputer</h2>
+    <p>
+      The appeal of using the Cardputer as a base is the sum of things that are usually scattered
+      around: an <strong>ESP32-S3</strong> with headroom in processing and memory, a physical
+      <strong>keyboard</strong> for typing commands and frequencies, a <strong>screen</strong> to see
+      the spectrum in real time, a battery, and <strong>open firmware</strong> (Bruce) that already
+      ships the drivers for both radios and the RF interface. All of it in a card-sized form factor that
+      fits in a pocket and needs no laptop next to it. The hat is the only hand-made part, and it is
+      reversible: pull it off the EXT and the Cardputer is back to stock.
+    </p>
+
+    <h2>5. Responsible use</h2>
+    <p>
+      Worth repeating, because it matters: <strong>sub-GHz and 2.4 GHz are bands regulated by
+      Anatel</strong>, with band rules and power limits. This is a research and study project, on my own
+      radio. Transmitting outside the limits, or operating on someone else's signals and systems without
+      authorization, is not just bad practice: it is illegal. The RX side (listening, analyzing the
+      spectrum, characterizing your own signal) is the study ground; the TX side calls for extra care
+      with power and band.
+    </p>
+
+    <h2>References and credits</h2>
+    <ul>
+      <li><a href="https://docs.m5stack.com/en/core/Cardputer-Adv" target="_blank" rel="noopener">M5Stack Cardputer-Adv, official documentation</a> (EXT pinout, PinMap and schematics)</li>
+      <li><a href="https://github.com/pingequalab/cardputer-adv-cc1101-nrf24-auto-switch" target="_blank" rel="noopener">pingequalab/cardputer-adv-cc1101-nrf24-auto-switch</a> (MIT / CC BY-SA 4.0), shared-SPI mapping and the <code>brucePins.conf</code></li>
+      <li><a href="https://github.com/BruceDevices/firmware" target="_blank" rel="noopener">BruceDevices/firmware</a>, the firmware and the wiki</li>
+    </ul>
+
+    <p style="margin-top:40px">
+      <a class="back" href="../writeups.html">&larr; back to writeups</a>
+    </p>
+  </div>
+</article>
+
+<footer>
+  <div class="wrap foot-in">
+    <span>&copy; <span id="year">2026</span> lucas rodrigues albino</span>
+    <span>Campina Grande, PB · BR</span>
+    <span><a href="../index.html">home</a></span>
+  </div>
+</footer>
+
+<script src="../../assets/js/main.js"></script>
+</body>
+</html>

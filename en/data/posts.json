@@ -1,5 +1,13 @@
 [
   {
+    "titulo": "Cardputer ADV as an RF multi-tool: CC1101 + nRF24L01+",
+    "resumo": "An M5Stack Cardputer ADV with a hand-made perfboard hat becomes an RF research bench: CC1101 for sub-GHz (433/868/915 MHz) and nRF24L01+ PA/LNA for 2.4 GHz, on a shared SPI bus switched in software, running Bruce firmware.",
+    "data": "2026-09-15",
+    "url": "writeups/cardputer-cc1101-nrf24.html",
+    "leitura": "7 min",
+    "tags": [{ "nome": "Hardware", "classe": "hw" }, { "nome": "RF", "classe": "rf" }]
+  },
+  {
     "titulo": "Windows Privilege Escalation — cheat sheet",
     "resumo": "Enumeration and common privesc vectors on Windows via CMD and PowerShell: services, ACLs, scheduled tasks, DLL hijacking and hash dumping.",
     "data": "2026-08-22",

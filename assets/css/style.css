@@ -303,6 +303,8 @@ section.alt { background: var(--bg-alt); border-block: 1px solid var(--line-soft
 .chip.ot    { color: var(--warn);  border-color: rgba(240,178,50,.35); }
 .chip.red   { color: var(--crit);  border-color: rgba(239,95,95,.35); }
 .chip.blue  { color: var(--acc);   border-color: rgba(255,43,61,.35); }
+.chip.hw    { color: var(--acc2);  border-color: rgba(255,171,64,.35); }
+.chip.rf    { color: #35d6d0;      border-color: rgba(53,214,208,.35); }
 .post h3 { margin: 0 0 8px; font-size: 1.12rem; line-height: 1.35; }
 .post p { margin: 0 0 14px; color: var(--txt-dim); font-size: .93rem; }
 .post .more { font-family: var(--mono); font-size: .8rem; color: var(--acc); }

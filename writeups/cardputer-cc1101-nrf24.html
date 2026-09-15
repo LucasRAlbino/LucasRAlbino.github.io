@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cardputer ADV como multi-tool de RF: CC1101 + nRF24L01+ | lucas.albino</title>
+<meta name="description" content="Um hat feito à mão transforma o M5Stack Cardputer ADV numa base de pesquisa de RF: CC1101 para sub-GHz e nRF24L01+ para 2,4 GHz, num barramento SPI compartilhado, com firmware Bruce.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%230a0e13'/><text y='68' x='50' text-anchor='middle' font-size='58' font-family='monospace' fill='%23ff2b3d'>&gt;_</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="../index.html"><span class="sig">&gt;_</span> lucas<span class="sig">.</span>albino</a>
+    <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">&#9776;</button>
+    <div class="nav-links">
+      <a href="../index.html#sobre">./sobre</a>
+      <a href="../index.html#exp">./exp</a>
+      <a href="../index.html#labs">./labs</a>
+      <a href="../writeups.html" class="active">./writeups</a>
+      <a href="../index.html#contato">./contato</a>
+    </div>
+    <a class="lang-btn" href="../en/writeups/cardputer-cc1101-nrf24.html" hreflang="en" aria-label="English version"><span class="on">PT</span> · <span class="off">EN</span></a>
+  </div>
+</nav>
+
+<article class="article">
+  <div class="wrap prose">
+    <a class="back" href="../writeups.html">&larr; writeups</a>
+
+    <div class="article-head">
+      <div class="post-meta">
+        <span>set 2026</span>
+        <span class="chip hw">Hardware</span>
+        <span class="chip rf">RF</span>
+        <span>lab · DIY</span>
+      </div>
+      <h1>Cardputer ADV como multi-tool de RF: CC1101 + nRF24L01+</h1>
+      <p style="color:var(--txt-dim);margin:0">
+        Um M5Stack Cardputer ADV, um hat de placa perfurada feito à mão e dois rádios: o
+        <strong>CC1101</strong> para sub-GHz (433/868/915 MHz) e o <strong>nRF24L01+ PA/LNA</strong>
+        para os 2,4 GHz. Os dois no mesmo barramento SPI, chaveados por software, dentro de um
+        aparelho que cabe no bolso e tem teclado e tela. O objetivo: uma base de bancada para estudar
+        RF sem depender de um SDR no notebook.
+      </p>
+    </div>
+
+    <figure class="shot">
+      <a href="../assets/img/cardputer/circuito.jpg" target="_blank" rel="noopener">
+        <img src="../assets/img/cardputer/circuito.jpg" alt="Cardputer ADV com hat de placa perfurada, módulos CC1101 e nRF24L01+ e duas antenas SMA, rodando o analisador de espectro na tela"></a>
+      <figcaption>O conjunto montado: hat com CC1101 (à esquerda, 433 MHz) e nRF24L01+ PA/LNA (à direita), o Cardputer rodando o analisador de espectro de 2,4 GHz</figcaption>
+    </figure>
+
+    <div class="disclosure">
+      <strong>// escopo</strong><br>
+      Projeto de bancada, em equipamento próprio. Sub-GHz e 2,4 GHz são faixas reguladas pela Anatel,
+      com limites de faixa e de potência. Use somente em rádio próprio ou com autorização formal por
+      escrito. Nada aqui é para operar sobre sinais de terceiros.
+    </div>
+
+    <h2>1. O que é e por quê</h2>
+    <p>
+      O Cardputer é um computador de bolso da M5Stack: um ESP32-S3, teclado QWERTY, tela e uma bateria,
+      tudo do tamanho de um cartão. Sozinho ele já roda firmware aberto, mas não tem rádio além do
+      Wi-Fi e do Bluetooth do próprio S3. A ideia deste projeto foi dar a ele <strong>dois rádios de
+      pesquisa</strong> num único acessório: sub-GHz e 2,4 GHz, cobrindo boa parte do espectro onde
+      vivem controles remotos, sensores, brinquedos, periféricos e IoT barato.
+    </p>
+    <p>
+      O <strong>CC1101</strong> é o transceptor sub-GHz clássico: opera em 433, 868 e 915 MHz, as faixas
+      ISM onde estão a maioria dos controles de portão, sensores e telemetria de baixo custo. O
+      <strong>nRF24L01+ PA/LNA</strong> cobre os 2,4 GHz, com amplificador de potência e de baixo ruído
+      para ganhar alcance, e serve tanto para os protocolos próprios do chip quanto para varredura de
+      atividade no espectro. Juntos, num aparelho com teclado e tela, viram uma bancada de RF portátil.
+    </p>
+
+    <h2>2. O build</h2>
+    <p>
+      Os dois módulos moram num hat de placa perfurada que encaixa no conector de expansão
+      <strong>EXT 2.54-14P</strong> do Cardputer ADV (o modelo com o Stamp-S3A / ESP32-S3FN8). Três
+      decisões guiaram a montagem: alimentação, o barramento SPI e o remapeamento de pinos no firmware.
+    </p>
+
+    <h3>Alimentação: 3,3 V, e só 3,3 V</h3>
+    <p>
+      Este é o detalhe que evita queimar a placa. O conector EXT entrega 5 V no pino 6, mas o
+      <strong>ESP32-S3 não tolera 5 V em nenhum GPIO</strong>. Então os 5 V passam por um regulador
+      local <strong>AMS1117-3.3</strong> no próprio hat, e os dois rádios são alimentados
+      <strong>somente com 3,3 V</strong>. Os sinais lógicos já são 3,3 V nos dois lados, então não
+      precisa de level shifter. Inverter o 5 V com um GPIO danifica o Stamp-S3A: confira o pinout do seu
+      conector contra a documentação oficial antes de energizar.
+    </p>
+
+    <h3>Barramento SPI compartilhado</h3>
+    <p>
+      Os dois rádios dividem as mesmas três linhas de SPI: <code>SCK=G40</code>, <code>MOSI=G14</code>,
+      <code>MISO=G39</code>. Cada um tem o seu próprio chip-select, então os dois ficam ligados ao mesmo
+      tempo e a seleção é feita por software: sem jumper, sem reset, é só endereçar um ou outro. São as
+      mesmas linhas do microSD do Cardputer (<code>CS_SD=G12</code>), o que funciona bem desde que os
+      fios fiquem curtos. A pinagem completa:
+    </p>
+    <pre><code>Barramento SPI (compartilhado com o microSD, CS_SD = G12)
+  SCK   = G40      MOSI = G14      MISO = G39
+
+CC1101  (sub-GHz 433 / 868 / 915 MHz)
+  CSN   = G13      GDO0 = G5
+
+nRF24L01+ PA/LNA  (2,4 GHz)
+  CSN   = G6       CE   = G4
+
+Reservado: NAO usar G8 / G9  (I2C interno: teclado, IMU, audio)</code></pre>
+    <p>
+      O <code>G8/G9</code> ficam fora dos planos de propósito: são o I2C interno do Cardputer, onde
+      estão o teclado, a IMU e o áudio. Ocupar esse barramento quebra essas três funções de uma vez.
+    </p>
+    <p style="color:var(--txt-dim)">
+      O esquemático, a tabela de ligação ponto a ponto e o roteiro de verificação de bancada estão no
+      <a href="../assets/img/cardputer/esquematico.pdf" target="_blank" rel="noopener">esquemático completo (PDF)</a>
+      (Rev. B).
+    </p>
+
+    <h3>Remapeamento no firmware Bruce</h3>
+    <p>
+      O firmware que roda o conjunto é o <strong>Bruce</strong>. O detalhe que faz tudo funcionar: o
+      build padrão do Cardputer aponta os dois rádios para os <strong>mesmos pinos</strong>
+      (<code>cs=1</code>, <code>io0=2</code>). Sem reatribuir, os dois módulos não operam ligados ao
+      mesmo tempo. O remapeamento vive no arquivo <code>/brucePins.conf</code>, indexado pelo MAC Wi-Fi
+      do aparelho:
+    </p>
+    <pre><code>{
+  "AA:BB:CC:DD:EE:FF": {
+    "CC1101_Pins": { "sck": 40, "miso": 39, "mosi": 14, "cs": 13, "io0": 5, "io2": -1 },
+    "NRF24_Pins":  { "sck": 40, "miso": 39, "mosi": 14, "cs":  6, "io0": 4, "io2": -1 }
+  }
+}</code></pre>
+    <p>
+      O <code>sck/miso/mosi</code> já são o padrão da família Cardputer, então na prática só o
+      <code>cs</code> e o <code>io0</code> mudam. O <code>io0</code> carrega sinais diferentes em cada
+      chip: é o <code>GDO0</code> no CC1101 e o <code>CE</code> no nRF24. O <code>io2</code> fica em
+      <code>-1</code>, não usado aqui. O arquivo existe na LittleFS e também no cartão SD, e o Bruce lê
+      o do SD quando há cartão montado: edite a cópia certa e reinicie.
+    </p>
+
+    <h3>Cuidados de RF e de alimentação</h3>
+    <ul>
+      <li><strong>Picos de corrente do nRF24 PA/LNA:</strong> ele puxa picos de cerca de
+      <strong>115 mA em TX</strong>. Mantenha o fio de 3,3 V até ele bem curto; se aparecer
+      instabilidade ou alcance curto, um capacitor de <code>10 uF</code> em VCC/GND resolve.</li>
+      <li><strong>Dessensibilização:</strong> afaste as duas antenas entre si e do corpo do Cardputer.
+      Antenas coladas ou empilhadas, ou perto do metal e da eletrônica do aparelho, derrubam a
+      sensibilidade do receptor.</li>
+      <li><strong>Fios curtos no SPI:</strong> como as linhas são compartilhadas com o microSD,
+      fio comprido ou solda ruim aparece como cartão que não monta ou rádio que não responde.</li>
+    </ul>
+
+    <h2>3. Aplicações</h2>
+    <p>Com os dois rádios no ar, o aparelho vira uma bancada de estudo bem versátil:</p>
+    <ul>
+      <li><strong>Análise de espectro em 2,4 GHz:</strong> varrer os canais e ver a atividade da faixa,
+      que é o que aparece na tela na foto lá em cima. Útil para entender ocupação de Wi-Fi, Bluetooth e
+      periféricos.</li>
+      <li><strong>Estudo de protocolos sub-GHz:</strong> observar e caracterizar sinais em 433 MHz,
+      a faixa mais povoada de controles e sensores de baixo custo.</li>
+      <li><strong>Pesquisa de segurança de RF e IoT:</strong> uma plataforma barata para entender como
+      esses rádios se comportam, sempre sobre equipamento próprio.</li>
+      <li><strong>CTFs de hardware:</strong> desafios que envolvem RF, SPI e firmware embarcado cabem
+      bem num aparelho de bolso com teclado e tela.</li>
+    </ul>
+
+    <h2>4. Por que o Cardputer</h2>
+    <p>
+      A graça de usar o Cardputer como base é a soma de coisas que normalmente ficam espalhadas:
+      um <strong>ESP32-S3</strong> com folga de processamento e memória, <strong>teclado</strong> físico
+      para digitar comandos e frequências, <strong>tela</strong> para ver o espectro na hora, bateria, e
+      um <strong>firmware aberto</strong> (o Bruce) que já traz os drivers dos dois rádios e a interface
+      de RF. Tudo isso num formato de cartão, que cabe no bolso e não precisa de notebook ao lado. O hat
+      é a única parte feita à mão, e é reversível: sai do EXT e o Cardputer volta ao normal.
+    </p>
+
+    <h2>5. Uso responsável</h2>
+    <p>
+      Vale repetir, porque importa: <strong>sub-GHz e 2,4 GHz são faixas reguladas pela Anatel</strong>,
+      com regras de faixa e limites de potência. Este projeto é de pesquisa e estudo, em rádio próprio.
+      Transmitir fora dos limites, ou operar sobre sinais e sistemas de terceiros sem autorização, não é
+      só má prática: é ilegal. A parte de RX (escutar, analisar espectro, caracterizar o próprio sinal)
+      é o terreno de estudo; a de TX pede cuidado redobrado com potência e faixa.
+    </p>
+
+    <h2>Referências e créditos</h2>
+    <ul>
+      <li><a href="https://docs.m5stack.com/en/core/Cardputer-Adv" target="_blank" rel="noopener">M5Stack Cardputer-Adv, documentação oficial</a> (pinout do EXT, PinMap e esquemáticos)</li>
+      <li><a href="https://github.com/pingequalab/cardputer-adv-cc1101-nrf24-auto-switch" target="_blank" rel="noopener">pingequalab/cardputer-adv-cc1101-nrf24-auto-switch</a> (MIT / CC BY-SA 4.0), mapeamento em SPI compartilhado e o <code>brucePins.conf</code></li>
+      <li><a href="https://github.com/BruceDevices/firmware" target="_blank" rel="noopener">BruceDevices/firmware</a>, o firmware e a wiki</li>
+    </ul>
+
+    <p style="margin-top:40px">
+      <a class="back" href="../writeups.html">&larr; voltar para writeups</a>
+    </p>
+  </div>
+</article>
+
+<footer>
+  <div class="wrap foot-in">
+    <span>&copy; <span id="year">2026</span> lucas rodrigues albino</span>
+    <span>Campina Grande, PB · BR</span>
+    <span><a href="../index.html">início</a></span>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
